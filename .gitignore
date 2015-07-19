@@ -6,4 +6,5 @@
 TODO
 *.zip
 test.html
-*.log
+*.log/
+temp/
