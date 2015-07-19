@@ -13,6 +13,7 @@ after correctly configure the project you can visite http://localhost:82/QADash/
 username : admin@admin.com
 pwd		 : admin
 
+please read the documentation and study the diagrams as well, I have provided a diagram guide to easily understand the diagram
 --------------------------------------------------------------
 Folder structure
 	-> application
@@ -24,8 +25,8 @@ Folder structure
 			---->libraries
 			|
 			---->views
-	-> database
-	-> diagrams
+	-> assert/database
+	-> assert/diagrams
 	-> documentation
 	-> public_html
 	-> system
