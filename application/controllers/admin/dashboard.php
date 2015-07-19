@@ -3,7 +3,6 @@
 	class Dashboard extends Admin_Controller{
 		public function __constructor(){
 			parent::__constructor();
-
 		}
 
 		public function index(){
