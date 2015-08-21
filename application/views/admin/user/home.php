@@ -1,3 +1,19 @@
+<?php
+  // foreach ($projects as $p) {
+  //    // echo $project.pid;
+  //   // foreach ($p as $_p) {
+  //   //   # code...
+  //   // // var_dump($_p);
+  //   //   echo "{$_p} -- ";
+  //   // }
+  //  }
+  // var_dump($projects);
+  // echo "{$p['pid']}";
+   // echo 'pid'.$p['pid'];
+   // echo '\nname'.$p['name'];
+   // echo '\description'.$p['description'];
+
+?>
 <section class="content">
           <!-- Small boxes (Stat box) -->
           <div class="row">
@@ -5,8 +21,8 @@
               <!-- small box -->
               <div class="small-box bg-aqua">
                 <div class="inner">
-                  <h3>150</h3>
-                  <p>New Orders</p>
+                  <h3><?php echo count($projects); ?></h3>
+                  <p>All projects</p>
                 </div>
                 <div class="icon">
                   <i class="ion ion-bag"></i>

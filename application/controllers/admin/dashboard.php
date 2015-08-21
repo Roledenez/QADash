@@ -6,6 +6,7 @@
 		}
 
 		public function index(){
+			$this->data['projects'] = $this->project_m->getAllProjects();
 			$this->data['subview'] = 'admin/user/home';
 			$this->load->view("admin/_layout_main",$this->data);
 		}
