@@ -7,6 +7,7 @@
 			$this->load->library('form_validation');
 			$this->load->library('session');
 			$this->load->model('user_m');
+			$this->load->model('project_m');
 			$this->load->helper('url');
 
 			// login check
