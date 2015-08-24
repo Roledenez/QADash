@@ -7,7 +7,6 @@
     <!--   </div>
       <div class="modal-body"> -->
 
-      <?php echo validation_errors(); ?>
 
 
 
@@ -85,6 +84,8 @@
                                    Remember me
                                     </label>
                                 </div>
+                                <h4 style="color:red"> <?php echo validation_errors(); ?> </h4>
+
                             </div>
 
 

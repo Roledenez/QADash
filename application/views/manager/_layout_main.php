@@ -184,7 +184,7 @@
 
         <!-- Main content -->
 
-        <?php  $this->load->view($subview); ?>
+        <?php echo "This is the manager dashboard"; //$this->load->view($subview); ?>
 
 
         <!-- end of the main content -->

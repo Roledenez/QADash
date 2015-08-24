@@ -23,6 +23,8 @@
 			$this->load->view('admin/_layout_modal',$this->data);
 		}
 
+
+
 		public function logout(){
 			$this->user_m->logout();
 			redirect('admin/user/login');

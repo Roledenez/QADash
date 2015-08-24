@@ -1,4 +1,4 @@
-<?php $this->load->view('admin/components/page_head'); ?>
+<?php $this->load->view('components/page_head'); ?>
 <body style="background: white">
 
 <!-- Trigger the modal with a button
@@ -19,4 +19,4 @@
 </div>
 
 
- <?php $this->load->view('admin/components/page_tail'); ?>
+ <?php $this->load->view('components/page_tail'); ?>
