@@ -5,7 +5,7 @@
 		 * Name : login
 		 * Description : This class handle the login authentication
 		 */
-	class login extends Admin_Controller{
+	class Login extends Admin_Controller{
 		/*
 		 * Auther : Roledene
 		 * Type : Constructor
