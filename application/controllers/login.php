@@ -52,11 +52,12 @@
 		/*
 		 * Auther : Roledene
 		 * Type : method
-		 * Name : getAllProjects
-		 * Description : this method return all the project tuples in project table
+		 * Name : getDashboardPath
+		 * Description : This method returns which dashboard to redirect the logged in user based on user role.
 		 */
 		public function getDashboardPath(){
 			$dashboard = '';
+			// get the user role in session
 			$role = $this->session->userdata('role');
 			if (isset($role)) {
 			switch ($role) {
@@ -77,7 +78,12 @@
 			}
 		}
 
-
+		/*
+		 * Auther : Roledene
+		 * Type : method
+		 * Name : logout
+		 * Description : This method unset the logged in session
+		 */
 		public function logout(){
 			$this->user_m->logout();
 			redirect('login/login');

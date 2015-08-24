@@ -12,13 +12,13 @@
 
 			// login check
 			$exception_uris =  array(
-					'admin/user/login',
-					'admin/user/logout'
+					'login/login',
+					'login/logout'
 					);
 
 			if(in_array(uri_string(), $exception_uris) == FALSE){
-				if ($this->user_m->loggedin() == FALSE && strcmp($this->session->userdata('role'), 'admin') == 0) {
-					redirect('admin/user/login');
+				if ( !( $this->user_m->loggedin() == TRUE && strcmp($this->session->userdata('role'), 'admin') == 0) ) {
+					redirect('login/login');
 				}
 			}
 		}
