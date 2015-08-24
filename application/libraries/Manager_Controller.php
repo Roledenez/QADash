@@ -1,5 +1,5 @@
 <?php
-	class Admin_Controller extends My_Controller{
+	class Manager_Controller extends My_Controller{
 		function __construct(){
 			parent::__construct();
 			$this->data['meta_title'] = "my awesome dashboard";
@@ -17,7 +17,7 @@
 					);
 
 			if(in_array(uri_string(), $exception_uris) == FALSE){
-				if ($this->user_m->loggedin() == FALSE && strcmp($this->session->userdata('role'), 'admin') == 0) {
+				if ($this->user_m->loggedin() == FALSE && strcmp($this->session->userdata('role'), 'manager') == 0) {
 					redirect('admin/user/login');
 				}
 			}

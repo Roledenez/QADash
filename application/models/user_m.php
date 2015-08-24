@@ -42,6 +42,10 @@
 		public function loggedin(){
 			return (bool) $this->session->userdata('loggedin');
 		}
+
+		// public function getRole(){
+		// 	$role = ;
+		// }
 		public function hash($string){
 			return hash('sha512', $string.config_item('encryption_key'));
 		}
