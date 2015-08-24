@@ -45,8 +45,8 @@
 					redirect('login/login','refresh');
 				}
 			}
-			$this->data['subview'] = 'admin/user/login';
-			$this->load->view('admin/_layout_modal',$this->data);
+			$this->data['subview'] = 'login';
+			$this->load->view('_layout_modal',$this->data);
 		}
 
 		/*
