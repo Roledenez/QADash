@@ -1,15 +1,3 @@
- <!-- Modal content-->
-   <!--  <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal">&times;</button> -->
-        <!-- <h4 class="modal-title">Log in</h4>
-        <p>Please log in using your credentials</p> -->
-    <!--   </div>
-      <div class="modal-body"> -->
-
-
-
-
 
 <div class="container">
             <div id="loginbox" style="margin-top:50px;" class="mainbox col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">

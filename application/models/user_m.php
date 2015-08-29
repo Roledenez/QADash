@@ -47,8 +47,10 @@
 			if (count($user)) {
 				//log in user
 				$data  = array(
+					'uid' => $user->users_id,
 					'fname' => $user->firstName,
 					'lname' => $user->lastName,
+					'username' => $user->uername,
 					'email' => $user->email,
 					'id' => $user->users_id,
 					'role' => $user->role,
@@ -56,6 +58,7 @@
 					);
 				// create the login session with above details
 				$this->session->set_userdata($data);
+
 			}
 		}
 
@@ -108,6 +111,27 @@
 				'email' => $this->input->post('email'),
 				'password' => $this->hash($this->input->post('password'))
 				));
+			return $id;
+		}
+
+				/*
+		 * Auther : Roledene
+		 * Type : method
+		 * Name : addUser
+		 * Description : This method add a new user to the system
+		 */
+		public function update($tableName,$primaryKey){
+
+			$this->user_m->_table_name = $tableName;
+			$this->user_m->_primary_key = "users_id";
+			$id = $this->save(array(
+				'firstName' => $this->input->post('fname'),
+				'lastName' => $this->input->post('lname'),
+				// 'uername' => $this->session->userdata('username'),
+				'role' => $this->session->userdata('role'),//"admin";//$this->input->post('role'),
+				'email' => $this->input->post('email'),
+				'password' => $this->hash($this->input->post('password'))
+				),$this->session->userdata('uid'));
 			return $id;
 		}
 

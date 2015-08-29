@@ -54,9 +54,7 @@
 			//run the validating
 			if ($this->form_validation->run($rules) == TRUE) {
 				$id = $this->user_m->addUser("users","users_id");
-				$this->data['subview'] = 'admin/user/allUsers';
-				$this->load->view('admin/_layout_main',$this->data);
-
+					redirect("admin/users/showUsers");
 			}
 
 			$this->data['subview'] = 'admin/user/addNewUsers';
@@ -81,8 +79,60 @@
 		 * Description : This function route to the user profile
 		 */
 		public function showProfile(){
-			$this->data['subview'] = 'admin/user/profile';
+
+			$this->data['subview'] = 'engineer/user/profile';
+			// )) handle which layout to show here
 			$this->load->view('admin/_layout_main',$this->data);
+		}
+
+		/*
+		 * Auther : Roledene
+		 * Type : method
+		 * Name : update
+		 * Description : This function update the user profile
+		 */
+		public function update(){
+
+			$this->user_m->rules = array(
+				'first-name' => array('field'=>'fname',
+								'label'=>'First Name',
+								'rules'=>'trim|required'
+								),
+				'last-name' => array('field'=>'lname',
+								'label'=>'Last Name',
+								'rules'=>'trim|required'
+								),
+				// 'username' => array('field'=>'username',
+				// 				'label'=>'Username',
+				// 				'rules'=>'trim|required'
+				// 				),
+				'email' => array('field'=>'email',
+								'label'=>'Email',
+								'rules'=>'trim|required|valid_email'
+								),
+				'password' => array('field'=>'password',
+									'label'=>'Password',
+									'rules'=>'trim|required'
+									),
+				'confirmpassword' => array('field'=>'confirmpassword',
+									'label'=>'Confirm Password',
+									'rules'=>'trim|required'
+									)
+			);
+
+			$rules = $this->user_m->rules;
+			//validate the form
+			$this->form_validation->set_rules($rules);
+			//run the validating
+			if ($this->form_validation->run($rules) == TRUE) {
+				$id = $this->user_m->update("users","users_id");
+					redirect("admin/users/showUsers");
+			}
+
+					// redirect("admin/users/showProfile");
+			$this->data['subview'] = 'engineer/user/profile';
+			$this->load->view('admin/_layout_main',$this->data);
+
 		}
 
 
