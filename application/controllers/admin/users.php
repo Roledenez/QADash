@@ -68,7 +68,9 @@
 		 * Description : This function route to the all users sub view
 		 */
 		public function showUsers(){
+			$users = $this->user_m->get();
 			$this->data['subview'] = 'admin/user/allUsers';
+			$this->data['users'] = $users;
 			$this->load->view('admin/_layout_main',$this->data);
 		}
 

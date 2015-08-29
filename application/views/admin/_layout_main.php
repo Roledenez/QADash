@@ -174,7 +174,13 @@
 
         <!-- Main content -->
 
-        <?php  $this->load->view($subview); ?>
+        <?php if(isset($users)){
+                 $this->load->view($subview,$users);
+               }
+              else{
+                 $this->load->view($subview);
+              }
+         ?>
 
 
         <!-- end of the main content -->
