@@ -118,7 +118,7 @@
 									                  'intern' => 'Intern',
 									                );
 
-									// $shirts_on_sale = array('small', 'large');
+									// $shirts_on_sale = array('class', 'form-control');
 
 									echo form_dropdown('role', $options, 'admin');
                                   ?>

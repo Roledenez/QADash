@@ -1,19 +1,4 @@
-<?php
-  // foreach ($projects as $p) {
-  //    // echo $project.pid;
-  //   // foreach ($p as $_p) {
-  //   //   # code...
-  //   // // var_dump($_p);
-  //   //   echo "{$_p} -- ";
-  //   // }
-  //  }
-  // var_dump($projects);
-  // echo "{$p['pid']}";
-   // echo 'pid'.$p['pid'];
-   // echo '\nname'.$p['name'];
-   // echo '\description'.$p['description'];
 
-?>
 <section class="content">
           <!-- Small boxes (Stat box) -->
           <div class="row">

@@ -53,14 +53,24 @@
 			$this->form_validation->set_rules($rules);
 			//run the validating
 			if ($this->form_validation->run($rules) == TRUE) {
-
-
 				$id = $this->user_m->addUser("users","users_id");
-				var_dump($id);
+				$this->data['subview'] = 'admin/user/allUsers';
+				$this->load->view('admin/_layout_main',$this->data);
 
 			}
 
 			$this->data['subview'] = 'admin/user/addNewUsers';
+			$this->load->view('admin/_layout_main',$this->data);
+		}
+
+		/*
+		 * Auther : Roledene
+		 * Type : method
+		 * Name : showUsers
+		 * Description : This function route to the all users sub view
+		 */
+		public function showUsers(){
+			$this->data['subview'] = 'admin/user/allUsers';
 			$this->load->view('admin/_layout_main',$this->data);
 		}
 
