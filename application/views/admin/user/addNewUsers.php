@@ -52,9 +52,27 @@
                                   ?>
                             </div>
 
+                            <!-- Username -->
+                             <div style="margin-bottom: 25px" class="input-group">
+                                <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                                <!-- <input id="login-username" type="text" class="form-control" name="username" value="" placeholder="username or email"> -->
+                                <?php
+                                     $attributes = array(
+                                        'class' => 'form-control',
+                                        'id' => 'username',
+                                        'type' => "text",
+                                        'name' => "username",
+                                        'placeholder' => "Username",
+                                        'value' => ""
+                                        );
+
+                                     echo form_input($attributes);
+                                  ?>
+                            </div>
+
 							<!-- email -->
                             <div style="margin-bottom: 25px" class="input-group">
-                                <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                                <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
                                 <!-- <input id="login-username" type="text" class="form-control" name="username" value="" placeholder="username or email"> -->
                                 <?php
                                      $attributes = array(
@@ -71,7 +89,7 @@
                             </div>
 
 							<!-- password -->
-                            <div style="margin-bottom: 25px" class="input-group">
+                             <div style="margin-bottom: 25px" class="input-group">
                                 <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
                                 <!-- <input id="login-password" type="password" class="form-control" name="password" placeholder="password"> -->
                                 <?php
@@ -85,6 +103,24 @@
                                         );
 
                                      echo form_input($attributes);
+                                  ?>
+                            </div>
+
+							<!-- role dropdown -->
+                            <div style="margin-bottom: 25px" class="input-group">
+                                <span class="input-group-addon"><i class="glyphicon glyphicon-asterisk"></i></span>
+                                <!-- <input id="login-password" type="password" class="form-control" name="password" placeholder="password"> -->
+                                <?php
+                                     $options = array(
+									                  'admin'  => 'Administrator',
+									                  'manager'    => 'Project Manager',
+									                  'engineer'   => 'Engineer',
+									                  'intern' => 'Intern',
+									                );
+
+									// $shirts_on_sale = array('small', 'large');
+
+									echo form_dropdown('role', $options, 'admin');
                                   ?>
 
                              <!-- validating error output -->

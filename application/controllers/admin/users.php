@@ -34,6 +34,10 @@
 								'label'=>'Last Name',
 								'rules'=>'trim|required'
 								),
+				'username' => array('field'=>'username',
+								'label'=>'Username',
+								'rules'=>'trim|required'
+								),
 				'email' => array('field'=>'email',
 								'label'=>'Email',
 								'rules'=>'trim|required|valid_email'
@@ -50,14 +54,9 @@
 			//run the validating
 			if ($this->form_validation->run($rules) == TRUE) {
 
-				// //all the form validating are correct, check the valid credintials
-				// if($this->user_m->login() == TRUE){
-				// 	redirect($dashboard); // redirect to the dashboard
-				// }else{
-				// 	// if login failed, send the error message
-				// 	$this->session->set_flashdata('error','That email/password combination does not exist');
-				// 	redirect('login/login','refresh');
-				// }
+
+				$id = $this->user_m->addUser("users","users_id");
+				var_dump($id);
 
 			}
 

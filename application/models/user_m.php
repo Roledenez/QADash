@@ -89,5 +89,27 @@
 			return hash('sha512', $string.config_item('encryption_key'));
 		}
 
+		/*
+		 * Auther : Roledene
+		 * Type : method
+		 * Name : addUser
+		 * Description : This method add a new user to the system
+		 */
+		public function addUser($tableName,$primaryKey){
+
+			$this->user_m->_table_name = $tableName;
+			$this->user_m->_primary_key = $primaryKey;
+
+			$id = $this->save(array(
+				'firstName' => $this->input->post('fname'),
+				'lastName' => $this->input->post('lname'),
+				'uername' => $this->input->post('username'),
+				'role' => $this->input->post('role'),
+				'email' => $this->input->post('email'),
+				'password' => $this->hash($this->input->post('password'))
+				));
+			return $id;
+		}
+
 	}
 
