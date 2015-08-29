@@ -74,6 +74,17 @@
 			$this->load->view('admin/_layout_main',$this->data);
 		}
 
+		/*
+		 * Auther : Roledene
+		 * Type : method
+		 * Name : showProfile
+		 * Description : This function route to the user profile
+		 */
+		public function showProfile(){
+			$this->data['subview'] = 'admin/user/profile';
+			$this->load->view('admin/_layout_main',$this->data);
+		}
+
 
 	}
 

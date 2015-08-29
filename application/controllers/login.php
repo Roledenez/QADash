@@ -24,7 +24,6 @@
 		 */
 		public function login(){
 			$dashboard = '';//controller path
-
 			// first check user already logged in, then redirect to the relavent dashboard UI
 			if ($this->user_m->loggedin() == TRUE) {
 			    redirect($this->getDashboardPath());
@@ -66,6 +65,12 @@
 							break;
 						case 'manager':
 							$dashboard = 'manager/dashboard';
+							break;
+						case 'engineer':
+							$dashboard = 'engineer/dashboard';
+							break;
+						case 'intern':
+							$dashboard = 'engineer/dashboard';
 							break;
 
 						default:
