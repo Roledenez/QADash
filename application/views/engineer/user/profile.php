@@ -54,7 +54,7 @@
                                         'type' => "text",
                                         'name' => "username",
                                         'placeholder' => "Username",
-                                        'disabled' => TRUE,
+                                        // 'disabled' => TRUE,
                                         'value' => $this->session->userdata('username')
                                         );
 
@@ -75,6 +75,20 @@
                                         );
 
                                      echo form_input($attributes);
+                                  ?>
+                    </div>
+                    <div class="form-group">
+                      <label for="exampleInputPassword1">Role</label>
+                      <!-- <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password"> -->
+                      <?php
+                                $options = array(
+                                    $this->session->userdata('role')  => $this->session->userdata('role'),
+                                    // 'manager'    => 'Project Manager',
+                                    // 'engineer'   => 'Engineer',
+                                    // 'intern' => 'Intern',
+                                  );
+
+                                     echo  form_dropdown('role', $options, 'admin');
                                   ?>
                     </div>
                     <div class="form-group">

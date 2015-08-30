@@ -54,6 +54,7 @@
 					'email' => $user->email,
 					'id' => $user->users_id,
 					'role' => $user->role,
+					'password' => $user->password,
 					'loggedin' => TRUE
 					);
 				// create the login session with above details
@@ -123,15 +124,23 @@
 		public function update($tableName,$primaryKey){
 
 			$this->user_m->_table_name = $tableName;
-			$this->user_m->_primary_key = "users_id";
+			$this->user_m->_primary_key = $primaryKey;
+
+			if($this->input->post('id') !== null ){
+			$user = $this->get_by(array(
+				'users_id' => $this->input->post('id'),
+				),TRUE);
+			}
+
 			$id = $this->save(array(
-				'firstName' => $this->input->post('fname'),
-				'lastName' => $this->input->post('lname'),
-				// 'uername' => $this->session->userdata('username'),
-				'role' => $this->session->userdata('role'),//"admin";//$this->input->post('role'),
-				'email' => $this->input->post('email'),
-				'password' => $this->hash($this->input->post('password'))
-				),$this->session->userdata('uid'));
+				'firstName' => $this->input->post('fname') !== null ? $this->input->post('fname') : $user->firstName,
+				'lastName' => $this->input->post('lname') !== null ? $this->input->post('lname') : $user->lastName,
+				'uername' => $this->input->post('username') !== null ? $this->input->post('username') : $user->uername,
+				// 'role' => $this->session->userdata('role') !== null ? $this->session->userdata('role') : $user->role,//"admin";//$this->input->post('role'),
+				'role' => $this->input->post('role') !== null ? $this->input->post('role') : $user->role,//"admin";//$this->input->post('role'),
+				'email' => $this->input->post('email') !== null ? $this->input->post('email') : $user->email,
+				'password' => $this->input->post('password') !== null ? $this->hash($this->input->post('password')) : $user->password
+				),$this->input->post('id') !== null ? $this->input->post('id') : $this->session->userdata('uid'));
 			return $id;
 		}
 

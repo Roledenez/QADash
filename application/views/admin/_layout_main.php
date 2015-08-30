@@ -143,7 +143,7 @@
               <ul class="treeview-menu">
                 <li><a href="<?php echo site_url('admin/users/showUsers'); ?>"><i class="fa fa-circle-o"></i> All Users</a></li>
                 <li>
-                  <a href="<?php echo site_url('admin/users/add'); ?>"><i class="fa fa-circle-o"></i> Manage Roles<i class="fa fa-angle-left pull-right"></i></a>
+                  <a href="<?php echo site_url('admin/users/add'); ?>"><i class="fa fa-circle-o"></i> Add New User</a>
                 </li>
                 <li><a href="#"><i class="fa fa-circle-o"></i> Level One</a></li>
               </ul>
