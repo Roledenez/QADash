@@ -1,5 +1,5 @@
 
-    <!-- jQuery 2.1.4 -->
+<!-- jQuery 2.1.4 -->
 
     <script src="<?php echo site_url('plugins/jQuery/jQuery-2.1.4.min.js'); ?>"></script>
     <!-- jQuery UI 1.11.4 -->
@@ -8,6 +8,7 @@
     <script type="text/javascript">
       $.widget.bridge('uibutton', $.ui.button);
     </script>
+
     <!-- Bootstrap 3.3.2 JS -->
     <script src="<?php echo site_url('bootstrap/js/bootstrap.min.js'); ?>" type="text/javascript"></script>
     <!-- Morris.js charts -->
@@ -45,10 +46,13 @@
 
     <script src="<?php echo site_url('dist/js/app.min.js'); ?>" type="text/javascript"></script>
     <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
-
-    <script src="<?php echo site_url('dist/js/pages/dashboard.js'); ?>" type="text/javascript"></script>
+    <!-- below link break the chat ui js script -->
+    <script src="<?php //echo site_url('dist/js/pages/dashboard.js'); ?>" type="text/javascript"></script>
     <!-- AdminLTE for demo purposes -->
 
     <script src="<?php echo site_url('dist/js/demo.js'); ?>" type="text/javascript"></script>
+
+    <!-- chat javascript file -->
+    <script src="<?php echo site_url('js/chat.js'); ?>" type="text/javascript"></script>
   </body>
 </html>
