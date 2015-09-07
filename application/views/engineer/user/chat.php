@@ -19,30 +19,17 @@
                 </div>
                 <div class="box-body chat" id="chat-box">
                   <!-- chat item -->
-                  <div class="item">
-                    <img src="<?php echo site_url('dist/img/avatar3.png'); ?>" alt="user image" class="online" />
+                  <!-- <div class="item">
+                    <img id="chatImage" src="<?php echo site_url('dist/img/avatar3.png'); ?>" alt="user image" class="online" />
                     <p class="message">
                       <a href="#" class="name">
                         <small class="text-muted pull-right"><i class="fa fa-clock-o"></i> 2:15</small>
-                        Mike Doe
                       </a>
-                      I would like to meet you to discuss the latest news about
-                      the arrival of the new theme. They say it is going to be one the
-                      best themes on the market
                     </p>
-                    <div class="attachment">
-                      <h4>Attachments:</h4>
-                      <p class="filename">
-                        Theme-thumbnail-image.jpg
-                      </p>
-                      <div class="pull-right">
-                        <button class="btn btn-primary btn-sm btn-flat">Open</button>
-                      </div>
-                    </div><!-- /.attachment -->
-                  </div><!-- /.item -->
+                  </div> --><!-- /.item -->
                   <!-- chat item -->
-                  <div class="item">
-                    <img src="<?php echo site_url('dist/img/avatar3.png'); ?>" alt="user image" class="offline" />
+                  <!-- <div class="item">
+                    <img src="<?php //echo site_url('dist/img/avatar3.png'); ?>" alt="user image" class="offline" />
                     <p class="message">
                       <a href="#" class="name">
                         <small class="text-muted pull-right"><i class="fa fa-clock-o"></i> 5:15</small>
@@ -52,10 +39,10 @@
                       the arrival of the new theme. They say it is going to be one the
                       best themes on the market
                     </p>
-                  </div><!-- /.item -->
+                  </div> --><!-- /.item -->
                   <!-- chat item -->
-                  <div class="item">
-                    <img src="<?php echo site_url('dist/img/avatar3.png'); ?>" alt="user image" class="offline" />
+                  <!-- <div class="item">
+                    <img src="<?php //echo site_url('dist/img/avatar3.png'); ?>" alt="user image" class="offline" />
                     <p class="message">
                       <a href="#" class="name">
                         <small class="text-muted pull-right"><i class="fa fa-clock-o"></i> 5:30</small>
@@ -65,9 +52,8 @@
                       the arrival of the new theme. They say it is going to be one the
                       best themes on the market
                     </p>
-                  </div><!-- /.item -->
+                  </div> --><!-- /.item -->
                   <div id="view">
-					<h1>Hello</h1>
                   </div>
                 </div><!-- /.chat -->
                 <div class="box-footer">

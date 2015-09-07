@@ -52,7 +52,9 @@
 			$this->db->from('chat_messages cm');
 			$this->db->join('users u','cm.user_id = u.users_id');
 			$this->db->where('cm.chat_id',$chatId);
-			$result = $this->db->get();
+				$method =  "result";
+
+			$result = $this->db->get()->$method();
 			// $result = $this->db->query($query,$chatId);
 			return $result;
 		}

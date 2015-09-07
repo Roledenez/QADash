@@ -20,9 +20,10 @@ $(document).ready(function(){
 	// $("#send").html("Hello World");
 	function getChatMessage(){
 		$.post(base_url+'engineer/chat/ajaxGetChatMessage',{chat_id:chat_id},function(data){
-			if(data.status == 'ok'){
-				$('div#view').html(data.content);
-			}
+				$('div#chat-box').html(data.content);
+				// $('span#chatMessage').html(data[0].chat_message_content);
+				// alert(data[0].chat_message_content);
+
 		},'json');
 		// alert(base_url+'chat/ajaxGetChatMessage');
 	}
