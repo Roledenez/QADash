@@ -1,9 +1,5 @@
 <?php
 
-//if (!defined('BASEPATH'))
-//    exit('No direct script access allowed');
-
-//class Chart_model extends CI_Model {
 class Chart_model extends My_Model {    
 
     function __construct() {
@@ -44,6 +40,18 @@ class Chart_model extends My_Model {
         return $query->result();
     }
     
-//    select COUNT(member_id), project_id FROM project_member GROUP BY project_id
+    function get_projectTime() {
+        $this->db->select('name,description,status,prority_id, progress,totalhours, spentours');
+        $this->db->from('project');
+        $query = $this->db->get();
 
+        return $query->result();
+    }
+   function get_projectProgress() {
+        $query = "SELECT p.project_id, p.name, p.status,p.progress, p.prority_id FROM project p, priority pr WHERE p.prority_id = pr.priority_id ";
+        $result = $this->db->query($query);
+        return $result->result();
+    }
+    
+    
 }

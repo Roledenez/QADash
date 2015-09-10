@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.2.11
+-- version 4.3.11
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 19, 2015 at 09:43 AM
--- Server version: 5.6.21
--- PHP Version: 5.6.3
+-- Generation Time: Sep 10, 2015 at 08:10 PM
+-- Server version: 5.6.24
+-- PHP Version: 5.5.24
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -76,6 +76,13 @@ CREATE TABLE IF NOT EXISTS `issue` (
   `status` varchar(500) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `issue`
+--
+
+INSERT INTO `issue` (`issue_id`, `project_id`, `member_id`, `testcase_id`, `description`, `prioriry_id`, `severity_id`, `status`) VALUES
+(1, '1', 1, 1, 'yhlgu', 1, 1, 'open');
+
 -- --------------------------------------------------------
 
 --
@@ -83,7 +90,7 @@ CREATE TABLE IF NOT EXISTS `issue` (
 --
 
 CREATE TABLE IF NOT EXISTS `member` (
-`member_id` int(11) NOT NULL,
+  `member_id` int(11) NOT NULL,
   `email` varchar(500) NOT NULL,
   `firstName` varchar(500) NOT NULL,
   `lastName` varchar(500) NOT NULL,
@@ -114,7 +121,9 @@ CREATE TABLE IF NOT EXISTS `priority` (
 --
 
 INSERT INTO `priority` (`priority_id`, `name`) VALUES
-(1, 'high');
+(1, 'high'),
+(2, 'Medium'),
+(3, 'low');
 
 -- --------------------------------------------------------
 
@@ -129,16 +138,20 @@ CREATE TABLE IF NOT EXISTS `project` (
   `starting_date` date NOT NULL,
   `ending_date` date NOT NULL,
   `status` varchar(500) NOT NULL,
-  `prority_id` int(11) NOT NULL
+  `prority_id` int(11) NOT NULL,
+  `totalhours` int(11) DEFAULT NULL,
+  `spentours` int(11) DEFAULT NULL,
+  `progress` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `project`
 --
 
-INSERT INTO `project` (`project_id`, `name`, `description`, `starting_date`, `ending_date`, `status`, `prority_id`) VALUES
-('1', 'Project 1', 'This is project 1', '2015-07-01', '2015-07-31', 'open', 1),
-('2', 'Project 2 ', 'This is project 2', '2015-08-03', '2015-07-22', 'closed ', 1);
+INSERT INTO `project` (`project_id`, `name`, `description`, `starting_date`, `ending_date`, `status`, `prority_id`, `totalhours`, `spentours`, `progress`) VALUES
+('1', 'Project 1', 'This is project 1', '2015-07-01', '2015-07-31', 'open', 1, 1500, 1100, 30),
+('2', 'Project 2 ', 'This is project 2', '2015-08-03', '2015-07-22', 'closed ', 1, 1060, 1280, 65),
+('3', 'Project3', 'fvffavfdvfadvfdvdf', '2015-09-01', '2015-09-24', 'open', 1, 1680, 1960, 90);
 
 -- --------------------------------------------------------
 
@@ -157,6 +170,8 @@ CREATE TABLE IF NOT EXISTS `project_member` (
 
 INSERT INTO `project_member` (`project_id`, `member_id`) VALUES
 ('1', 1),
+('2', 1),
+('3', 1),
 ('1', 2);
 
 -- --------------------------------------------------------
@@ -166,7 +181,7 @@ INSERT INTO `project_member` (`project_id`, `member_id`) VALUES
 --
 
 CREATE TABLE IF NOT EXISTS `project_requests` (
-`id` int(11) NOT NULL,
+  `id` int(11) NOT NULL,
   `month` varchar(100) DEFAULT NULL,
   `wordpress` int(11) DEFAULT NULL,
   `codeigniter` int(11) DEFAULT NULL,
@@ -194,6 +209,32 @@ INSERT INTO `project_requests` (`id`, `month`, `wordpress`, `codeigniter`, `high
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `project_sprint`
+--
+
+CREATE TABLE IF NOT EXISTS `project_sprint` (
+  `sprint_id` int(11) NOT NULL,
+  `project_id` varchar(500) NOT NULL,
+  `name` varchar(500) NOT NULL,
+  `description` varchar(500) NOT NULL,
+  `starting_date` date NOT NULL,
+  `ending_date` date NOT NULL,
+  `status` varchar(500) NOT NULL,
+  `prority_id` int(11) NOT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `project_sprint`
+--
+
+INSERT INTO `project_sprint` (`sprint_id`, `project_id`, `name`, `description`, `starting_date`, `ending_date`, `status`, `prority_id`) VALUES
+(1, '1', 'Sprint 1', 'Etsy doostang zoodles disqus groupon greplin oooj voxy zoodles,\n                      weebly ning heekya handango imeem plugg dopplr jibjab, movity\n                      jajah plickers sifteo edmodo ifttt zimbra. Babblely odeo kaboodle\n                      quora plaxo ideeli hulu weebly balihoo...', '2015-07-01', '2015-07-31', 'open', 1),
+(2, '1', 'Sprint 2 ', 'This is Sprint 2', '2015-08-03', '2015-07-22', 'closed ', 1),
+(3, '2', 'Sprint 1', 'This is Sprint 1', '2015-07-01', '2015-07-31', 'open', 1);
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `severity`
 --
 
@@ -214,15 +255,26 @@ CREATE TABLE IF NOT EXISTS `testcase` (
   `description` varchar(500) NOT NULL,
   `status` varchar(100) NOT NULL,
   `pass` int(11) NOT NULL,
-  `member_id` varchar(10) NOT NULL
+  `member_id` varchar(10) NOT NULL,
+  `prority_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `testcase`
 --
 
-INSERT INTO `testcase` (`testcase_id`, `testsuites_id`, `description`, `status`, `pass`, `member_id`) VALUES
-(1, 1, 'This is testcase 1', 'open', 1, '');
+INSERT INTO `testcase` (`testcase_id`, `testsuites_id`, `description`, `status`, `pass`, `member_id`, `prority_id`) VALUES
+(1, 1, 'This is testcase 1', 'passed', 1, '1', 2),
+(2, 1, 'This is test case 2', 'failed', 1, '1', 1),
+(3, 1, 'This is test case 3', 'failed', 0, '1', 2),
+(4, 1, 'This is test case 4', 'passed', 1, '1', 1),
+(5, 1, 'This is test case 5', 'failed', 1, '1', 1),
+(6, 2, 'm h', 'passed', 1, '1', 1),
+(7, 2, 'gdnf', 'failed', 2, '2', 2),
+(8, 3, 'fc jckkcc', 'failed', 1, '1', 3),
+(9, 3, 'jghgjhhjvgjcfhcghvhjgvgg', 'failed', 2, '2', 1),
+(10, 1, 'test case 10', 'in progress', 2, '2', 2),
+(11, 2, 'd gn gfnfznnzfgn fznf n', 'in progress', 1, '1', 3);
 
 -- --------------------------------------------------------
 
@@ -253,7 +305,9 @@ CREATE TABLE IF NOT EXISTS `testsuites` (
 --
 
 INSERT INTO `testsuites` (`testsuites_id`, `project_id`, `name`) VALUES
-(1, '1', 'Test suite 1');
+(1, '1', 'Test suite 1'),
+(2, '2', 'bdgc'),
+(3, '1', 'TestSuit 3');
 
 -- --------------------------------------------------------
 
@@ -262,13 +316,20 @@ INSERT INTO `testsuites` (`testsuites_id`, `project_id`, `name`) VALUES
 --
 
 CREATE TABLE IF NOT EXISTS `time_entries` (
-`time_entries_id` int(11) NOT NULL,
+  `time_entries_id` int(11) NOT NULL,
   `project_id` varchar(500) NOT NULL,
   `member_id` int(11) NOT NULL,
   `issue_id` int(11) NOT NULL,
   `assigned_hours` float NOT NULL,
   `spent_hours` float NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `time_entries`
+--
+
+INSERT INTO `time_entries` (`time_entries_id`, `project_id`, `member_id`, `issue_id`, `assigned_hours`, `spent_hours`) VALUES
+(1, '1', 1, 1, 120, 150);
 
 -- --------------------------------------------------------
 
@@ -277,14 +338,14 @@ CREATE TABLE IF NOT EXISTS `time_entries` (
 --
 
 CREATE TABLE IF NOT EXISTS `users` (
-`users_id` int(11) NOT NULL,
+  `users_id` int(11) NOT NULL,
   `uername` varchar(500) NOT NULL,
   `firstName` varchar(500) NOT NULL,
   `lastName` varchar(500) NOT NULL,
   `password` varchar(250) NOT NULL,
   `email` varchar(500) NOT NULL,
   `role` varchar(100) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `users`
@@ -294,14 +355,7 @@ INSERT INTO `users` (`users_id`, `uername`, `firstName`, `lastName`, `password`,
 (1, 'admin', 'admin', 'admin', 'AEE71079C5104F2E429802F324D8CF3AA1BC68D4034B58D6888EDE94B60D61E24E0BB961078264C2F8D7366247543295E0CBC9E5738CE11E76B9FAA7EFB07071', 'admin@admin.com', 'admin'),
 (2, 'admin', 'admin', 'admin', 'admin', 'admin', 'admin'),
 (3, 'Binalie', 'Binalie', 'Ravinga', '1', 'binalie@gmail.com', 'a'),
-(4, 'chathu', 'Chathuri', 'Gamage', 'abc', 'chathu@gmail.com', 'QA Engineer'),
-(5, '', '', '', '', '', ''),
-(6, 'hi', 'hi', 'hi', 'hi', 'hi@gmail.com', 'hi'),
-(7, 'dd', 'dd', 'dd', 'dd', 'sroledenez@gmail.com', 'dd'),
-(8, 'dd', 'dd', 'dd', '', 'sroledenez@gmail.com', 'dd'),
-(9, 'hi', 'hi', 'hi', '', 'hi@gmail.com', 'hi'),
-(10, 'hi', 'hi', 'hi', '', 'hi@gmail.com', 'hi'),
-(11, 'hi', 'hi', 'hi', '', 'hi@gmail.com', 'hi');
+(4, 'chathu', 'Chathuri', 'Gamage', 'abc', 'chathu@gmail.com', 'manager');
 
 --
 -- Indexes for dumped tables
@@ -311,73 +365,79 @@ INSERT INTO `users` (`users_id`, `uername`, `firstName`, `lastName`, `password`,
 -- Indexes for table `issue`
 --
 ALTER TABLE `issue`
- ADD PRIMARY KEY (`issue_id`), ADD KEY `fk_pt1` (`project_id`), ADD KEY `fk_pt2` (`member_id`), ADD KEY `fk_pt3` (`testcase_id`);
+  ADD PRIMARY KEY (`issue_id`), ADD KEY `fk_pt1` (`project_id`), ADD KEY `fk_pt2` (`member_id`), ADD KEY `fk_pt3` (`testcase_id`);
 
 --
 -- Indexes for table `member`
 --
 ALTER TABLE `member`
- ADD PRIMARY KEY (`member_id`);
+  ADD PRIMARY KEY (`member_id`);
 
 --
 -- Indexes for table `priority`
 --
 ALTER TABLE `priority`
- ADD PRIMARY KEY (`priority_id`);
+  ADD PRIMARY KEY (`priority_id`);
 
 --
 -- Indexes for table `project`
 --
 ALTER TABLE `project`
- ADD PRIMARY KEY (`project_id`), ADD KEY `fk_p` (`prority_id`);
+  ADD PRIMARY KEY (`project_id`), ADD KEY `fk_p` (`prority_id`);
 
 --
 -- Indexes for table `project_member`
 --
 ALTER TABLE `project_member`
- ADD PRIMARY KEY (`project_id`,`member_id`), ADD KEY `fk_m2` (`member_id`);
+  ADD PRIMARY KEY (`project_id`,`member_id`), ADD KEY `fk_m2` (`member_id`);
 
 --
 -- Indexes for table `project_requests`
 --
 ALTER TABLE `project_requests`
- ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `project_sprint`
+--
+ALTER TABLE `project_sprint`
+  ADD PRIMARY KEY (`sprint_id`), ADD KEY `fk_sp1` (`prority_id`), ADD KEY `fk_sp2` (`project_id`);
 
 --
 -- Indexes for table `severity`
 --
 ALTER TABLE `severity`
- ADD PRIMARY KEY (`severity_id`);
+  ADD PRIMARY KEY (`severity_id`);
 
 --
 -- Indexes for table `testcase`
 --
 ALTER TABLE `testcase`
- ADD PRIMARY KEY (`testcase_id`), ADD KEY `fk_test1` (`testsuites_id`);
+  ADD PRIMARY KEY (`testcase_id`), ADD KEY `fk_test1` (`testsuites_id`), ADD KEY `fk_test2` (`prority_id`);
 
 --
 -- Indexes for table `testcase_step`
 --
 ALTER TABLE `testcase_step`
- ADD PRIMARY KEY (`testcase_id`);
+  ADD PRIMARY KEY (`testcase_id`);
 
 --
 -- Indexes for table `testsuites`
 --
 ALTER TABLE `testsuites`
- ADD PRIMARY KEY (`testsuites_id`), ADD KEY `fk_te1` (`project_id`);
+  ADD PRIMARY KEY (`testsuites_id`), ADD KEY `fk_te1` (`project_id`);
 
 --
 -- Indexes for table `time_entries`
 --
 ALTER TABLE `time_entries`
- ADD PRIMARY KEY (`time_entries_id`), ADD KEY `fk_pm1` (`project_id`), ADD KEY `fk_pm2` (`member_id`), ADD KEY `fk_pm3` (`issue_id`);
+  ADD PRIMARY KEY (`time_entries_id`), ADD KEY `fk_pm1` (`project_id`), ADD KEY `fk_pm2` (`member_id`), ADD KEY `fk_pm3` (`issue_id`);
 
 --
 -- Indexes for table `users`
 --
 ALTER TABLE `users`
- ADD PRIMARY KEY (`users_id`);
+  ADD PRIMARY KEY (`users_id`);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -387,22 +447,27 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `member`
 --
 ALTER TABLE `member`
-MODIFY `member_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
+  MODIFY `member_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT for table `project_requests`
 --
 ALTER TABLE `project_requests`
-MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=13;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=13;
+--
+-- AUTO_INCREMENT for table `project_sprint`
+--
+ALTER TABLE `project_sprint`
+  MODIFY `sprint_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT for table `time_entries`
 --
 ALTER TABLE `time_entries`
-MODIFY `time_entries_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `time_entries_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-MODIFY `users_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=12;
+  MODIFY `users_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=5;
 --
 -- Constraints for dumped tables
 --
@@ -429,10 +494,18 @@ ADD CONSTRAINT `fk_m1` FOREIGN KEY (`project_id`) REFERENCES `project` (`project
 ADD CONSTRAINT `fk_m2` FOREIGN KEY (`member_id`) REFERENCES `member` (`member_id`);
 
 --
+-- Constraints for table `project_sprint`
+--
+ALTER TABLE `project_sprint`
+ADD CONSTRAINT `fk_sp1` FOREIGN KEY (`prority_id`) REFERENCES `priority` (`priority_id`),
+ADD CONSTRAINT `fk_sp2` FOREIGN KEY (`project_id`) REFERENCES `project` (`project_id`);
+
+--
 -- Constraints for table `testcase`
 --
 ALTER TABLE `testcase`
-ADD CONSTRAINT `fk_test1` FOREIGN KEY (`testsuites_id`) REFERENCES `testsuites` (`testsuites_id`);
+ADD CONSTRAINT `fk_test1` FOREIGN KEY (`testsuites_id`) REFERENCES `testsuites` (`testsuites_id`),
+ADD CONSTRAINT `fk_test2` FOREIGN KEY (`prority_id`) REFERENCES `priority` (`priority_id`);
 
 --
 -- Constraints for table `testcase_step`

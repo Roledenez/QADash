@@ -143,6 +143,43 @@
 				),$this->input->post('id') !== null ? $this->input->post('id') : $this->session->userdata('uid'));
 			return $id;
 		}
+                
+                function get_userProjectDet($pid) {
+                        $query = "select p.*, pr.name as priority from project p, project_member pm, priority pr WHERE p.project_id=pm.project_id and p.prority_id=pr.priority_id and  pm.member_id=$pid";
+                        $result = $this->db->query($query);
+                        return $result->result();
+                }
+                
+                function getAllProjectsID() {
+                        $this->load->database();
+                        $sql = ('select * from project');
+                        $query = $this->db->query($sql);
 
-	}
+                        foreach ($query->result_array() as $row) {
+                            $data[$row['project_id']] = $row['name'];
+                        }
+                        return $data;
+              }
+              
+              function getAssignedIssues($pid, $uid) {
+                        $query = "SELECT i.issue_id,i.description,p.name,p.priority_id FROM issue i, priority p WHERE i.prioriry_id=p.priority_id AND project_id=$pid AND member_id=$uid";
+                        $result = $this->db->query($query);
+                        return $result->result();
+             }
+             
+             function getAssignedTestCases($pid, $uid) {
+                        $query = "SELECT tc.testcase_id,tc.description,pr.name as priority , pr.priority_id FROM project p, testsuites ts, testcase tc, priority pr WHERE p.project_id=ts.project_id AND ts.testsuites_id=tc.testsuites_id AND tc.prority_id=pr.priority_id AND p.project_id=$pid AND tc.member_id=$uid";
+                        $result = $this->db->query($query);
+                        return $result->result();
+             }
+             
+             function get_projectTime() {
+                        $this->db->select('name,description,status,prority_id, progress,totalhours, spentours');
+                        $this->db->from('project');
+                        $query = $this->db->get();
+
+                        return $query->result();
+             }
+
+}
 
