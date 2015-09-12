@@ -67,39 +67,33 @@
 
 		public function saveSessionData($userID)
 		{
-			$datestring = "Year: %Y Month: %m Day: %d - %h:%i %a";
-            $time = time();
-
-            $start_time = date($datestring, $time);
-
+			
+            $start_time = date("h:i:sa");
+            $start_date = date("Y-m-d");
 
 				$abc = array(
-						// 'session_id' => $this->session->userdata('session_id'),
-						// 'ip_address' => $this->session->userdata('ip_address'),
-						// 'user_agent' => $this->session->userdata('user_agent'),
-						// 'session_start' => $dateTime,
-						// 'session_end' => '',
-						// 'user_id' => $userID
-
 						'session_id' => session_id(),
-						'ip_address' => $this->input->ip_address(),						
+						'ip_address' => $this->input->ip_address(),	
+						'session_start_date' =>$start_date,					
 						'session_start' => $start_time,
+						'session_end_date' => '0000-00-00',
 						'session_end' => '', 
 						'users_id' => $userID
 					);
+
 			$this->db->insert('sessions', $abc);
 
 		}
 
 		function updateSessionData(){
 
-			$datestring = "Year: %Y Month: %m Day: %d - %h:%i %a";
-            $time = time();
+            $end_time = date("h:i:sa");
+            $end_date = date("Y-m-d");
 
-            $end_time = date($datestring, $time);
 
 			$def = array(
-						'session_end' =>$end_time
+						'session_end_date' => $end_date,
+						'session_end' => $end_time
 				);
 
 
@@ -114,9 +108,7 @@
 		 * Description : Destroy the login session
 		 */
 		public function logout(){
-			// $x = session_id();
-			// $a = "select users_id from sessions where session_id = $x";
-			// $y = $this->db->query($a)->result();
+			
 			$this->updateSessionData();
 			$this->session->sess_destroy();
 		}
