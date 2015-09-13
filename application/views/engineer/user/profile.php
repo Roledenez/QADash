@@ -9,7 +9,7 @@
                 <!-- form start -->
  					 <?php
                             $attributes = array('class' => 'form-horizontal', 'id' => 'profileForm','role' => "form");
-                            echo form_open("admin/users/update");
+                            echo form_open("engineer/users/update");
                          ?>
                   <div class="box-body">
                   <div class="form-group">
