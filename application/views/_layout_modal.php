@@ -16,7 +16,7 @@
     <!-- </div>
 
   </div> -->
-</div>
+</body>
 
 
  <?php $this->load->view('components/page_tail'); ?>
