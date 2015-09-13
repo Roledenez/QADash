@@ -59,4 +59,23 @@
 			// $result = $this->db->query($query,$chatId);
 			return $result;
 		}
+
+		public function getChatMesage($chatId,$lastChatMsgId = 0){
+			try {
+			#$query = "SELECT cm.user_id,cm.chat_message_content, DATE_FORMAT(cm.create_date,'%D of %M %Y at %H:%i:%m') as msg_create_date, u.firstName FROM `chat_messages` cm JOIN users u ON cm.user_id = u.users_id WHERE cm.chat_id = ?";
+			$this->db->select('cm.user_id, cm.chat_id, cm.chat_message_content, DATE_FORMAT(cm.create_date, \'%D of %M %Y at %H:%i:%m\') as msg_create_date, u.firstName');
+			$this->db->from('chat_messages cm');
+			$this->db->join('users u','cm.user_id = u.users_id');
+			$where = 'cm.chat_message_id > '.$lastChatMsgId.' and cm.chat_id = '.$chatId;
+			$this->db->where($where);
+				$method =  "result";
+
+			$result = $this->db->get()->$method();
+			// $result = $this->db->query($query,$chatId);
+			return $result;
+
+			} catch (Exception $e) {
+				var_dump($e);
+			}
+		}
 	}

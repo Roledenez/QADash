@@ -1,5 +1,5 @@
 <?php $this->load->view('components/page_head'); ?>
-   <body class="skin-blue sidebar-mini">
+   <body class="skin-blue sidebar-mini" ng-app>
     <div class="wrapper">
 
       <!-- header bar -->
