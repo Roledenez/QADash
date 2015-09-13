@@ -61,6 +61,50 @@ INSERT INTO `charts` (`pid`, `Pname`, `year`, `month`, `failedTC`, `passedTC`, `
 
 -- --------------------------------------------------------
 
+CREATE TABLE IF NOT EXISTS `chats` (
+`chat_id` int(11) NOT NULL,
+  `chat_topic` varchar(200) NOT NULL,
+  `chatted_by` int(11) NOT NULL,
+  `create_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `chats`
+--
+
+INSERT INTO `chats` (`chat_id`, `chat_topic`, `chatted_by`, `create_date`) VALUES
+(1, 'codeignitor', 1, '2015-09-01 18:55:40');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `chat_messages`
+--
+
+CREATE TABLE IF NOT EXISTS `chat_messages` (
+  `chat_id` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `chat_message_content` varchar(10000) NOT NULL,
+  `create_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+`chat_message_id` int(11) NOT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `chat_messages`
+--
+
+INSERT INTO `chat_messages` (`chat_id`, `user_id`, `chat_message_content`, `create_date`, `chat_message_id`) VALUES
+(4, 4, 'test msg', '2015-09-02 06:42:15', 1),
+(2, 2, 'hi', '2015-09-02 06:42:53', 2),
+(2, 1, 'test massage for chat', '2015-09-02 06:44:56', 3),
+(2, 1, 'hihihi', '2015-09-05 05:24:16', 4),
+(2, 1, 'Hi, This is a test chat message from Sasika', '2015-09-05 05:25:11', 5),
+(1, 1, 'hi tst ', '2015-09-05 05:37:57', 6),
+(1, 2, 'fixed', '2015-09-05 05:40:35', 7),
+(1, 2, 'test', '2015-09-07 04:57:15', 8),
+(1, 2, 'tt', '2015-09-07 05:18:01', 9),
+(1, 15, 'ff', '2015-09-07 05:18:07', 10);
+
 --
 -- Table structure for table `issue`
 --
@@ -472,6 +516,39 @@ ALTER TABLE `users`
 -- Constraints for dumped tables
 --
 
+--
+-- AUTO_INCREMENT for table `chats`
+--
+ALTER TABLE `chats`
+MODIFY `chat_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
+--
+-- AUTO_INCREMENT for table `chat_messages`
+--
+ALTER TABLE `chat_messages`
+MODIFY `chat_message_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=11;
+--
+-- AUTO_INCREMENT for table `member`
+--
+ALTER TABLE `member`
+MODIFY `member_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
+--
+-- AUTO_INCREMENT for table `project_requests`
+--
+ALTER TABLE `project_requests`
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=13;
+--
+-- AUTO_INCREMENT for table `time_entries`
+--
+ALTER TABLE `time_entries`
+MODIFY `time_entries_id` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `users`
+--
+ALTER TABLE `users`
+MODIFY `users_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=24;
+--
+-- Constraints for dumped tables
+--
 --
 -- Constraints for table `issue`
 --

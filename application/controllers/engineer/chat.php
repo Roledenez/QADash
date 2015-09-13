@@ -8,6 +8,7 @@
 		public function index(){
 			// $this->data['projects'] = $this->project_m->getAllProjects();
 			$this->data['subview'] = 'engineer/user/chat';
+			$this->session->set_userdata('lastChatId_1',0);
 			$this->load->view("engineer/_layout_main",$this->data);
 		}
 
@@ -17,32 +18,28 @@
 			$chat_message_content = $this->input->post('chatMessageContent');
 			// var_dump($chat_message_content);
 			$this->chat_m->addChatMessage($chat_id,$user_id,$chat_message_content);
+
+			echo $this->_ajaxGetChatMessage($chat_id);
 		}
 
 		public function ajaxGetChatMessage(){
 			$chat_id = $this->input->post('chat_id');
-			$chatMessage = $this->chat_m->getChatMessage($chat_id);
+			echo $this->_ajaxGetChatMessage($chat_id);
+		}
+
+		public function _ajaxGetChatMessage($chat_id){
+			$lastChatMsgId = (int) $this->session->userdata('lastChatId_'.$chat_id);
+			$chatMessage = $this->chat_m->getChatMessage($chat_id,$lastChatMsgId);
 			// var_dump($chatMessage);
 			if (count($chatMessage)>0) {
-				# have to return some chats
-				/*$output = '';
-				$output .= '<ul>';
-				foreach ($chatMessage as $chatMsg) {
-					$output .= '<li>';
-					$output .= $chatMsg->chat_message_content;
-					// var_dump($chatMsg->chat_message_content);
-					$output .= '</li>';
-					// array_push($result,  $chatMsg->user_id);
-				}
-				$output .= '</ul>';
-				$result = array('status' => 'ok','content' => $output);
-				echo json_encode($result);*/
-				// $output .= "</ul>";
-				// var_dump($chatMessage->result());
+				// store the last chat message id
+				// var_dump($chatMessage);
+				$lastChatMsgId = $chatMessage[count($chatMessage)-1]->chat_id;
+				$this->session->set_userdata('lastChatId_'.$chat_id,$lastChatMsgId);
 				$output = '';
 				$output .= '<div class="item">';
 				foreach ($chatMessage as $chatMsg) {
-					if ($this->session->userdata('uid') == $chatMsg->user_id) {
+					if ($this->session->userdata('uid') == $chatMsg->user_id ) {
 					$output .= '<img id="chatImage" src="'.site_url('dist/img/user2-160x160.jpg').'" alt="user image" class="online" />';
 					}else{
 					$output .= '<img id="chatImage" src="'.site_url('dist/img/avatar3.png').'" alt="user image" class="online" />';
@@ -61,13 +58,13 @@
 				}
 				$output .= '</div>';
 				$result = array('status' => 'ok','content' => $output);
-				echo json_encode($result);
+				return json_encode($result);
 				exit();
 
 			}else{
 				# no chats
 				$result = array('status' => 'ok','content' => '');
-				echo json_encode($result);
+				return json_encode($result);
 				exit();
 			}
 		}
