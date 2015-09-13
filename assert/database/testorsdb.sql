@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 10, 2015 at 08:10 PM
+-- Generation Time: Sep 13, 2015 at 06:37 PM
 -- Server version: 5.6.24
 -- PHP Version: 5.5.24
 
@@ -46,18 +46,53 @@ CREATE TABLE IF NOT EXISTS `charts` (
 --
 
 INSERT INTO `charts` (`pid`, `Pname`, `year`, `month`, `failedTC`, `passedTC`, `prority`, `sevierity`, `issues`, `testcases`, `totalhours`, `spentours`) VALUES
-(1, 'QA dashboard', 2014, 'Jan', 5, 4, 0, 0, 130, 185, 1440, 1420),
-(1, 'NTM', 2014, 'Feb', 8, 5, 0, 0, 12, 150, 2840, 2920),
-(1, 'KR', 2014, 'Mar', 8, 20, 0, 0, 20, 162, 3960, 3951),
-(1, 'RDM', 2014, 'Apr', 40, 2, 0, 0, 52, 164, 1520, 1526),
-(1, 'KT Innovation', 2014, 'May', 46, 12, 0, 0, 45, 162, 1960, 1360),
-(1, 'OS Innovation', 2014, 'Jun', 29, 7, 0, 0, 93, 240, 1963, 1682),
-(1, 'QTT', 2014, 'Jul', 49, 2, 0, 0, 57, 130, 1860, 1861),
-(1, 'AA', 2014, 'Aug', 16, 12, 0, 0, 27, 86, 1760, 1796),
-(1, 'NTFC', 2014, 'Sep', 46, 6, 0, 0, 16, 132, 1800, 1850),
-(1, 'SEWE', 2014, 'Oct', 16, 21, 0, 0, 12, 160, 3690, 3694),
-(1, 'LDM', 2014, 'Nov', 19, 3, 0, 0, 126, 240, 3900, 3960),
-(1, 'YUC', 2014, 'Dec', 27, 4, 0, 0, 123, 264, 1500, 1680);
+(1, 'KT Innovation', 2014, 'Jan', 5, 4, 0, 0, 13, 20, 1500, 1100),
+(1, 'QA dashboard', 2014, 'Feb', 8, 5, 0, 0, 28, 30, 1060, 1280),
+(1, 'OS Innovation', 2014, 'Mar', 8, 20, 0, 0, 27, 40, 1080, 1960),
+(1, 'Hot Bug Fix', 2014, 'Dec', 27, 4, 0, 0, 42, 37, 5800, 4600);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `chats`
+--
+
+CREATE TABLE IF NOT EXISTS `chats` (
+`chat_id` int(11) NOT NULL,
+  `chat_topic` varchar(200) NOT NULL,
+  `chatted_by` int(11) NOT NULL,
+  `create_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `chats`
+--
+
+INSERT INTO `chats` (`chat_id`, `chat_topic`, `chatted_by`, `create_date`) VALUES
+(1, 'codeignitor', 1, '2015-09-01 18:55:40');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `chat_messages`
+--
+
+CREATE TABLE IF NOT EXISTS `chat_messages` (
+  `chat_id` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `chat_message_content` varchar(10000) NOT NULL,
+  `create_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+`chat_message_id` int(11) NOT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=39 DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `chat_messages`
+--
+
+INSERT INTO `chat_messages` (`chat_id`, `user_id`, `chat_message_content`, `create_date`, `chat_message_id`) VALUES
+(1, 1, 'test message', '2015-09-12 19:52:08', 33),
+(1, 2, 'Hi', '2015-09-13 07:44:56', 37),
+(1, 15, 'Hi, Roledene', '2015-09-13 07:45:06', 38);
 
 -- --------------------------------------------------------
 
@@ -81,7 +116,9 @@ CREATE TABLE IF NOT EXISTS `issue` (
 --
 
 INSERT INTO `issue` (`issue_id`, `project_id`, `member_id`, `testcase_id`, `description`, `prioriry_id`, `severity_id`, `status`) VALUES
-(1, '1', 1, 1, 'yhlgu', 1, 1, 'open');
+(1, '1', 1, 1, 'yhlgu', 1, 1, 'open'),
+(2, '1', 7, 2, 'bgdbfgn', 2, 1, 'open'),
+(3, '2', 7, 4, 'davdv', 3, 1, 'open');
 
 -- --------------------------------------------------------
 
@@ -95,7 +132,7 @@ CREATE TABLE IF NOT EXISTS `member` (
   `firstName` varchar(500) NOT NULL,
   `lastName` varchar(500) NOT NULL,
   `role` varchar(100) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `member`
@@ -103,7 +140,8 @@ CREATE TABLE IF NOT EXISTS `member` (
 
 INSERT INTO `member` (`member_id`, `email`, `firstName`, `lastName`, `role`) VALUES
 (1, 'abc@gmail.com', 'abc', 'abc', 'QA Engineer'),
-(2, 'chathu@gmail.com', 'Chtahuri', 'Gamage', 'QAEngineer');
+(2, 'chathu@gmail.com', 'Chtahuri', 'Gamage', 'QAEngineer'),
+(7, 'shan@shan.com', 'shan', 'shan', 'engineer');
 
 -- --------------------------------------------------------
 
@@ -149,9 +187,10 @@ CREATE TABLE IF NOT EXISTS `project` (
 --
 
 INSERT INTO `project` (`project_id`, `name`, `description`, `starting_date`, `ending_date`, `status`, `prority_id`, `totalhours`, `spentours`, `progress`) VALUES
-('1', 'Project 1', 'This is project 1', '2015-07-01', '2015-07-31', 'open', 1, 1500, 1100, 30),
-('2', 'Project 2 ', 'This is project 2', '2015-08-03', '2015-07-22', 'closed ', 1, 1060, 1280, 65),
-('3', 'Project3', 'fvffavfdvfadvfdvdf', '2015-09-01', '2015-09-24', 'open', 1, 1680, 1960, 90);
+('1', 'KT Innovation', 'Project for innovation of industry', '2015-07-01', '2015-07-31', 'open', 1, 1500, 1100, 30),
+('2', 'QA dashboard', 'Quality assuarance handling based system', '2015-08-03', '2015-07-22', 'closed ', 1, 1060, 1280, 65),
+('3', 'OS Innovation', 'Operating system inovation based system', '2015-09-01', '2015-09-24', 'open', 1, 1680, 1960, 90),
+('4', 'Hot Bug Fix', 'Project for bug fixing', '2015-09-02', '2015-11-19', 'open', 2, 5800, 4600, 79);
 
 -- --------------------------------------------------------
 
@@ -169,10 +208,10 @@ CREATE TABLE IF NOT EXISTS `project_member` (
 --
 
 INSERT INTO `project_member` (`project_id`, `member_id`) VALUES
-('1', 1),
 ('2', 1),
 ('3', 1),
-('1', 2);
+('1', 2),
+('1', 7);
 
 -- --------------------------------------------------------
 
@@ -216,21 +255,22 @@ CREATE TABLE IF NOT EXISTS `project_sprint` (
   `sprint_id` int(11) NOT NULL,
   `project_id` varchar(500) NOT NULL,
   `name` varchar(500) NOT NULL,
-  `description` varchar(500) NOT NULL,
+  `description` varchar(2000) NOT NULL,
   `starting_date` date NOT NULL,
   `ending_date` date NOT NULL,
   `status` varchar(500) NOT NULL,
   `prority_id` int(11) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `project_sprint`
 --
 
 INSERT INTO `project_sprint` (`sprint_id`, `project_id`, `name`, `description`, `starting_date`, `ending_date`, `status`, `prority_id`) VALUES
-(1, '1', 'Sprint 1', 'Etsy doostang zoodles disqus groupon greplin oooj voxy zoodles,\n                      weebly ning heekya handango imeem plugg dopplr jibjab, movity\n                      jajah plickers sifteo edmodo ifttt zimbra. Babblely odeo kaboodle\n                      quora plaxo ideeli hulu weebly balihoo...', '2015-07-01', '2015-07-31', 'open', 1),
-(2, '1', 'Sprint 2 ', 'This is Sprint 2', '2015-08-03', '2015-07-22', 'closed ', 1),
-(3, '2', 'Sprint 1', 'This is Sprint 1', '2015-07-01', '2015-07-31', 'open', 1);
+(1, '1', 'Sprint 1', 'Go to the Backlog of your board to prioritise the issues in your backlog and allocate them to sprints. You can click a sprint''s name to view the issues belonging to that sprint.', '2015-07-01', '2015-07-31', 'open', 1),
+(2, '1', 'Sprint 2 ', 'The key to understanding the difference between LMS and other computer education terms is to understand the systemic nature of LMS. LMS is the framework that handles all aspects of the learning process. An LMS is the infrastructure that delivers and manages instructional content, identifies and assesses individual and organizational learning or training goals, tracks the progress towards meeting those goals, and collects and presents data for supervising the learning process of the organization as a whole.[4] A Learning Management System delivers content but also handles registering for courses, course administration, skills gap analysis, tracking, and reporting', '2015-08-03', '2015-07-22', 'closed ', 1),
+(3, '2', 'Sprint 1', 'Go to the Backlog of your board to prioritise the issues in your backlog and allocate them to sprints. You can click a sprint''s name to view the issues belonging to that sprint.', '2015-07-01', '2015-07-31', 'open', 1),
+(4, '1', 'Sprint 3', 'Note that failed projects, and projects running over budget, are not necessarily the sole fault of the employees or businesses creating the software. In some cases, problems may be due partly to problems with the purchasing organisation, including poor requirements, over-ambitious requirements, unnecessary requirements, poor contract drafting, poor contract management, poor end-user training, or poor operational management.', '2015-07-14', '2015-11-25', 'open', 2);
 
 -- --------------------------------------------------------
 
@@ -254,6 +294,7 @@ CREATE TABLE IF NOT EXISTS `testcase` (
   `testsuites_id` int(11) NOT NULL,
   `description` varchar(500) NOT NULL,
   `status` varchar(100) NOT NULL,
+  `psb_status` varchar(200) NOT NULL,
   `pass` int(11) NOT NULL,
   `member_id` varchar(10) NOT NULL,
   `prority_id` int(11) NOT NULL
@@ -263,18 +304,18 @@ CREATE TABLE IF NOT EXISTS `testcase` (
 -- Dumping data for table `testcase`
 --
 
-INSERT INTO `testcase` (`testcase_id`, `testsuites_id`, `description`, `status`, `pass`, `member_id`, `prority_id`) VALUES
-(1, 1, 'This is testcase 1', 'passed', 1, '1', 2),
-(2, 1, 'This is test case 2', 'failed', 1, '1', 1),
-(3, 1, 'This is test case 3', 'failed', 0, '1', 2),
-(4, 1, 'This is test case 4', 'passed', 1, '1', 1),
-(5, 1, 'This is test case 5', 'failed', 1, '1', 1),
-(6, 2, 'm h', 'passed', 1, '1', 1),
-(7, 2, 'gdnf', 'failed', 2, '2', 2),
-(8, 3, 'fc jckkcc', 'failed', 1, '1', 3),
-(9, 3, 'jghgjhhjvgjcfhcghvhjgvgg', 'failed', 2, '2', 1),
-(10, 1, 'test case 10', 'in progress', 2, '2', 2),
-(11, 2, 'd gn gfnfznnzfgn fznf n', 'in progress', 1, '1', 3);
+INSERT INTO `testcase` (`testcase_id`, `testsuites_id`, `description`, `status`, `psb_status`, `pass`, `member_id`, `prority_id`) VALUES
+(1, 1, 'This is testcase 1', '0', 'passed', 1, '7', 2),
+(2, 1, 'This is test case 2', '1', 'failed', 1, '7', 1),
+(3, 1, 'This is test case 3', '0', 'failed', 0, '7', 2),
+(4, 1, 'This is test case 4', '0', 'passed', 1, '7', 1),
+(5, 1, 'This is test case 5', '0', 'failed', 1, '7', 1),
+(6, 2, 'm h', '0', 'passed', 1, '7', 1),
+(7, 2, 'gdnf', '1', 'failed', 2, '2', 2),
+(8, 3, 'fc jckkcc', '1', 'failed', 1, '7', 3),
+(9, 3, 'jghgjhhjvgjcfhcghvhjgvgg', '1', 'failed', 2, '2', 1),
+(10, 1, 'test case 10', '1', 'in progress', 2, '2', 2),
+(11, 2, 'd gn gfnfznnzfgn fznf n', '1', 'in progress', 1, '7', 3);
 
 -- --------------------------------------------------------
 
@@ -322,14 +363,16 @@ CREATE TABLE IF NOT EXISTS `time_entries` (
   `issue_id` int(11) NOT NULL,
   `assigned_hours` float NOT NULL,
   `spent_hours` float NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `time_entries`
 --
 
 INSERT INTO `time_entries` (`time_entries_id`, `project_id`, `member_id`, `issue_id`, `assigned_hours`, `spent_hours`) VALUES
-(1, '1', 1, 1, 120, 150);
+(1, '1', 7, 1, 120, 150),
+(2, '2', 7, 2, 150, 170),
+(3, '3', 7, 2, 250, 246);
 
 -- --------------------------------------------------------
 
@@ -345,7 +388,7 @@ CREATE TABLE IF NOT EXISTS `users` (
   `password` varchar(250) NOT NULL,
   `email` varchar(500) NOT NULL,
   `role` varchar(100) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `users`
@@ -355,12 +398,28 @@ INSERT INTO `users` (`users_id`, `uername`, `firstName`, `lastName`, `password`,
 (1, 'admin', 'admin', 'admin', 'AEE71079C5104F2E429802F324D8CF3AA1BC68D4034B58D6888EDE94B60D61E24E0BB961078264C2F8D7366247543295E0CBC9E5738CE11E76B9FAA7EFB07071', 'admin@admin.com', 'admin'),
 (2, 'admin', 'admin', 'admin', 'admin', 'admin', 'admin'),
 (3, 'Binalie', 'Binalie', 'Ravinga', '1', 'binalie@gmail.com', 'a'),
-(4, 'chathu', 'Chathuri', 'Gamage', 'abc', 'chathu@gmail.com', 'manager');
+(4, 'chathu', 'Chathuri', 'Gamage', 'abc', 'chathu@gmail.com', 'manager'),
+(5, 'sasika', 'sasika', 'sasika', '0da6e682b1f8691bd5e89449a6b20219ef19d03d25d475c7a383c13a38c059e39707d82eb5e898aa17c32c44acd173affaaf1ad4d5d1c888bc86b2009e1fa272', 'sasika@gmail.com', 'engineer'),
+(6, 'pm@pm.com', 'ish', 'ish', '1e265773220449710e061c3d39e517a6c9c15f06e466c2207610e0ab02395464a9b8d945ff35c4d78fc9ab945525cf013904da644c7171b3b7c6f440161a2e6c', 'pm@pm.com', 'manager'),
+(7, 'qa@qa.com', 'shan', 'shan', '0ee9611d0a40d13cb2ff4db4773056619478f295b91da6bd45a15fbcb6b3910b02a7b834cd21567483751512a367cdb79786005d1e2335400327648e927819bc', 'qa@qa.com', 'engineer');
 
 --
 -- Indexes for dumped tables
 --
 
+--
+-- Indexes for table `chats`
+--
+ALTER TABLE `chats`
+ ADD PRIMARY KEY (`chat_id`);
+ 
+--
+-- Indexes for table `chat_messages`
+--
+ALTER TABLE `chat_messages`
+ ADD PRIMARY KEY (`chat_message_id`);
+ 
+ 
 --
 -- Indexes for table `issue`
 --
@@ -443,11 +502,19 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for dumped tables
 --
 
+ALTER TABLE `chats`
+MODIFY `chat_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
+--
+-- AUTO_INCREMENT for table `chat_messages`
+--
+ALTER TABLE `chat_messages`
+MODIFY `chat_message_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=39;
+
 --
 -- AUTO_INCREMENT for table `member`
 --
 ALTER TABLE `member`
-  MODIFY `member_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
+  MODIFY `member_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=8;
 --
 -- AUTO_INCREMENT for table `project_requests`
 --
@@ -457,17 +524,17 @@ ALTER TABLE `project_requests`
 -- AUTO_INCREMENT for table `project_sprint`
 --
 ALTER TABLE `project_sprint`
-  MODIFY `sprint_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
+  MODIFY `sprint_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT for table `time_entries`
 --
 ALTER TABLE `time_entries`
-  MODIFY `time_entries_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
+  MODIFY `time_entries_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `users_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=5;
+  MODIFY `users_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=8;
 --
 -- Constraints for dumped tables
 --

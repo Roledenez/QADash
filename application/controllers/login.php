@@ -64,10 +64,10 @@
 							$dashboard = 'admin/dashboard';
 							break;
 						case 'manager':
-							$dashboard = 'manager/dashboard';
+							$dashboard = 'manager/projectProgress_controller';
 							break;
 						case 'engineer':
-							$dashboard = 'engineer/dashboard';
+							$dashboard = 'engineer/assignedToMe_controller';
 							break;
 						case 'intern':
 							$dashboard = 'engineer/dashboard';

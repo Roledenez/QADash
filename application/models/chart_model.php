@@ -16,10 +16,9 @@ class Chart_model extends My_Model {
     }
     
     function get_barchartdata() {
-        $this->db->select('Pname, issues, testcases');
+         $this->db->select('Pname, issues, testcases');
         $this->db->from('charts');
         $query = $this->db->get();
-
         return $query->result();
     }
     
