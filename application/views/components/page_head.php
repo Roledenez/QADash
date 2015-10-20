@@ -33,6 +33,7 @@
 
     <!-- angular js  -->
     <script src="<?php echo site_url('js/angular.min.js'); ?>" type="text/javascript"></script>
+    <script src="<?php echo site_url('js/main.js'); ?>" type="text/javascript"></script>
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->

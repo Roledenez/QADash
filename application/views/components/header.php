@@ -1,4 +1,4 @@
-<header class="main-header">
+<header class="main-header" ng-app="test">
         <!-- Logo -->
         <a href="<?php echo site_url("admin/dashboard"); ?>" class="logo">
           <!-- mini logo for sidebar mini 50x50 pixels -->
@@ -13,7 +13,30 @@
             <span class="sr-only">Toggle navigation</span>
           </a>
           <div class="navbar-custom-menu">
+            {{selectedProject}}
             <ul class="nav navbar-nav">
+              <li>
+                <div class="dropdown" ng-controller="customersCtrl">
+                  <!--                  <button class="btn btn-info dropdown-toggle " type="button" data-toggle="dropdown">Select Project-->
+                  <!--                    <span class="caret"></span></button>-->
+                  <form method="post" action="project/testForm">
+                    <select name="projectName" class="btn btn-info dropdown-toggle" ng-model="selectedProject">
+                      <option ng-repeat="x in names" selected="true" value="{{x.name}}">{{x.name}}</option>
+                    </select>
+                    <input type="submit" value="Load" class="btn btn-info pull-right"/>
+                  </form>
+                  <!--                  <ul class="dropdown-menu" >-->
+                  <!--                    <li ng-repeat="x in names" ><a ng-click="setCurrent(x.name)" ng-model="selectedProject" target="_self" ng-hef="http://localhost:82/QADash/public_html/admin/dashboard?id={{x.name}}" >{{x.name}} -->
+                  <?php //$projectName="{{x.name}}"; ?><!--</a></li>-->
+                  <!--                    <li><a href="#">CSS</a></li>-->
+                  <!--                    <li><a href="#">JavaScript</a></li>-->
+                  <!--                  </ul>-->
+                </div>
+              </li>
+              <li>
+                <!--                <a class="btn btn-info pull-right" href="">Load -->
+                <?php ////echo $projectName ?><!--</a>-->
+              </li>
               <!-- Messages: style can be found in dropdown.less-->
               <li class="dropdown messages-menu">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
@@ -92,6 +115,8 @@
                   <li class="footer"><a href="<?php echo site_url("engineer/chat"); ?>">See All Messages</a></li>
                 </ul>
               </li>
+
+
               <!-- Notifications: style can be found in dropdown.less -->
               <li class="dropdown notifications-menu">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">

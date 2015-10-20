@@ -1,7 +1,7 @@
 <?php
 
 /*
- * Auther : Roledene
+ * Author : Roledene JKS
  * Type : class
  * Name : User_m
  * Description : This class represent the user model
@@ -9,9 +9,6 @@
 
 class User_m extends My_Model {
 
-    protected $_table_name = "users";
-    protected $_order_by = "";
-    // rules for the login imput fields
     public $rules = array(
         'email' => array('field' => 'email',
             'label' => 'Email',
@@ -22,10 +19,13 @@ class User_m extends My_Model {
             'rules' => 'trim|required'
         )
     );
+    protected $_table_name = "users";
+    // rules for the login imput fields
+    protected $_order_by = "";
     protected $_timestamps = FALSE;
 
     /*
-     * Auther : Roledene
+     * Author : Roledene JKS
      * Type : constructor
      * Name : __construct
      * Description : Default construtor for User_m class
@@ -36,7 +36,7 @@ class User_m extends My_Model {
     }
 
     /*
-     * Auther : Roledene
+     * Author : Roledene JKS
      * Type : method
      * Name : login
      * Description : This method validate the username and password with databse values and create the session
@@ -68,42 +68,48 @@ class User_m extends My_Model {
     }
 
     /*
-     * Auther : Roledene
+     * Author : Roledene JKS
      * Type : method
      * Name : logout
      * Description : Destroy the login session
      */
 
-    public function logout() {
-        $this->session->sess_destroy();
+    public function hash($string)
+    {
+        return hash('sha512', $string . config_item('encryption_key'));
     }
 
     /*
-     * Auther : Roledene
+     * Author : Roledene JKS
      * Type : method
      * Name : loggedin
      * Description : This function return TRUE, if loggin session already created, otherwise return false
      */
 
-    public function loggedin() {
-        return (bool) $this->session->userdata('loggedin');
+    public function logout()
+    {
+        $this->session->sess_destroy();
     }
 
     /*
-     * Auther : Roledene
+     * Author : Roledene JKS
      * Type : method
      * Name : hash
-     * Description : This function concatinate given string with configuration key and hash using SHA512 algorithem
+     * Param1 : a string value which needs to hash
+     * Description : This function concatinate given string with configuration key and hash using SHA512 algorithm
      */
 
-    public function hash($string) {
-        return hash('sha512', $string . config_item('encryption_key'));
+    public function loggedin()
+    {
+        return (bool)$this->session->userdata('loggedin');
     }
 
     /*
-     * Auther : Roledene
+     * Author : Roledene JKS
      * Type : method
      * Name : addUser
+     * Param1 : db table name
+     * Param2 : primary key of the table
      * Description : This method add a new user to the system
      */
 
@@ -124,7 +130,7 @@ class User_m extends My_Model {
     }
 
     /*
-     * Auther : Roledene
+     * Author : Roledene JKS
      * Type : method
      * Name : addUser
      * Description : This method add a new user to the system
@@ -154,7 +160,7 @@ class User_m extends My_Model {
     }
 
     /*
-     * Auther : Ishara
+     * Author : Ishara
      * Type : method
      * Name : get_userProjectDet
      * Description : this method return project assigned for user
@@ -171,7 +177,7 @@ class User_m extends My_Model {
     }
 
     /*
-     * Auther : Ishara
+     * Author : Ishara
      * Type : method
      * Name : getAllProjectsID
      * Description : this method return project id
@@ -193,7 +199,7 @@ class User_m extends My_Model {
     }
 
     /*
-     * Auther : Ishara
+     * Author : Ishara
      * Type : method
      * Name : getAssignedIssues
      * Description : this method return assigned issues for user
@@ -210,7 +216,7 @@ class User_m extends My_Model {
     }
 
     /*
-     * Auther : Ishara
+     * Author : Ishara
      * Type : method
      * Name : getAssignedTestCases
      * Description : this method return assigned test cases for user
@@ -228,7 +234,7 @@ class User_m extends My_Model {
     }
 
     /*
-     * Auther : Ishara
+     * Author : Ishara
      * Type : method
      * Name : get_projectTime
      * Description : this method return allocation time
@@ -248,7 +254,7 @@ class User_m extends My_Model {
     }
 
     /*
-     * Auther : Ishara
+     * Author : Ishara
      * Type : method
      * Name : get_projectAllocTime
      * Description : this method return project allocation time for purticular user
