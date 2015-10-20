@@ -13,7 +13,6 @@
             <span class="sr-only">Toggle navigation</span>
           </a>
           <div class="navbar-custom-menu">
-            {{selectedProject}}
             <ul class="nav navbar-nav">
               <li>
                 <div class="dropdown" ng-controller="customersCtrl">

@@ -22,6 +22,7 @@ class User_m extends My_Model {
     protected $_table_name = "users";
     // rules for the login imput fields
     protected $_order_by = "";
+//    protected $_primary_key = "users_id";
     protected $_timestamps = FALSE;
 
     /*
