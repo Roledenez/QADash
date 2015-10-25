@@ -160,9 +160,9 @@ class User_m extends My_Model {
      * Description : this method return project assigned for user
      */
 
-    function get_userProjectDet($pid) {
+    function get_userProjectDet($uid) {
         try {
-            $query = "select p.*, pr.name as priority from project p, project_member pm, priority pr WHERE p.project_id=pm.project_id and p.prority_id=pr.priority_id and  pm.member_id=$pid";
+            $query = "select p.*, pr.name as priority from project p, project_member pm, priority pr WHERE p.project_id=pm.project_id and p.prority_id=pr.priority_id and  pm.member_id=$uid";
             $result = $this->db->query($query);
             return $result->result();
         } catch (Exception $exc) {
@@ -199,16 +199,26 @@ class User_m extends My_Model {
      * Description : this method return assigned issues for user
      */
 
-    function getAssignedIssues($pid, $uid) {
+//    function getAssignedIssues($pid, $uid) {
+//        try {
+//            $query = "SELECT i.issue_id,i.description,p.name,p.priority_id FROM issue i, priority p WHERE i.prioriry_id=p.priority_id AND project_id=$pid AND member_id=$uid";
+//            $result = $this->db->query($query);
+//            return $result->result();
+//        } catch (Exception $exc) {
+//            echo $exc->getTraceAsString();
+//        }
+//    }
+
+    function getAssignedToReviewed($pid, $uid) {
         try {
-            $query = "SELECT i.issue_id,i.description,p.name,p.priority_id FROM issue i, priority p WHERE i.prioriry_id=p.priority_id AND project_id=$pid AND member_id=$uid";
+            $query = "SELECT * FROM testsuites WHERE assignedToReview = $uid AND project_id ='$pid' ";
             $result = $this->db->query($query);
             return $result->result();
         } catch (Exception $exc) {
             echo $exc->getTraceAsString();
         }
     }
-
+    
     /*
      * Auther : Ishara
      * Type : method
@@ -219,7 +229,7 @@ class User_m extends My_Model {
     function getAssignedTestCases($pid, $uid) {
         try {
 
-            $query = "SELECT tc.testcase_id,tc.description,pr.name as priority , pr.priority_id FROM project p, testsuites ts, testcase tc, priority pr WHERE p.project_id=ts.project_id AND ts.testsuites_id=tc.testsuites_id AND tc.prority_id=pr.priority_id AND p.project_id=$pid AND tc.member_id=$uid";
+            $query = "SELECT tc.testcase_id,tc.description, tc.title, ts.name ,pr.name as priority , pr.priority_id FROM testsuites ts, testcase tc, priority pr WHERE ts.testsuites_id=tc.testsuites_id AND tc.prority_id=pr.priority_id AND ts.project_id='$pid' AND tc.member_id=$uid and tc.psb_status='Assign To Excecution' ORDER BY pr.priority_id";
             $result = $this->db->query($query);
             return $result->result();
         } catch (Exception $exc) {
@@ -268,6 +278,45 @@ class User_m extends My_Model {
         } catch (Exception $exc) {
             echo $exc->getTraceAsString();
         }
+    }
+    
+    
+    function get_projectDetails($pid) {
+        $query = "SELECT p.project_id, p.name, p.status, p.prority_id, p.starting_date, p.ending_date, pr.name as pname FROM project p, priority pr WHERE p.prority_id = pr.priority_id and p.project_id ='$pid'";
+        $result = $this->db->query($query);
+        return $result->result();
+    }
+    function get_TestCaseDetails($pid, $tsid){
+        $query = "SELECT tc.testcase_id, tc.testcase_code, ts.testsuites_code, tc.title, tc.description, pr.name as pname, tc.prority_id FROM testcase tc , testsuites ts , priority pr WHERE ts.testsuites_id = tc.testsuites_id and tc.prority_id=pr.priority_id and ts.project_id ='$pid' and ts.testsuites_id=$tsid and tc.psb_status = 'Assigned To Review'";
+        $result = $this->db->query($query);
+        return $result->result();
+    }
+    function get_TestSuiteDetails($pid, $uid){
+        $query = "SELECT t.testsuites_id ,t.testsuites_code, t.name,t.Priority, pr.name as pname FROM `testsuites` t, priority pr WHERE t.Priority = pr.priority_id and t.project_id ='$pid' and t.assignedToReview = $uid and reviewed IS NULL ";
+        $result = $this->db->query($query);
+        return $result->result();
+    }
+    
+    function updateTCStatus($data,$tcID){
+        $this->db->where('testcase_id', $tcID);
+        $this->db->update('testcase', $data); 
+    }
+    function get_TestStepDetails($tcID){
+        $query = "SELECT testcaseStep_id,testcase_id, description, expectedResult FROM testcase_step WHERE testcase_id = $tcID ";
+        $result = $this->db->query($query);
+        return $result->result();
+    }
+    
+    function get_AssignToReviewCOunt($pid, $tsid){
+        $query = "SELECT COUNT(tc.testcase_id) as count FROM testcase tc ,testsuites ts WHERE ts.testsuites_id = tc.testsuites_id and ts.project_id ='$pid' and ts.testsuites_id=$tsid and tc.psb_status = 'Assigned To Review'";
+        $result = $this->db->query($query);
+        $x = $result->result();
+        return $x[0]->count;
+    }
+    
+    function updateRevewStatus($data,$tsID){
+        $this->db->where('testsuites_id', $tsID);
+        $this->db->update('testsuites', $data); 
     }
 
 }

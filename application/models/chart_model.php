@@ -46,10 +46,37 @@ class Chart_model extends My_Model {
 
         return $query->result();
     }
-   function get_projectProgress() {
-        $query = "SELECT p.project_id, p.name, p.status,p.progress, p.prority_id FROM project p, priority pr WHERE p.prority_id = pr.priority_id ";
+   function get_projectDetails($pid) {
+        $query = "SELECT p.project_id, p.name, p.status,p.starting_date,p.ending_date, p.prority_id FROM project p, priority pr WHERE p.prority_id = pr.priority_id AND p.project_id = '$pid'";
         $result = $this->db->query($query);
         return $result->result();
+    }
+    function getFinishedCount($pid){
+        
+        $query = "SELECT COUNT(tc.testcase_id) done from testcase tc, testsuites ts WHERE tc.testsuites_id=ts.testsuites_id and tc.open=0 and ts.project_id = '$pid'";
+        $result = $this->db->query($query);
+        $x = $result->result();
+        return $x[0]->done;
+    }
+    function getNotFinishedCount($pid){
+        
+        $query = "SELECT COUNT(tc.testcase_id) notDone from testcase tc, testsuites ts WHERE tc.testsuites_id=ts.testsuites_id and ts.project_id = '$pid' and tc.open=1";
+        $result = $this->db->query($query);
+        $x = $result->result();
+        return $x[0]->notDone;
+    }
+    
+    function getProjectName($pid) {
+        try {
+            $this->db->select('name');
+            $this->db->from('project');
+            $this->db->where('project_id', $pid);
+            $query = $this->db->get();
+            $x = $query->result();
+            return $x[0]->name;
+        } catch (Exception $exc) {
+            echo $exc->getTraceAsString();
+        }
     }
     
     

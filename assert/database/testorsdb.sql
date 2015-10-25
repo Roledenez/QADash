@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 13, 2015 at 06:37 PM
+-- Generation Time: Oct 24, 2015 at 07:23 PM
 -- Server version: 5.6.24
 -- PHP Version: 5.5.24
 
@@ -58,7 +58,7 @@ INSERT INTO `charts` (`pid`, `Pname`, `year`, `month`, `failedTC`, `passedTC`, `
 --
 
 CREATE TABLE IF NOT EXISTS `chats` (
-`chat_id` int(11) NOT NULL,
+  `chat_id` int(11) NOT NULL,
   `chat_topic` varchar(200) NOT NULL,
   `chatted_by` int(11) NOT NULL,
   `create_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
@@ -82,8 +82,8 @@ CREATE TABLE IF NOT EXISTS `chat_messages` (
   `user_id` int(11) NOT NULL,
   `chat_message_content` varchar(10000) NOT NULL,
   `create_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-`chat_message_id` int(11) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=39 DEFAULT CHARSET=latin1;
+  `chat_message_id` int(11) NOT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=42 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `chat_messages`
@@ -92,53 +92,12 @@ CREATE TABLE IF NOT EXISTS `chat_messages` (
 INSERT INTO `chat_messages` (`chat_id`, `user_id`, `chat_message_content`, `create_date`, `chat_message_id`) VALUES
 (1, 1, 'test message', '2015-09-12 19:52:08', 33),
 (1, 2, 'Hi', '2015-09-13 07:44:56', 37),
-(1, 15, 'Hi, Roledene', '2015-09-13 07:45:06', 38);
+(1, 15, 'Hi, Roledene', '2015-09-13 07:45:06', 38),
+(1, 1, 'ish', '2015-09-13 17:25:39', 39),
+(1, 6, 'hellojio', '2015-09-13 17:28:45', 40),
+(1, 1, 'jggt', '2015-09-13 17:28:54', 41);
 
 -- --------------------------------------------------------
-
-CREATE TABLE IF NOT EXISTS `chats` (
-`chat_id` int(11) NOT NULL,
-  `chat_topic` varchar(200) NOT NULL,
-  `chatted_by` int(11) NOT NULL,
-  `create_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `chats`
---
-
-INSERT INTO `chats` (`chat_id`, `chat_topic`, `chatted_by`, `create_date`) VALUES
-(1, 'codeignitor', 1, '2015-09-01 18:55:40');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `chat_messages`
---
-
-CREATE TABLE IF NOT EXISTS `chat_messages` (
-  `chat_id` int(11) NOT NULL,
-  `user_id` int(11) NOT NULL,
-  `chat_message_content` varchar(10000) NOT NULL,
-  `create_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-`chat_message_id` int(11) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `chat_messages`
---
-
-INSERT INTO `chat_messages` (`chat_id`, `user_id`, `chat_message_content`, `create_date`, `chat_message_id`) VALUES
-(4, 4, 'test msg', '2015-09-02 06:42:15', 1),
-(2, 2, 'hi', '2015-09-02 06:42:53', 2),
-(2, 1, 'test massage for chat', '2015-09-02 06:44:56', 3),
-(2, 1, 'hihihi', '2015-09-05 05:24:16', 4),
-(2, 1, 'Hi, This is a test chat message from Sasika', '2015-09-05 05:25:11', 5),
-(1, 1, 'hi tst ', '2015-09-05 05:37:57', 6),
-(1, 2, 'fixed', '2015-09-05 05:40:35', 7),
-(1, 2, 'test', '2015-09-07 04:57:15', 8),
-(1, 2, 'tt', '2015-09-07 05:18:01', 9),
-(1, 15, 'ff', '2015-09-07 05:18:07', 10);
 
 --
 -- Table structure for table `issue`
@@ -223,7 +182,7 @@ CREATE TABLE IF NOT EXISTS `project` (
   `prority_id` int(11) NOT NULL,
   `totalhours` int(11) DEFAULT NULL,
   `spentours` int(11) DEFAULT NULL,
-  `progress` int(11) NOT NULL
+  `progress` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -231,10 +190,18 @@ CREATE TABLE IF NOT EXISTS `project` (
 --
 
 INSERT INTO `project` (`project_id`, `name`, `description`, `starting_date`, `ending_date`, `status`, `prority_id`, `totalhours`, `spentours`, `progress`) VALUES
+('01', 'g', 'ged', '2015-10-20', '2015-10-21', 'ged', 1, NULL, NULL, NULL),
+('011', 'ii', 'i8', '2015-09-28', '2015-10-21', 'open', 1, NULL, NULL, NULL),
+('012', 'gf', 'gf', '2015-10-08', '2015-10-14', 'open', 2, NULL, NULL, NULL),
 ('1', 'KT Innovation', 'Project for innovation of industry', '2015-07-01', '2015-07-31', 'open', 1, 1500, 1100, 30),
 ('2', 'QA dashboard', 'Quality assuarance handling based system', '2015-08-03', '2015-07-22', 'closed ', 1, 1060, 1280, 65),
 ('3', 'OS Innovation', 'Operating system inovation based system', '2015-09-01', '2015-09-24', 'open', 1, 1680, 1960, 90),
-('4', 'Hot Bug Fix', 'Project for bug fixing', '2015-09-02', '2015-11-19', 'open', 2, 5800, 4600, 79);
+('4', 'Hot Bug Fix', 'Project for bug fixing', '2015-09-02', '2015-11-19', 'open', 2, 5800, 4600, 79),
+('da', 'dadav', 'dv', '2015-10-21', '2015-10-27', 'open', 1, NULL, NULL, NULL),
+('dbb', 'd', 'b', '2015-10-20', '2015-10-06', 'open', 1, NULL, NULL, NULL),
+('fv', 'fv', 'b', '2015-10-19', '2015-10-07', 'open', 1, NULL, NULL, NULL),
+('v', 'hg', 'hg', '2015-10-21', '2015-10-13', 'hg', 1, NULL, NULL, NULL),
+('y', 'yn', 'nt', '2015-10-19', '2015-10-07', 'nt', 1, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -252,10 +219,11 @@ CREATE TABLE IF NOT EXISTS `project_member` (
 --
 
 INSERT INTO `project_member` (`project_id`, `member_id`) VALUES
-('2', 1),
 ('3', 1),
 ('1', 2),
-('1', 7);
+('01', 5),
+('01', 7),
+('01', 8);
 
 -- --------------------------------------------------------
 
@@ -335,31 +303,30 @@ CREATE TABLE IF NOT EXISTS `severity` (
 
 CREATE TABLE IF NOT EXISTS `testcase` (
   `testcase_id` int(11) NOT NULL,
+  `testcase_code` varchar(30) NOT NULL,
   `testsuites_id` int(11) NOT NULL,
+  `title` varchar(200) NOT NULL,
   `description` varchar(500) NOT NULL,
-  `status` varchar(100) NOT NULL,
-  `psb_status` varchar(200) NOT NULL,
-  `pass` int(11) NOT NULL,
-  `member_id` varchar(10) NOT NULL,
+  `status` varchar(100) DEFAULT NULL,
+  `psb_status` varchar(200) DEFAULT NULL,
+  `open` int(11) DEFAULT NULL,
+  `pass` int(11) DEFAULT NULL,
+  `member_id` varchar(10) DEFAULT NULL,
   `prority_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `testcase`
 --
 
-INSERT INTO `testcase` (`testcase_id`, `testsuites_id`, `description`, `status`, `psb_status`, `pass`, `member_id`, `prority_id`) VALUES
-(1, 1, 'This is testcase 1', '0', 'passed', 1, '7', 2),
-(2, 1, 'This is test case 2', '1', 'failed', 1, '7', 1),
-(3, 1, 'This is test case 3', '0', 'failed', 0, '7', 2),
-(4, 1, 'This is test case 4', '0', 'passed', 1, '7', 1),
-(5, 1, 'This is test case 5', '0', 'failed', 1, '7', 1),
-(6, 2, 'm h', '0', 'passed', 1, '7', 1),
-(7, 2, 'gdnf', '1', 'failed', 2, '2', 2),
-(8, 3, 'fc jckkcc', '1', 'failed', 1, '7', 3),
-(9, 3, 'jghgjhhjvgjcfhcghvhjgvgg', '1', 'failed', 2, '2', 1),
-(10, 1, 'test case 10', '1', 'in progress', 2, '2', 2),
-(11, 2, 'd gn gfnfznnzfgn fznf n', '1', 'in progress', 1, '7', 3);
+INSERT INTO `testcase` (`testcase_id`, `testcase_code`, `testsuites_id`, `title`, `description`, `status`, `psb_status`, `open`, `pass`, `member_id`, `prority_id`) VALUES
+(11, 'jh,', 15, 'h,j', 'hj', NULL, 'Review Passed', 1, 1, '7', 1),
+(12, 'nh ', 15, 'h', 'hng', NULL, 'Review Passed', 0, 0, '7', 1),
+(13, 'h', 16, 'v vc', 'hj', NULL, 'Assigned To Review', 1, 1, NULL, 1),
+(14, '012', 19, 'kuyl', 'ily', NULL, NULL, NULL, NULL, NULL, 1),
+(15, 'my', 20, 'kt', 'tk', NULL, NULL, NULL, NULL, NULL, 1),
+(16, 'fd', 20, 'fv', 'fv', NULL, NULL, NULL, NULL, NULL, 1),
+(17, 'ewf', 15, 'few', 'fw', NULL, 'Review Passed', NULL, NULL, NULL, 1);
 
 -- --------------------------------------------------------
 
@@ -368,10 +335,21 @@ INSERT INTO `testcase` (`testcase_id`, `testsuites_id`, `description`, `status`,
 --
 
 CREATE TABLE IF NOT EXISTS `testcase_step` (
-  `testcase_id` int(11) NOT NULL,
-  `steps` varchar(1000) NOT NULL,
-  `no_of_substeps` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `testcaseStep_id` int(11) NOT NULL,
+  `description` varchar(1000) NOT NULL,
+  `expectedResult` varchar(500) NOT NULL,
+  `testcase_id` int(11) NOT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `testcase_step`
+--
+
+INSERT INTO `testcase_step` (`testcaseStep_id`, `description`, `expectedResult`, `testcase_id`) VALUES
+(7, 'gf ', 'bv', 12),
+(8, 'df', 'ds', 13),
+(9, 'thty', 'yth', 14),
+(11, 'yhm', 'gh,', 11);
 
 -- --------------------------------------------------------
 
@@ -381,18 +359,27 @@ CREATE TABLE IF NOT EXISTS `testcase_step` (
 
 CREATE TABLE IF NOT EXISTS `testsuites` (
   `testsuites_id` int(11) NOT NULL,
+  `testsuites_code` varchar(30) NOT NULL,
   `project_id` varchar(500) NOT NULL,
-  `name` varchar(500) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `name` varchar(500) NOT NULL,
+  `assignedToReview` int(11) DEFAULT NULL,
+  `reviewed` int(11) DEFAULT NULL,
+  `Priority` int(11) NOT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `testsuites`
 --
 
-INSERT INTO `testsuites` (`testsuites_id`, `project_id`, `name`) VALUES
-(1, '1', 'Test suite 1'),
-(2, '2', 'bdgc'),
-(3, '1', 'TestSuit 3');
+INSERT INTO `testsuites` (`testsuites_id`, `testsuites_code`, `project_id`, `name`, `assignedToReview`, `reviewed`, `Priority`) VALUES
+(15, '011', '01', 'hh', 7, 1, 1),
+(16, 'ff', 'v', 'g', NULL, NULL, 1),
+(17, 'fd', 'y', 'dg', NULL, NULL, 1),
+(18, 'vfs', 'dbb', 'fv', NULL, NULL, 2),
+(19, '01', '012', 'ikli', NULL, NULL, 1),
+(20, 'ui', '011', 'ui', NULL, NULL, 2),
+(21, 'f', '01', 'e', 2, NULL, 1),
+(22, 'fggg', '01', 'gf', 2, NULL, 1);
 
 -- --------------------------------------------------------
 
@@ -432,7 +419,7 @@ CREATE TABLE IF NOT EXISTS `users` (
   `password` varchar(250) NOT NULL,
   `email` varchar(500) NOT NULL,
   `role` varchar(100) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `users`
@@ -445,7 +432,8 @@ INSERT INTO `users` (`users_id`, `uername`, `firstName`, `lastName`, `password`,
 (4, 'chathu', 'Chathuri', 'Gamage', 'abc', 'chathu@gmail.com', 'manager'),
 (5, 'sasika', 'sasika', 'sasika', '0da6e682b1f8691bd5e89449a6b20219ef19d03d25d475c7a383c13a38c059e39707d82eb5e898aa17c32c44acd173affaaf1ad4d5d1c888bc86b2009e1fa272', 'sasika@gmail.com', 'engineer'),
 (6, 'pm@pm.com', 'ish', 'ish', '1e265773220449710e061c3d39e517a6c9c15f06e466c2207610e0ab02395464a9b8d945ff35c4d78fc9ab945525cf013904da644c7171b3b7c6f440161a2e6c', 'pm@pm.com', 'manager'),
-(7, 'qa@qa.com', 'shan', 'shan', '0ee9611d0a40d13cb2ff4db4773056619478f295b91da6bd45a15fbcb6b3910b02a7b834cd21567483751512a367cdb79786005d1e2335400327648e927819bc', 'qa@qa.com', 'engineer');
+(7, 'qa@qa.com', 'shan', 'shan', '0ee9611d0a40d13cb2ff4db4773056619478f295b91da6bd45a15fbcb6b3910b02a7b834cd21567483751512a367cdb79786005d1e2335400327648e927819bc', 'qa@qa.com', 'engineer'),
+(8, 'shh', 'shh', 'sh', '128e71f78b0d562615278b5c8c15605b92fe40fae22e671823645714fb495183b946b65fea32825a50ebdb7002991217387574128731628579e2c72e63bee45e', 'qa2@qa.com', 'engineer');
 
 --
 -- Indexes for dumped tables
@@ -455,15 +443,14 @@ INSERT INTO `users` (`users_id`, `uername`, `firstName`, `lastName`, `password`,
 -- Indexes for table `chats`
 --
 ALTER TABLE `chats`
- ADD PRIMARY KEY (`chat_id`);
- 
+  ADD PRIMARY KEY (`chat_id`);
+
 --
 -- Indexes for table `chat_messages`
 --
 ALTER TABLE `chat_messages`
- ADD PRIMARY KEY (`chat_message_id`);
- 
- 
+  ADD PRIMARY KEY (`chat_message_id`);
+
 --
 -- Indexes for table `issue`
 --
@@ -522,7 +509,7 @@ ALTER TABLE `testcase`
 -- Indexes for table `testcase_step`
 --
 ALTER TABLE `testcase_step`
-  ADD PRIMARY KEY (`testcase_id`);
+  ADD PRIMARY KEY (`testcaseStep_id`);
 
 --
 -- Indexes for table `testsuites`
@@ -546,14 +533,16 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for dumped tables
 --
 
+--
+-- AUTO_INCREMENT for table `chats`
+--
 ALTER TABLE `chats`
-MODIFY `chat_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
+  MODIFY `chat_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT for table `chat_messages`
 --
 ALTER TABLE `chat_messages`
-MODIFY `chat_message_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=39;
-
+  MODIFY `chat_message_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=42;
 --
 -- AUTO_INCREMENT for table `member`
 --
@@ -570,6 +559,21 @@ ALTER TABLE `project_requests`
 ALTER TABLE `project_sprint`
   MODIFY `sprint_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=5;
 --
+-- AUTO_INCREMENT for table `testcase`
+--
+ALTER TABLE `testcase`
+  MODIFY `testcase_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=18;
+--
+-- AUTO_INCREMENT for table `testcase_step`
+--
+ALTER TABLE `testcase_step`
+  MODIFY `testcaseStep_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=12;
+--
+-- AUTO_INCREMENT for table `testsuites`
+--
+ALTER TABLE `testsuites`
+  MODIFY `testsuites_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=23;
+--
 -- AUTO_INCREMENT for table `time_entries`
 --
 ALTER TABLE `time_entries`
@@ -578,99 +582,7 @@ ALTER TABLE `time_entries`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `users_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=8;
---
--- Constraints for dumped tables
---
-
---
--- AUTO_INCREMENT for table `chats`
---
-ALTER TABLE `chats`
-MODIFY `chat_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
---
--- AUTO_INCREMENT for table `chat_messages`
---
-ALTER TABLE `chat_messages`
-MODIFY `chat_message_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=11;
---
--- AUTO_INCREMENT for table `member`
---
-ALTER TABLE `member`
-MODIFY `member_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
---
--- AUTO_INCREMENT for table `project_requests`
---
-ALTER TABLE `project_requests`
-MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=13;
---
--- AUTO_INCREMENT for table `time_entries`
---
-ALTER TABLE `time_entries`
-MODIFY `time_entries_id` int(11) NOT NULL AUTO_INCREMENT;
---
--- AUTO_INCREMENT for table `users`
---
-ALTER TABLE `users`
-MODIFY `users_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=24;
---
--- Constraints for dumped tables
---
---
--- Constraints for table `issue`
---
-ALTER TABLE `issue`
-ADD CONSTRAINT `fk_pt1` FOREIGN KEY (`project_id`) REFERENCES `project` (`project_id`),
-ADD CONSTRAINT `fk_pt2` FOREIGN KEY (`member_id`) REFERENCES `member` (`member_id`),
-ADD CONSTRAINT `fk_pt3` FOREIGN KEY (`testcase_id`) REFERENCES `testcase` (`testcase_id`);
-
---
--- Constraints for table `project`
---
-ALTER TABLE `project`
-ADD CONSTRAINT `fk_p` FOREIGN KEY (`prority_id`) REFERENCES `priority` (`priority_id`);
-
---
--- Constraints for table `project_member`
---
-ALTER TABLE `project_member`
-ADD CONSTRAINT `fk_m1` FOREIGN KEY (`project_id`) REFERENCES `project` (`project_id`),
-ADD CONSTRAINT `fk_m2` FOREIGN KEY (`member_id`) REFERENCES `member` (`member_id`);
-
---
--- Constraints for table `project_sprint`
---
-ALTER TABLE `project_sprint`
-ADD CONSTRAINT `fk_sp1` FOREIGN KEY (`prority_id`) REFERENCES `priority` (`priority_id`),
-ADD CONSTRAINT `fk_sp2` FOREIGN KEY (`project_id`) REFERENCES `project` (`project_id`);
-
---
--- Constraints for table `testcase`
---
-ALTER TABLE `testcase`
-ADD CONSTRAINT `fk_test1` FOREIGN KEY (`testsuites_id`) REFERENCES `testsuites` (`testsuites_id`),
-ADD CONSTRAINT `fk_test2` FOREIGN KEY (`prority_id`) REFERENCES `priority` (`priority_id`);
-
---
--- Constraints for table `testcase_step`
---
-ALTER TABLE `testcase_step`
-ADD CONSTRAINT `fk_tt1` FOREIGN KEY (`testcase_id`) REFERENCES `testcase` (`testcase_id`);
-
---
--- Constraints for table `testsuites`
---
-ALTER TABLE `testsuites`
-ADD CONSTRAINT `fk_te1` FOREIGN KEY (`project_id`) REFERENCES `project` (`project_id`);
-
---
--- Constraints for table `time_entries`
---
-ALTER TABLE `time_entries`
-ADD CONSTRAINT `fk_pm1` FOREIGN KEY (`project_id`) REFERENCES `project` (`project_id`),
-ADD CONSTRAINT `fk_pm2` FOREIGN KEY (`member_id`) REFERENCES `member` (`member_id`),
-ADD CONSTRAINT `fk_pm3` FOREIGN KEY (`issue_id`) REFERENCES `issue` (`issue_id`);
-
+  MODIFY `users_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=9;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
