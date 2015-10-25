@@ -71,8 +71,8 @@
                             $color = "label label-success";
                         else
                             $color = "label label-warning";
-                        $ts_code = $testSuite[$i]->testsuites_code;
-                        $ts_id = $testSuite[$i]->testsuites_id;
+                        $ts_code = $testSuite[0]->testsuites_code;
+                        $ts_id = $testSuite[0]->testsuites_id;
                         ?>
                          <tr>
                             <td><?php echo $testSuite[$i]->testsuites_id ?></td> 

@@ -22,12 +22,14 @@ class Project extends Engineer_Controller
     public function testForm()
     {
         $this->session->set_userdata(array('project_name' => $this->input->post('projectName')));
-        echo $this->input->post('projectName');
+        redirect("engineer/assignedToMe_controller");
+        //echo $this->input->post('projectName');
     }
 
     public function testProjectSession()
     {
         echo $this->session->userdata('project_name');//$this->session->userdata('project_id');
+        
     }
 
 }

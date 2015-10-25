@@ -17,7 +17,8 @@ class AssignedToMe_controller extends Engineer_Controller {
      */
 
     public function index() {
-        $pid = '01';
+        $pid = '01';//$this->session->userdata('project_name') ;
+       // print_r($pid); exit();
         $this->data['pid'] = $pid;
         $this->data['testCase'] = null; 
         $uid = $this->session->userdata('uid');
