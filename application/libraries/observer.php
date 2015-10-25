@@ -1,30 +1,36 @@
 <?php
 
-abstract class AbstractObserver {
-    abstract function update(AbstractSubject $subject_in);
+interface AbstractObserver
+{
+    public function update(AbstractSubject $subject_in);
 }
 
-abstract class AbstractSubject {
-    abstract function attach(AbstractObserver $observer_in);
-    abstract function detach(AbstractObserver $observer_in);
-    abstract function notify();
+interface  AbstractSubject
+{
+    public function attach(AbstractObserver $observer_in);
+
+    public function detach(AbstractObserver $observer_in);
+
+    public function notify();
 }
 
 function writeln($line_in) {
     echo $line_in."<br/>";
 }
 
-class PatternObserver extends AbstractObserver {
+class PatternObserver implements AbstractObserver
+{
     public function __construct() {
     }
     public function update(AbstractSubject $subject) {
-      writeln('*IN PATTERN OBSERVER - NEW PATTERN GOSSIP ALERT*');
+        writeln('*----IN PATTERN OBSERVER - NEW PATTERN GOSSIP ALERT*');
       writeln(' new favorite patterns: '.$subject->getFavorites());
-      writeln('*IN PATTERN OBSERVER - PATTERN GOSSIP ALERT OVER*');
+        writeln('*---IN PATTERN OBSERVER - PATTERN GOSSIP ALERT OVER*');
     }
 }
 
-class PatternSubject extends AbstractSubject {
+class PatternSubject implements AbstractSubject
+{
     private $favoritePatterns = NULL;
     private $observers = array();
     function __construct() {
@@ -41,15 +47,19 @@ class PatternSubject extends AbstractSubject {
         }
       }
     }
+
+    function updateFavorites($newFavorites)
+    {
+        $this->favorites = $newFavorites;
+        $this->notify();
+    }
+
     function notify() {
       foreach($this->observers as $obs) {
         $obs->update($this);
       }
     }
-    function updateFavorites($newFavorites) {
-      $this->favorites = $newFavorites;
-      $this->notify();
-    }
+
     function getFavorites() {
       return $this->favorites;
     }
@@ -60,7 +70,9 @@ class PatternSubject extends AbstractSubject {
 
   $patternGossiper = new PatternSubject();
   $patternGossipFan = new PatternObserver();
+$patternGossip = new PatternObserver();
   $patternGossiper->attach($patternGossipFan);
+$patternGossiper->attach($patternGossip);
   $patternGossiper->updateFavorites('abstract factory, decorator, visitor');
   $patternGossiper->updateFavorites('abstract factory, observer, decorator');
   $patternGossiper->detach($patternGossipFan);

@@ -85,9 +85,11 @@ class Project_m extends My_Model {
 //        $this->db->where('name','Hot Bug Fix');
 //        $query = $this->db->get('project');
         try {
-            $this->db->select('name');
-            $this->db->from('project');
-////            $this->db->where('project_id', $pid);
+            $this->db->select('p.name');
+            $this->db->from('project_member AS pm');
+            $this->db->from('project AS p');
+            $this->db->where('pm.project_id=p.project_id AND pm.member_id = ' . $this->session->userdata('uid'));
+//            $this->db->where('pm.pm.member_id', 1);
 //            $query = $this->db->get();
 //            $x = $query->result();
             $query = $this->db->get()->result();
@@ -96,6 +98,7 @@ class Project_m extends My_Model {
             echo $exc->getTraceAsString();
         }
 //        return json_encode($query);
+//        SELECT p.name FROM project_member pm, project p WHERE pm.project_id=p.project_id AND pm.member_id = $userID
     }
 
     /*
