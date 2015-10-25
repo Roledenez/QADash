@@ -42,7 +42,7 @@ app.controller('AngularJSCtrl', function ($scope, dataService) {
 });
 
 app.controller('customersCtrl', function ($scope, $http) {
-    $http.get(base_url + "admin/project/getProjects")
+    $http.get(base_url + "engineer/project/getProjects")
         .success(function (response) {
             $scope.names = response;
             //console.log(response);
@@ -97,3 +97,4 @@ app.controller('getUnreadChatCtrl', function ($scope, $http) {
 
 });
 
+//alert('test');

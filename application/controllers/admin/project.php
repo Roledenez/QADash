@@ -13,16 +13,16 @@
 			$this->load->view("admin/_layout_main",$this->data);
 		}
 
-		public function getProjects()
-		{
-			echo $this->project_m->getProjectsByUser('Hot Bug Fix');
+//		public function getProjects()
+//		{
+//			echo $this->project_m->getProjectsByUser('Hot Bug Fix');
+//
+//		}
 
-		}
-
-		public function testForm()
-		{
-			echo $this->input->post('projectName');
-		}
+//		public function testForm()
+//		{
+//			echo $this->input->post('projectName');
+//		}
 
 	}
 
