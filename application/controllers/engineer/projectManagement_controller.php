@@ -166,6 +166,7 @@ class projectManagement_controller extends Engineer_Controller {
                 'description' => $this->input->post('description'),
                 'prority_id' => $this->input->post('priority'),
                 'psb_status' => 'Assigned To Review',
+                'open' => 1,
             );
             
             $this->project_model->addTestCase($data);

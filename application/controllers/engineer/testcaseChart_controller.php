@@ -15,7 +15,7 @@ class TestcaseChart_controller extends Engineer_Controller {
      * Description : index method
      */
     public function index() {
-        $this->data['names'] = '01';//$this->input->post('projects'); //selectd project
+        $this->data['names'] = $this->session->userdata('project_id') ;
         $this->data['projects'] = $this->project_m->getAllProjectsID();
         $this->data['subview'] = 'engineer/user/testcaseChart_view';
         $this->load->view("engineer/_layout_main", $this->data);
@@ -26,7 +26,7 @@ class TestcaseChart_controller extends Engineer_Controller {
      * Name : drawChart
      */
     public function drawChart() {
-        $pid = '01';
+        $pid = $this->session->userdata('project_id') ;
         $category = array();
         $category['name'] = 'Category';
 

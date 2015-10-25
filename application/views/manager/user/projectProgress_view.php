@@ -6,8 +6,10 @@
               <!-- small box -->
               <div class="small-box bg-aqua">
                 <div class="inner">
-                  <h3><?php echo count($projects);
-                  $progress = ($done/($notDone+$done))*100;
+                  <h3> 1 <?php //echo count($projects);
+                  $progress=0;
+                  if(!empty($done) && !empty($notDone))
+                    $progress = ($done/($notDone+$done))*100;
                   ?></h3>
                   <p>All Versions</p>
                 </div>

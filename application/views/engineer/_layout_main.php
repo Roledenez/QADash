@@ -32,7 +32,7 @@
           <!-- sidebar menu: : style can be found in sidebar.less -->
           <ul class="sidebar-menu">
             <li class="header">MAIN NAVIGATION</li>
-            <?php  $pid = '01' ?>
+            <?php  $pid = $this->session->userdata('project_id') ; ?>
             <li class="header"><a href="<?php echo site_url("engineer/projectManagement_controller/createTestSuit/$pid"); ?>">CREAT TEST SUITE</a></li>
             <li>
               <a href="assignedToMe_controller">

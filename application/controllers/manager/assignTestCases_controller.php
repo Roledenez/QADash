@@ -9,7 +9,7 @@ class AssignTestCases_controller extends Manager_Controller {
     
     public function index() {
         $this->load->model('project_model');
-        $pid = '01';  
+        $pid =$this->session->userdata('project_id') ; //'01';  
         $this->data['pid'] = $pid;
         $this->data['testSuite'] = $this->project_model->get_TestSuiteToAssign($pid);
         $this->data['subview'] = 'manager/user/assignTestCases_view';

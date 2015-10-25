@@ -22,8 +22,7 @@ class Project extends Engineer_Controller
     public function testForm()
     {
         $this->session->set_userdata(array('project_id' => $this->input->post('projectId')));
-        redirect("engineer/base_controller/loadView");
-        //redirect("engineer/assignedToMe_controller");
+        redirect("manager/projectProgress_controller");
         echo $this->input->post('projectId');
     }
 

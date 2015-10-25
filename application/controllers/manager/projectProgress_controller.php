@@ -15,7 +15,7 @@ class ProjectProgress_controller extends Manager_Controller {
      */
 
     public function index() {
-        $pid = '01';
+        $pid = $this->session->userdata('project_id') ;
         $this->data['done'] = $this->chart_model->getFinishedCount($pid);
         $this->data['notDone'] = $this->chart_model->getNotFinishedCount($pid);
         $this->data['projects'] = $this->chart_model->get_projectDetails($pid);
@@ -62,7 +62,7 @@ class ProjectProgress_controller extends Manager_Controller {
 //    }
     
    public function drawProgressChart() {
-        $pid ='01';
+        $pid =$this->session->userdata('project_id') ;
         $category = array();
         $category['name'] = 'Category';
 
