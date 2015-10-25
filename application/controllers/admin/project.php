@@ -4,7 +4,7 @@
 			parent::__construct();
 			var_dump("hello world");
 			$d = $this->project_m->getAllProjects();
-			// var_dump($d);
+			 var_dump($d);
 
 		}
 

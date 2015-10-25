@@ -1,10 +1,10 @@
 <?php
-		/*
-		 * Auther : Roledene
-		 * Type : class
-		 * Name : User_m
-		 * Description : This class represent the user model
-		 */
+        /*
+         * Auther : Roledene
+         * Type : class
+         * Name : User_m
+         * Description : This class represent the user model
+         */
 	class User_m extends My_Model{
 		protected $_table_name = "users";
 		protected $_order_by = "";
@@ -65,6 +65,14 @@
 			$this->saveSessionData($data['uid']);
 		}
 
+
+		/*
+		 * Auther : Binalie
+		 * Type : method
+		 * Name : saveSessionData
+		 * Description : This method stores the user log tracking details in the database
+		 */
+
 		public function saveSessionData($userID)
 		{
 			
@@ -85,6 +93,13 @@
 
 		}
 
+		/*
+		 * Auther : Binalie
+		 * Type : method
+		 * Name : updateSessionData
+		 * Description : This method updates the user log tracking details in the database when signing out
+		 */
+
 		function updateSessionData(){
 
             $end_time = date("h:i:sa");
@@ -99,7 +114,7 @@
 
 			$this->db->where('session_id', session_id());
 			$this->db->update('sessions', $def);
-}
+		}		
 
 		/* 
 		 * Auther : Roledene

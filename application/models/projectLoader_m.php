@@ -5,7 +5,8 @@
 		 * Name : users
 		 * Description : This class handle all the user related activities
 		 */
-	class projectLoader_m extends My_Model{
+	class projectLoader_m extends My_Model
+        {
             
             protected $_table_name = "project";
             protected $_timestamps = FALSE;           
@@ -22,14 +23,20 @@
 		}               
 
                 
-                public function displayAllProjects(){
+                public function displayAllProjects()
+                {
                     
-                    $projectD = $this->get();
-                    //var_dump($projectD);
+                    $projectD = $this->get();                    
 
                     if (count($projectD)) 
-                    {		                   
+                    {	
+                        try{
                         return $projectD;
+                        }
+                        catch(Exception $e)
+                        {
+                            echo 'Message: ' .$e->getMessage();
+                        }
                     }
 
                     return $projectD;
