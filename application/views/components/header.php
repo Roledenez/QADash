@@ -17,8 +17,8 @@
               <li>
                 <div class="dropdown" ng-controller="customersCtrl">
                   <form method="post" action="../engineer/project/testForm">
-                    <select name="projectName" class="btn btn-info dropdown-toggle" ng-model="selectedProject">
-                      <option ng-repeat="x in names" selected="true" value="{{x.name}}">{{x.name}}</option>
+                    <select name="projectId" class="btn btn-info dropdown-toggle" ng-model="selectedProject">
+                      <option ng-repeat="x in names" selected="true" value="{{x.project_id}}">{{x.name}}</option>
                     </select>
                     <input type="submit" value="Load" class="btn btn-info pull-right"/>
                   </form>

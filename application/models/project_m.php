@@ -85,7 +85,7 @@ class Project_m extends My_Model {
 //        $this->db->where('name','Hot Bug Fix');
 //        $query = $this->db->get('project');
         try {
-            $this->db->select('p.name');
+            $this->db->select('p.project_id,p.name');
             $this->db->from('project_member AS pm');
             $this->db->from('project AS p');
             $this->db->where('pm.project_id=p.project_id AND pm.member_id = ' . $this->session->userdata('uid'));

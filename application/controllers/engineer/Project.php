@@ -21,13 +21,13 @@ class Project extends Engineer_Controller
 
     public function testForm()
     {
-        $this->session->set_userdata(array('project_name' => $this->input->post('projectName')));
-        echo $this->input->post('projectName');
+        $this->session->set_userdata(array('project_id' => $this->input->post('projectId')));
+        echo $this->input->post('projectId');
     }
 
     public function testProjectSession()
     {
-        echo $this->session->userdata('project_name');//$this->session->userdata('project_id');
+        echo $this->session->userdata('project_id');
     }
 
 }
