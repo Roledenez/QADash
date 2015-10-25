@@ -2,21 +2,21 @@
         /*
          * Author : Binalie
          * Type : class
-         * Name : projectLoader_c
-         * Description : This class handle all the projects related activities
+         * Name : logTracker_controller
+         * Description : This class handle all the user logging related activities
          */
-	class projectLoader_c extends Admin_Controller
+	class logTracker_controller extends Admin_Controller
         {
 		/*
 		 * Author : Binalie
 		 * Type : Constructor
 		 * Name : __construct
-		 * Description : this is the default construtor of projectLoader_c class
+		 * Description : this is the default construtor of logTracker_controller class
 		 */
 		public function __construct()
                 {
                     parent::__construct();                        
-                    $this->load->model("projectLoader_m");
+                    $this->load->model("logTracker_model");
 		}
 
                 /*
@@ -28,14 +28,16 @@
                 
                 public function index()
                 {                    
-                    $this->data['result'] = $this->projectLoader_m->displayAllProjects();
-                    $this->data['subview'] = 'admin/user/projectLoader_v';
+                    $this->data['result'] = $this->logTracker_model->displaySessionData();
+                    $this->data['subview'] = 'admin/user/logTracker_view';
                     $this->load->view('admin/_layout_main',$this->data);
 		}
                 
 		public function modal()
                 {
-			$this->load->view("admin/_layout_modal",$this->data);
-		}              
+                    $this->load->view("admin/_layout_modal",$this->data);
+		}
+                
+
 	}
 
