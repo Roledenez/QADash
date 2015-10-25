@@ -2,7 +2,7 @@
  * Created by Roledene JKS on 10/20/2015.
  */
 
-var app = angular.module('test', []);
+var app = angular.module('header', []);
 app.controller('FirstCtrl', function ($scope) {
     $scope.data = {message: "Hello World"};
 });
@@ -42,7 +42,7 @@ app.controller('AngularJSCtrl', function ($scope, dataService) {
 });
 
 app.controller('customersCtrl', function ($scope, $http) {
-    $http.get("http://localhost:82/QADash/public_html/admin/project/getProjects")
+    $http.get(base_url + "admin/project/getProjects")
         .success(function (response) {
             $scope.names = response;
             //console.log(response);
@@ -53,3 +53,47 @@ app.controller('customersCtrl', function ($scope, $http) {
         console.log(item);
     }
 });
+
+app.controller('unreadNotificationCtrl', function ($scope, $http) {
+    $http.get(base_url + "engineer/notification/getUnreadNotifications")
+        .success(function (response) {
+            $scope.notifications = response;
+            //console.log(response);
+        });
+
+    $scope.readNotification = function () {
+        $http.get(base_url + "engineer/notification/readNotification")
+            .success(function (response) {
+                $scope.notifications = response;
+                //console.log(response);
+            });
+    }
+
+});
+
+//var appBody = angular.module('header', []);
+app.controller('getAllNotificationByUserCtrl', function ($scope, $http) {
+    $http.get(base_url + "engineer/notification/getAllNotificationsByUser")
+        .success(function (response) {
+            $scope.notifications = response;
+            //console.log(response);
+        });
+
+});
+
+app.controller('getAllNotificationByProjectCtrl', function ($scope, $http) {
+    $http.get(base_url + "engineer/notification/getAllNotificationsByProject")
+        .success(function (response) {
+            $scope.notifications = response;
+        });
+
+});
+
+app.controller('getUnreadChatCtrl', function ($scope, $http) {
+    $http.get(base_url + "engineer/chat/getUnreadChats")
+        .success(function (response) {
+            $scope.chats = response;
+        });
+
+});
+

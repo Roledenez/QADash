@@ -1,52 +1,52 @@
 <?php
 
-interface AbstractObserver
-{
-    public function update(AbstractSubject $subject_in);
-}
+//interface AbstractObserver
+//{
+//    public function update(AbstractSubject $subject_in);
+//}
 
-interface  AbstractSubject
-{
-    public function attach(AbstractObserver $observer_in);
+//interface  AbstractSubject
+//{
+//    public function attach(AbstractObserver $observer_in);
+//
+//    public function detach(AbstractObserver $observer_in);
+//
+//    public function notify();
+//}
 
-    public function detach(AbstractObserver $observer_in);
-
-    public function notify();
-}
-
-function writeln($line_in) {
-    echo $line_in."<br/>";
-}
-
-class PatternObserver implements AbstractObserver
-{
-    public function __construct() {
-    }
-    public function update(AbstractSubject $subject) {
-        writeln('*----IN PATTERN OBSERVER - NEW PATTERN GOSSIP ALERT*');
-      writeln(' new favorite patterns: '.$subject->getFavorites());
-        writeln('*---IN PATTERN OBSERVER - PATTERN GOSSIP ALERT OVER*');
-    }
-}
+//function writeln($line_in) {
+//    echo $line_in."<br/>";
+//}
+//
+//class PatternObserver implements AbstractObserver
+//{
+//    public function __construct() {
+//    }
+//    public function update(AbstractSubject $subject) {
+//        writeln('*----IN PATTERN OBSERVER - NEW PATTERN GOSSIP ALERT*');
+//      writeln(' new favorite patterns: '.$subject->getFavorites());
+//        writeln('*---IN PATTERN OBSERVER - PATTERN GOSSIP ALERT OVER*');
+//    }
+//}
 
 class PatternSubject implements AbstractSubject
 {
-    private $favoritePatterns = NULL;
-    private $observers = array();
-    function __construct() {
-    }
-    function attach(AbstractObserver $observer_in) {
-      //could also use array_push($this->observers, $observer_in);
-      $this->observers[] = $observer_in;
-    }
-    function detach(AbstractObserver $observer_in) {
-      //$key = array_search($observer_in, $this->observers);
-      foreach($this->observers as $okey => $oval) {
-        if ($oval == $observer_in) {
-          unset($this->observers[$okey]);
-        }
-      }
-    }
+//    private $favoritePatterns = NULL;
+//    private $observers = array();
+//    function __construct() {
+//    }
+//    function attach(AbstractObserver $observer_in) {
+//      //could also use array_push($this->observers, $observer_in);
+//      $this->observers[] = $observer_in;
+//    }
+//    function detach(AbstractObserver $observer_in) {
+//      //$key = array_search($observer_in, $this->observers);
+//      foreach($this->observers as $okey => $oval) {
+//        if ($oval == $observer_in) {
+//          unset($this->observers[$okey]);
+//        }
+//      }
+//    }
 
     function updateFavorites($newFavorites)
     {

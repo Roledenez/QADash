@@ -1,8 +1,14 @@
-<?php $this->load->helper('url'); ?>
+<?php $this->load->helper('url');
+
+?>
 
   <!DOCTYPE html>
 <html>
   <head>
+    <script type="text/javascript">
+      var base_url = '<?php echo site_url(); ?>';
+      var session_id = '<?php echo $this->session->userdata('uid') ?>';
+    </script>
     <meta charset="UTF-8">
     <title>AdminLTE 2 | Dashboard</title>
     <!-- Tell the browser to be responsive to screen width -->

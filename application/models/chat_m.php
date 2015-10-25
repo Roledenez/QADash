@@ -78,4 +78,17 @@
 				var_dump($e);
 			}
 		}
+
+		function getUnreadChats()
+		{
+			try {
+				$this->db->select('*');
+				$this->db->from('chat_messages');
+				$this->db->where('read=0 and user_id=' . $this->session->userdata('uid'));
+				$query = $this->db->get()->result();
+				return json_encode($query);
+			} catch (Exception $exc) {
+				echo $exc->getTraceAsString();
+			}
+		}
 	}

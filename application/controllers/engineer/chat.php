@@ -22,32 +22,28 @@
 			echo $this->_ajaxGetChatMessage($chat_id);
 		}
 
-		public function ajaxGetChatMessage(){
-			$chat_id = $this->input->post('chat_id');
-			echo $this->_ajaxGetChatMessage($chat_id);
-		}
-
-		public function _ajaxGetChatMessage($chat_id){
-			$lastChatMsgId = (int) $this->session->userdata('lastChatId_'.$chat_id);
-			$chatMessage = $this->chat_m->getChatMessage($chat_id,$lastChatMsgId);
+		public function _ajaxGetChatMessage($chat_id)
+		{
+			$lastChatMsgId = (int)$this->session->userdata('lastChatId_' . $chat_id);
+			$chatMessage = $this->chat_m->getChatMessage($chat_id, $lastChatMsgId);
 			// var_dump($chatMessage);
-			if (count($chatMessage)>0) {
+			if (count($chatMessage) > 0) {
 				// store the last chat message id
 				// var_dump($chatMessage);
-				$lastChatMsgId = $chatMessage[count($chatMessage)-1]->chat_id;
-				$this->session->set_userdata('lastChatId_'.$chat_id,$lastChatMsgId);
+				$lastChatMsgId = $chatMessage[count($chatMessage) - 1]->chat_id;
+				$this->session->set_userdata('lastChatId_' . $chat_id, $lastChatMsgId);
 				$output = '';
 				$output .= '<div class="item">';
 				foreach ($chatMessage as $chatMsg) {
-					if ($this->session->userdata('uid') == $chatMsg->user_id ) {
-					$output .= '<img id="chatImage" src="'.site_url('dist/img/user2-160x160.jpg').'" alt="user image" class="online" />';
-					}else{
-					$output .= '<img id="chatImage" src="'.site_url('dist/img/avatar3.png').'" alt="user image" class="online" />';
+					if ($this->session->userdata('uid') == $chatMsg->user_id) {
+						$output .= '<img id="chatImage" src="' . site_url('dist/img/user2-160x160.jpg') . '" alt="user image" class="online" />';
+					} else {
+						$output .= '<img id="chatImage" src="' . site_url('dist/img/avatar3.png') . '" alt="user image" class="online" />';
 					}
 
 					$output .= '<p class="message">';
 					$output .= '<a href="#" class="name">';
-					$output .= '<small class="text-muted pull-right"><i class="fa fa-clock-o"></i>'.$chatMsg->msg_create_date.'</small>';
+					$output .= '<small class="text-muted pull-right"><i class="fa fa-clock-o"></i>' . $chatMsg->msg_create_date . '</small>';
 					$output .= $chatMsg->firstName;
 					$output .= '</a>';
 					$output .= $chatMsg->chat_message_content;
@@ -57,16 +53,21 @@
 					// array_push($result,  $chatMsg->user_id);
 				}
 				$output .= '</div>';
-				$result = array('status' => 'ok','content' => $output);
+				$result = array('status' => 'ok', 'content' => $output);
 				return json_encode($result);
 				exit();
 
-			}else{
+			} else {
 				# no chats
-				$result = array('status' => 'ok','content' => '');
+				$result = array('status' => 'ok', 'content' => '');
 				return json_encode($result);
 				exit();
 			}
+		}
+
+		public function ajaxGetChatMessage(){
+			$chat_id = $this->input->post('chat_id');
+			echo $this->_ajaxGetChatMessage($chat_id);
 		}
 
 		function objectToArray($data)
@@ -81,6 +82,12 @@
 		        return $result;
 		    }
 		    return $data;
+		}
+
+		function getUnreadChats()
+		{
+			$chat = new chat_m();
+			echo $chat->getUnreadChats();
 		}
 
 	}
