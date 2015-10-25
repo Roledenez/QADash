@@ -1,4 +1,4 @@
-<header class="main-header">
+<header class="main-header" ng-app="header">
         <!-- Logo -->
         <a href="<?php echo site_url("admin/dashboard"); ?>" class="logo">
           <!-- mini logo for sidebar mini 50x50 pixels -->
@@ -14,123 +14,137 @@
           </a>
           <div class="navbar-custom-menu">
             <ul class="nav navbar-nav">
+              <li>
+                <div class="dropdown" ng-controller="customersCtrl">
+                  <!--                  <button class="btn btn-info dropdown-toggle " type="button" data-toggle="dropdown">Select Project-->
+                  <!--                    <span class="caret"></span></button>-->
+                  <form method="post" action="project/testForm">
+                    <select name="projectName" class="btn btn-info dropdown-toggle" ng-model="selectedProject">
+                      <option ng-repeat="x in names" selected="true" value="{{x.name}}">{{x.name}}</option>
+                    </select>
+                    <input type="submit" value="Load" class="btn btn-info pull-right"/>
+                  </form>
+                  <!--                  <ul class="dropdown-menu" >-->
+                  <!--                    <li ng-repeat="x in names" ><a ng-click="setCurrent(x.name)" ng-model="selectedProject" target="_self" ng-hef="http://localhost:82/QADash/public_html/admin/dashboard?id={{x.name}}" >{{x.name}} -->
+                  <?php //$projectName="{{x.name}}"; ?><!--</a></li>-->
+                  <!--                    <li><a href="#">CSS</a></li>-->
+                  <!--                    <li><a href="#">JavaScript</a></li>-->
+                  <!--                  </ul>-->
+                </div>
+              </li>
+              <li>
+                <!--                <a class="btn btn-info pull-right" href="">Load -->
+                <?php ////echo $projectName ?><!--</a>-->
+              </li>
               <!-- Messages: style can be found in dropdown.less-->
-              <li class="dropdown messages-menu">
+              <li class="dropdown messages-menu" ng-controller="getUnreadChatCtrl">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                   <i class="fa fa-envelope-o"></i>
-                  <span class="label label-success">4</span>
+                  <span class="label label-success">{{chats.length}}</span>
                 </a>
                 <ul class="dropdown-menu">
-                  <li class="header">You have 4 messages</li>
+                  <li class="header">You have {{chats.length}} messages</li>
                   <li>
                     <!-- inner menu: contains the actual data -->
                     <ul class="menu">
-                      <li><!-- start message -->
+                      <li ng-repeat="c in chats"><!-- start message -->
                         <a href="#">
-                          <div class="pull-left">
+                          <div class="pull-left" ng-switch on="c.user_id">
 
-                            <img src="<?php echo site_url('dist/img/user2-160x160.jpg'); ?>" class="img-circle" alt="User Image" />
+                            <img ng-switch-when="<?php echo $this->session->userdata('uid') ?>"
+                                 src="<?php echo site_url('dist/img/user2-160x160.jpg'); ?>" class="img-circle"
+                                 alt="User Image"/>
+                            <img ng-switch-default src="<?php echo site_url('dist/img/user3-128x128.jpg'); ?>"
+                                 class="img-circle" alt="User Image"/>
                           </div>
                           <h4>
-                            Support Team
-                            <small><i class="fa fa-clock-o"></i> 5 mins</small>
+                            New Message
+                            <small><i class="fa fa-clock-o"></i> {{c.create_date}} time</small>
                           </h4>
-                          <p>Why not buy a new awesome theme?</p>
+                          <p>{{c.chat_message_content}}</p>
                         </a>
                       </li><!-- end message -->
-                      <li>
-                        <a href="#">
-                          <div class="pull-left">
-
-                            <img src="<?php echo site_url('dist/img/user3-128x128.jpg'); ?>" class="img-circle" alt="User Image" />
-                          </div>
-                          <h4>
-                            AdminLTE Design Team
-                            <small><i class="fa fa-clock-o"></i> 2 hours</small>
-                          </h4>
-                          <p>Why not buy a new awesome theme?</p>
-                        </a>
-                      </li>
-                      <li>
-                        <a href="#">
-                          <div class="pull-left">
-                            <img src="<?php echo site_url('dist/img/user4-128x128.jpg'); ?>" class="img-circle" alt="User Image" />
-                          </div>
-                          <h4>
-                            Developers
-                            <small><i class="fa fa-clock-o"></i> Today</small>
-                          </h4>
-                          <p>Why not buy a new awesome theme?</p>
-                        </a>
-                      </li>
-                      <li>
-                        <a href="#">
-                          <div class="pull-left">
-                            <img src="<?php echo site_url('dist/img/user3-128x128.jpg'); ?>" class="img-circle" alt="User Image" />
-                          </div>
-                          <h4>
-                            Sales Department
-                            <small><i class="fa fa-clock-o"></i> Yesterday</small>
-                          </h4>
-                          <p>Why not buy a new awesome theme?</p>
-                        </a>
-                      </li>
-                      <li>
-                        <a href="#">
-                          <div class="pull-left">
-                            <img src="<?php echo site_url('dist/img/user4-128x128.jpg'); ?>" class="img-circle" alt="User Image" />
-                          </div>
-                          <h4>
-                            Reviewers
-                            <small><i class="fa fa-clock-o"></i> 2 days</small>
-                          </h4>
-                          <p>Why not buy a new awesome theme?</p>
-                        </a>
-                      </li>
+                      <!--                      <li>-->
+                      <!--                        <a href="#">-->
+                      <!--                          <div class="pull-left">-->
+                      <!---->
+                      <!--                            <img src="-->
+                      <?php //echo site_url('dist/img/user3-128x128.jpg'); ?><!--" class="img-circle" alt="User Image" />-->
+                      <!--                          </div>-->
+                      <!--                          <h4>-->
+                      <!--                            AdminLTE Design Team-->
+                      <!--                            <small><i class="fa fa-clock-o"></i> 2 hours</small>-->
+                      <!--                          </h4>-->
+                      <!--                          <p>Why not buy a new awesome theme?</p>-->
+                      <!--                        </a>-->
+                      <!--                      </li>-->
+                      <!--                      <li>-->
+                      <!--                        <a href="#">-->
+                      <!--                          <div class="pull-left">-->
+                      <!--                            <img src="-->
+                      <?php //echo site_url('dist/img/user4-128x128.jpg'); ?><!--" class="img-circle" alt="User Image" />-->
+                      <!--                          </div>-->
+                      <!--                          <h4>-->
+                      <!--                            Developers-->
+                      <!--                            <small><i class="fa fa-clock-o"></i> Today</small>-->
+                      <!--                          </h4>-->
+                      <!--                          <p>Why not buy a new awesome theme?</p>-->
+                      <!--                        </a>-->
+                      <!--                      </li>-->
+                      <!--                      <li>-->
+                      <!--                        <a href="#">-->
+                      <!--                          <div class="pull-left">-->
+                      <!--                            <img src="-->
+                      <?php //echo site_url('dist/img/user3-128x128.jpg'); ?><!--" class="img-circle" alt="User Image" />-->
+                      <!--                          </div>-->
+                      <!--                          <h4>-->
+                      <!--                            Sales Department-->
+                      <!--                            <small><i class="fa fa-clock-o"></i> Yesterday</small>-->
+                      <!--                          </h4>-->
+                      <!--                          <p>Why not buy a new awesome theme?</p>-->
+                      <!--                        </a>-->
+                      <!--                      </li>-->
+                      <!--                      <li>-->
+                      <!--                        <a href="#">-->
+                      <!--                          <div class="pull-left">-->
+                      <!--                            <img src="-->
+                      <?php //echo site_url('dist/img/user4-128x128.jpg'); ?><!--" class="img-circle" alt="User Image" />-->
+                      <!--                          </div>-->
+                      <!--                          <h4>-->
+                      <!--                            Reviewers-->
+                      <!--                            <small><i class="fa fa-clock-o"></i> 2 days</small>-->
+                      <!--                          </h4>-->
+                      <!--                          <p>Why not buy a new awesome theme?</p>-->
+                      <!--                        </a>-->
+                      <!--                      </li>-->
                     </ul>
                   </li>
                   <li class="footer"><a href="<?php echo site_url("engineer/chat"); ?>">See All Messages</a></li>
                 </ul>
               </li>
+
+
               <!-- Notifications: style can be found in dropdown.less -->
-              <li class="dropdown notifications-menu">
+              <li class="dropdown notifications-menu" ng-controller="unreadNotificationCtrl">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                   <i class="fa fa-bell-o"></i>
-                  <span class="label label-warning">10</span>
+                  <span class="label label-warning">{{notifications.length}}</span>
                 </a>
                 <ul class="dropdown-menu">
-                  <li class="header">You have 10 notifications</li>
+                  <li class="header">You have {{notifications.length}} notifications</li>
                   <li>
                     <!-- inner menu: contains the actual data -->
                     <ul class="menu">
-                      <li>
-                        <a href="#">
-                          <i class="fa fa-users text-aqua"></i> 5 new members joined today
+                      <li ng-repeat="n in notifications">
+                        <a href="{{n.navigate_url}}">
+                          <i class="fa fa-warning text-green"></i> {{n.notification}}
                         </a>
                       </li>
-                      <li>
-                        <a href="#">
-                          <i class="fa fa-warning text-yellow"></i> Very long description here that may not fit into the page and may cause design problems
-                        </a>
-                      </li>
-                      <li>
-                        <a href="#">
-                          <i class="fa fa-users text-red"></i> 5 new members joined
-                        </a>
-                      </li>
-                      <li>
-                        <a href="#">
-                          <i class="fa fa-shopping-cart text-green"></i> 25 sales made
-                        </a>
-                      </li>
-                      <li>
-                        <a href="#">
-                          <i class="fa fa-user text-red"></i> You changed your username
-                        </a>
-                      </li>
+
                     </ul>
                   </li>
-                  <li class="footer"><a href="#">View all</a></li>
+                  <li class="footer"><a href="<?php echo site_url() . 'engineer/notification/gotoActiveStream' ?>"
+                                        ng-click="readNotification()">View all</a></li>
                 </ul>
               </li>
               <!-- Tasks: style can be found in dropdown.less -->
@@ -199,7 +213,8 @@
                     </ul>
                   </li>
                   <li class="footer">
-                    <a href="#">View all tasks</a>
+                    <a href="<?php echo site_url() . 'engineer/notification/gotoProjectActiveStream' ?>">View all
+                      tasks</a>
                   </li>
                 </ul>
               </li>

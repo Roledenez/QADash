@@ -10,14 +10,15 @@
 class Project_m extends My_Model {
 
     // table name of the database
-    protected $_table_name = "project";
-    // order by clouse
-    protected $_order_by = "";
-    protected $_timestamps = FALSE;
-    // output data holder
     public $data = array();
+    // order by clouse
+    protected $_table_name = "project";
+    protected $_order_by = "";
+    // output data holder
+    protected $_timestamps = FALSE;
 
     // constructor
+
     public function __construct() {
         parent::__construct();
     }
@@ -53,6 +54,51 @@ class Project_m extends My_Model {
             #print an error message
             return null;
         }
+    }
+
+    /*
+     * Auther : Roledene
+     * Type : method
+     * Name : getProjectsByUser
+     * Description : this method return all the project that assigning to one user
+     */
+
+    public function getProjectsByUser($userId)
+    {
+
+//        $arr = array(
+//            'records' => array(
+//                array(
+//                'Name' => 'Kokilani',
+//                'City' => 'Galle',
+//                'Country' => 'Sri lanka'
+//            ),
+//                array(
+//                    'Name' => 'Alfreds Futterkiste',
+//                    'City' => 'Berlin',
+//                    'Country' => 'Germany'
+//                )
+//            )
+//        );
+//        $this->db->select('*');
+//        $this->db->from('project');
+//        $this->db->where('name','Hot Bug Fix');
+//        $query = $this->db->get('project');
+        try {
+            $this->db->select('p.name');
+            $this->db->from('project_member AS pm');
+            $this->db->from('project AS p');
+            $this->db->where('pm.project_id=p.project_id AND pm.member_id = ' . $this->session->userdata('uid'));
+//            $this->db->where('pm.pm.member_id', 1);
+//            $query = $this->db->get();
+//            $x = $query->result();
+            $query = $this->db->get()->result();
+            return json_encode($query);
+        } catch (Exception $exc) {
+            echo $exc->getTraceAsString();
+        }
+//        return json_encode($query);
+//        SELECT p.name FROM project_member pm, project p WHERE pm.project_id=p.project_id AND pm.member_id = $userID
     }
 
     /*
