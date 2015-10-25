@@ -15,7 +15,7 @@ class TestcaseChart_controller extends Engineer_Controller {
      * Description : index method
      */
     public function index() {
-        $this->data['names'] = $this->input->post('projects');
+        $this->data['names'] = '01';//$this->input->post('projects'); //selectd project
         $this->data['projects'] = $this->project_m->getAllProjectsID();
         $this->data['subview'] = 'engineer/user/testcaseChart_view';
         $this->load->view("engineer/_layout_main", $this->data);
@@ -25,7 +25,8 @@ class TestcaseChart_controller extends Engineer_Controller {
      * Type : method
      * Name : drawChart
      */
-    public function drawChart($pid) {
+    public function drawChart() {
+        $pid = '01';
         $category = array();
         $category['name'] = 'Category';
 
@@ -41,13 +42,13 @@ class TestcaseChart_controller extends Engineer_Controller {
         $category['data'][] = $this->project_m->getProjectName($pid);
         $series1['data'][] = $this->project_m->getFailedTestcases($pid);
         $series2['data'][] = $this->project_m->getPassedTestcases($pid);
-        $series3['data'][] = $this->project_m->getInProgressTestcases($pid);
+       // $series3['data'][] = $this->project_m->getInProgressTestcases($pid);
          
         $result = array();
         array_push($result, $category);
         array_push($result, $series1);
         array_push($result, $series2);
-        array_push($result, $series3);
+        //array_push($result, $series3);
          
         print json_encode($result, JSON_NUMERIC_CHECK);
 
@@ -58,10 +59,12 @@ class TestcaseChart_controller extends Engineer_Controller {
      * Type : method
      * Name : showFailedTetCases
      */
-    public function showFailedTetCases($pid){
+    public function showTetCasesDetails($pid){
         $this->data['projects'] = $this->project_m->getAllProjectsID();
         $this->data['project'] = $pid;
         $this->data['FTestCases'] = $this->project_m->getFailedTestcasesDetails($pid);
+        $this->data['PTestCases'] = $this->project_m->getPassedTestcasesDetails($pid);
+        $this->data['InPTestCases'] = $this->project_m->getInProTestcasesDetails($pid);
          $this->data['subview'] = 'engineer/user/failedTestCase_view';
          $this->load->view("engineer/_layout_main", $this->data);
     }

@@ -206,7 +206,7 @@ class Project_m extends My_Model {
         try {
             $queryTC = "SELECT COUNT(tc.testcase_id) as FailedTC
                     from project p, testsuites ts, testcase tc
-                    WHERE p.project_id=ts.project_id and ts.testsuites_id=tc.testsuites_id and p.project_id=$pid and tc.psb_status = 'failed'";
+                    WHERE p.project_id=ts.project_id and ts.testsuites_id=tc.testsuites_id and p.project_id=$pid and tc.psb_status = 'Execution Failed'";
 
             $result = $this->db->query($queryTC);
             $x = $result->result();
@@ -227,7 +227,7 @@ class Project_m extends My_Model {
         try {
             $queryTC = "SELECT COUNT(tc.testcase_id) as PassedTC
                     from project p, testsuites ts, testcase tc
-                    WHERE p.project_id=ts.project_id and ts.testsuites_id=tc.testsuites_id and p.project_id=$pid and tc.psb_status = 'passed'";
+                    WHERE p.project_id=ts.project_id and ts.testsuites_id=tc.testsuites_id and p.project_id=$pid and tc.psb_status = 'Execution Passed'";
 
             $result = $this->db->query($queryTC);
             $x = $result->result();
@@ -285,12 +285,31 @@ class Project_m extends My_Model {
 
     function getFailedTestcasesDetails($pid) {
         try {
-            $queryFTC = "SELECT p.name as pname, ts.name testsuiteName,tc.testcase_id as tid, tc.description as testcase, pr.priority_id as priority,pr.name as prname, ts.name as testSuit from project p, testsuites ts, testcase tc, priority pr
-                    WHERE p.project_id=ts.project_id and ts.testsuites_id=tc.testsuites_id and tc.prority_id=pr.priority_id and p.project_id=$pid and tc.psb_status = 'failed' ORDER BY pr.priority_id, ts.testsuites_id ";
-
+            $queryFTC = "SELECT tc.testcase_id, tc.title, pr.priority_id as priority,pr.name as prname, ts.name as testSuite from testsuites ts, testcase tc, priority pr WHERE ts.testsuites_id=tc.testsuites_id and tc.prority_id=pr.priority_id and ts.project_id='$pid' and tc.psb_status = 'Execution Failed' ORDER BY pr.priority_id, ts.testsuites_id";
             $result = $this->db->query($queryFTC);
             $x = $result->result();
-            //print_r('query = '.$x[0]->pname);
+            return $result->result();
+        } catch (Exception $exc) {
+            echo $exc->getTraceAsString();
+        }
+    }
+    
+    function getPassedTestcasesDetails($pid) {
+        try {
+            $queryFTC = "SELECT tc.testcase_id, tc.title, pr.priority_id as priority,pr.name as prname, ts.name as testSuite from testsuites ts, testcase tc, priority pr WHERE ts.testsuites_id=tc.testsuites_id and tc.prority_id=pr.priority_id and ts.project_id='$pid' and tc.psb_status = 'Execution Passed' ORDER BY pr.priority_id, ts.testsuites_id";
+            $result = $this->db->query($queryFTC);
+            $x = $result->result();
+            return $result->result();
+        } catch (Exception $exc) {
+            echo $exc->getTraceAsString();
+        }
+    }
+    
+    function getInProTestcasesDetails($pid) {
+        try {
+            $queryFTC = "SELECT tc.testcase_id, tc.title, pr.priority_id as priority,pr.name as prname, ts.name as testSuite from testsuites ts, testcase tc, priority pr WHERE ts.testsuites_id=tc.testsuites_id and tc.prority_id=pr.priority_id and ts.project_id='$pid' and tc.psb_status = 'in progress' ORDER BY pr.priority_id, ts.testsuites_id";
+            $result = $this->db->query($queryFTC);
+            $x = $result->result();
             return $result->result();
         } catch (Exception $exc) {
             echo $exc->getTraceAsString();
