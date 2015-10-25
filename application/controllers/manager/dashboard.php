@@ -6,9 +6,11 @@
 		}
 
 		public function index(){
-			$this->data['projects'] = $this->project_m->getAllProjects();
-			$this->data['subview'] = 'manager/user/home';
-			$this->load->view("manager/_layout_main",$this->data);
+//			$this->data['projects'] = $this->project_m->getAllProjects();
+//			$this->data['subview'] = 'manager/user/home';
+//			$this->load->view("manager/_layout_main",$this->data);
+                    
+                        redirect("manager/projectProgress_controller");
 		}
 
 

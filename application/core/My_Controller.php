@@ -8,13 +8,10 @@
 			$this->load->library('form_validation');
 			$this->load->library('session');
 			$this->load->model('user_m');
+			$this->load->model('chat_m');
 			$this->load->model('project_m');
-                        $this->load->model('projectLoader_m');                        
-                        //$this->load->model('projectDetails_m');                        
-                        //$this->load->model('allTestsuites_m');                        
-                        //$this->load->model('allTestcases_m');
-                        //$this->load->model('passedTestcases_m');
-                        //$this->load->model('failedTestcases_m');                        
+
+			$this->load->model('notification_m');
 			$this->load->helper('url');
 
 			$this->data['errors'] = array();

@@ -67,9 +67,9 @@
                                         'value' => "1"
                                         );
 
-                                     echo form_input($attributes);
+                                   //  echo form_input($attributes);
                                   ?>
-                                   Remember me
+                                   <!-- Remember me -->
                                     </label>
                                 </div>
                                 <h4 style="color:red"> <?php echo validation_errors(); ?> </h4>
@@ -96,7 +96,7 @@
 
                                      echo form_submit($attributes);
                                      ?>
-                                    <a id="btn-fblogin" href="#" class="btn btn-primary">Register here</a>
+                                    <a id="btn-fblogin" href="#" class="btn btn-primary">Reset password</a>
 
                                 </div>
                             </div>

@@ -1,8 +1,14 @@
-<?php $this->load->helper('url'); ?>
+<?php $this->load->helper('url');
+
+?>
 
   <!DOCTYPE html>
 <html>
   <head>
+    <script type="text/javascript">
+      var base_url = '<?php echo site_url(); ?>';
+      var session_id = '<?php echo $this->session->userdata('uid') ?>';
+    </script>
     <meta charset="UTF-8">
     <title>AdminLTE 2 | Dashboard</title>
     <!-- Tell the browser to be responsive to screen width -->
@@ -31,6 +37,10 @@
     <!-- bootstrap wysihtml5 - text editor -->
     <link href="<?php echo site_url('plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css'); ?>" rel="stylesheet" type="text/css" />
    
+
+    <!-- angular js  -->
+    <script src="<?php echo site_url('js/angular.min.js'); ?>" type="text/javascript"></script>
+    <script src="<?php echo site_url('js/main.js'); ?>" type="text/javascript"></script>
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
