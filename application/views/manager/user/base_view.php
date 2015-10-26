@@ -4,7 +4,6 @@
     <div class="box-body">
         <div class="callout callout-info">
             <div style="text-align: center;">
-                 <br> <br>
             <h1>Welcome To QA Matrix Dashboard</h1> <br> <br>
             <p><h3>Please Select a Project</h3></p>
             <br> <br><br> <br><br> <br>

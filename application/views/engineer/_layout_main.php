@@ -35,7 +35,7 @@
             <?php  $pid = $this->session->userdata('project_id') ; ?>
             <li class="header"><a href="<?php echo site_url("engineer/projectManagement_controller/createTestSuit/$pid"); ?>">CREAT TEST SUITE</a></li>
             <li>
-              <a href="assignedToMe_controller">
+                <a href=<?php echo site_url("engineer/assignedToMe_controller")?> >
                 <i class="fa fa-dashboard"></i> <span>Dashboard</span> <i class="fa fa-angle-left pull-right"></i>
               </a>
             </li>
@@ -69,7 +69,7 @@
               </a>
               <ul class="treeview-menu">
                  <li><a href="linechart_controller"><i class="fa fa-circle-o"></i> Overall View</a></li> 
-                <li><a href="testcaseChart_controller"><i class="fa fa-circle-o"></i> Test Case Status</a></li>
+                <li><a href=<?php echo site_url("engineer/testcaseChart_controller")?> ><i class="fa fa-circle-o"></i> Test Case Status</a></li>
                 
               </ul>
             </li>

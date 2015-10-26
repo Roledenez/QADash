@@ -61,13 +61,13 @@
 			if (isset($role)) {
 			switch ($role) {
 						case 'admin':
-							$dashboard = 'admin/dashboard';
+							$dashboard = 'admin/base_controller'; //'admin/dashboard';
 							break;
 						case 'manager':
-							$dashboard = 'manager/projectProgress_controller';
+							$dashboard = 'manager/base_controller';
 							break;
 						case 'engineer':
-							$dashboard = 'engineer/assignedToMe_controller';
+							$dashboard = 'engineer/base_controller';
 							break;
 						case 'intern':
 							$dashboard = 'engineer/dashboard';
