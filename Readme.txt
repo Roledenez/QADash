@@ -8,7 +8,7 @@ Installation instructions
 	-> replace the first case: with your DADash\public_html path
 	-> import the database/testorsdb.sql if git checkout detected it has edited
 
-after correctly configure the project you can visite http://localhost:82/QADash/public_html/admin/user/login to go to the dashboard interface. note that your port and the path may be change
+after correctly configure the project you can visite http://localhost:8090/QADash/public_html/admin/user/login to go to the dashboard interface. note that your port and the path may be change
 
 username : admin@admin.com
 pwd		 : admin

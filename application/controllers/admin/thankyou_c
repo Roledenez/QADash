@@ -1,0 +1,22 @@
+
+<?php
+class thankyou_c extends Admin_Controller
+{
+	public function __construct()
+        {
+            parent::__construct();                        
+            $this->load->model("thankyou_m");                    
+		}
+
+		public function index()
+        {                    
+        	$this->load->library('form_validation');
+        	echo "Binalie Ravinga Liyanage";
+                        
+            $this->data['subview'] = 'admin/user/thankyou';
+            $this->load->view('admin/_layout_main',$this->data);
+
+		}
+
+}
+?>
