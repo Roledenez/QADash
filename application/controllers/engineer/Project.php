@@ -21,13 +21,43 @@ class Project extends Engineer_Controller
 
     public function testForm()
     {
-        $this->session->set_userdata(array('project_name' => $this->input->post('projectName')));
-        echo $this->input->post('projectName');
+        $this->session->set_userdata(array('project_id' => $this->input->post('projectId')));
+        
+        $path = '';
+			// get the user role in session
+			$role = $this->session->userdata('role');
+			if (isset($role)) {
+			switch ($role) {
+						case 'admin':
+							$path = 'manager/base_controller/loadView';
+							break;
+						case 'manager':
+							$path = 'manager/base_controller/loadView';
+							break;
+						case 'engineer':
+							$path = 'engineer/base_controller/loadView';
+							break;
+						case 'intern':
+							$path = 'engineer/dashboard';
+							break;
+
+						default:
+							# code...
+							break;
+					}
+//					return $path;
+//			}else{
+//				return null;
+			}
+        
+        redirect($path);
+        //redirect("engineer/assignedToMe_controller");
+        //echo $this->input->post('projectId');
     }
 
     public function testProjectSession()
     {
-        echo $this->session->userdata('project_name');//$this->session->userdata('project_id');
+        echo $this->session->userdata('project_id');
     }
 
 }

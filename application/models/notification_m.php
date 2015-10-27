@@ -46,10 +46,10 @@ class Notification_m extends My_Model implements AbstractSubject
         }
     }
 
-    function insertNotification($projectId, $title, $notification, $status, $navUrl)
+    function insertNotification($userId, $projectId, $title, $notification, $status, $navUrl)
     {
         $id = $this->save(array(
-            'userId' => $this->session->userdata('uid'),
+            'userId' => $userId,
             'projectId' => $projectId,
             'title' => $title,
             'notification' => $notification,

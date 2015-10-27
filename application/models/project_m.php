@@ -85,7 +85,7 @@ class Project_m extends My_Model {
 //        $this->db->where('name','Hot Bug Fix');
 //        $query = $this->db->get('project');
         try {
-            $this->db->select('p.name');
+            $this->db->select('p.project_id,p.name');
             $this->db->from('project_member AS pm');
             $this->db->from('project AS p');
             $this->db->where('pm.project_id=p.project_id AND pm.member_id = ' . $this->session->userdata('uid'));
@@ -314,6 +314,12 @@ class Project_m extends My_Model {
         } catch (Exception $exc) {
             echo $exc->getTraceAsString();
         }
+    }
+    
+    function get_projectDetails($pid) {
+        $query = "SELECT p.project_id, p.name, p.status,p.starting_date,p.ending_date, p.prority_id FROM project p, priority pr WHERE p.prority_id = pr.priority_id AND p.project_id = '$pid'";
+        $result = $this->db->query($query);
+        return $result->result();
     }
 
 }

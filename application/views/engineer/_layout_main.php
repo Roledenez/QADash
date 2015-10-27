@@ -32,10 +32,20 @@
           <!-- sidebar menu: : style can be found in sidebar.less -->
           <ul class="sidebar-menu">
             <li class="header">MAIN NAVIGATION</li>
-            <?php  $pid = '01' ?>
-            <li class="header"><a href="<?php echo site_url("engineer/projectManagement_controller/createTestSuit/$pid"); ?>">CREAT TEST SUITE</a></li>
+            <?php  $pid = $this->session->userdata('project_id') ; ?>
+            <li class="header"><a href="<?php 
+            if(!empty($this->session->userdata('project_id')))
+                 echo site_url("engineer/projectManagement_controller/createTestSuit/$pid");
+               else
+                 echo site_url("engineer/base_controller");
+             ?>">CREAT TEST SUITE</a></li>
             <li>
-              <a href="assignedToMe_controller">
+                <a href=<?php 
+                if(!empty($this->session->userdata('project_id')))
+                 echo site_url("engineer/assignedToMe_controller");
+               else
+                 echo site_url("engineer/base_controller");
+               ?> >
                 <i class="fa fa-dashboard"></i> <span>Dashboard</span> <i class="fa fa-angle-left pull-right"></i>
               </a>
             </li>
@@ -69,8 +79,12 @@
               </a>
               <ul class="treeview-menu">
                  <li><a href="linechart_controller"><i class="fa fa-circle-o"></i> Overall View</a></li> 
-                <li><a href="testcaseChart_controller"><i class="fa fa-circle-o"></i> Test Case Status</a></li>
-                
+                <li><a href=<?php 
+                if(!empty($this->session->userdata('project_id')))
+                 echo site_url("engineer/testcaseChart_controller");
+               else
+                 echo site_url("engineer/base_controller");
+                ?> ><i class="fa fa-circle-o"></i> Test Case Status</a></li>         
               </ul>
             </li>
             <li>

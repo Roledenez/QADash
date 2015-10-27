@@ -15,7 +15,8 @@ class ProjectProgress_controller extends Manager_Controller {
      */
 
     public function index() {
-        $pid = '01';
+        $pid = $this->session->userdata('project_id') ;
+        $this->data['display'] = null;
         $this->data['done'] = $this->chart_model->getFinishedCount($pid);
         $this->data['notDone'] = $this->chart_model->getNotFinishedCount($pid);
         $this->data['projects'] = $this->chart_model->get_projectDetails($pid);
@@ -23,46 +24,12 @@ class ProjectProgress_controller extends Manager_Controller {
         $this->load->view("manager/_layout_main", $this->data);
     }
 
-    /*
-     * Auther : Ishara
-     * Type : method
-     * Name : drawChart
-     */
-
-//    public function drawChart() {
-//
-//        $data = $this->chart_model->get_projectTime();
-//
-//        $category = array();
-//        $category['name'] = 'Category';
-//
-//        $series1 = array();
-//        $series1['name'] = 'Allocated Hours';
-//
-//        $series2 = array();
-//        $series2['name'] = 'Spent Hours';
-//
-//
-//        foreach ($data as $row) {
-//            $category['data'][] = $row->name;
-//            $series1['data'][] = $row->totalhours;
-//            $series2['data'][] = $row->spentours;
-//        }
-//
-//        $result = array();
-//        array_push($result, $category);
-//        array_push($result, $series1);
-//        array_push($result, $series2);
-//
-//
-//
-//        print json_encode($result, JSON_NUMERIC_CHECK);
-//
-//        return $result;
-//    }
-    
    public function drawProgressChart() {
-        $pid ='01';
+        $pid =$this->session->userdata('project_id') ;
+        
+        if(empty($this->chart_model->getNotFinishedCount($pid))&&empty($this->chart_model->getFinishedCount($pid)))
+            $this->data['display'] = 1;
+        
         $category = array();
         $category['name'] = 'Category';
 
@@ -75,7 +42,7 @@ class ProjectProgress_controller extends Manager_Controller {
         $category['data'][] = $this->chart_model->getProjectName($pid);
         $series1['data'][] = $this->chart_model->getNotFinishedCount($pid);
         $series2['data'][] = $this->chart_model->getFinishedCount($pid);
-         
+        
         $result = array();
         array_push($result, $category);
         array_push($result, $series1);
