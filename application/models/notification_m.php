@@ -12,7 +12,7 @@ class Notification_m extends My_Model implements AbstractSubject
     protected $_table_name = "notifications";
     // rules for the login imput fields
     protected $_order_by = "";
-    protected $_primary_key = "userId";
+    protected $_primary_key = "id";
     protected $_timestamps = FALSE;
 
     private $favoritePatterns = NULL;
