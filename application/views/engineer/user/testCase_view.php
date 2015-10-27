@@ -170,7 +170,7 @@
                                 <label for="priority" class="col-sm-2 control-label">Priority</label>
                                 <div class="col-sm-10">
                                     <?php
-                                    echo form_dropdown('priority', $priority, set_value('priority'));
+                                    echo form_dropdown('priority', $priority, 2);
                                     ?>
                                     <div style="color:red"> <?php echo form_error('priority'); ?> </div>
                                 </div>

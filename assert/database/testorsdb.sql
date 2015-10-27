@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 24, 2015 at 07:23 PM
+-- Generation Time: Oct 27, 2015 at 05:50 AM
 -- Server version: 5.6.24
 -- PHP Version: 5.5.24
 
@@ -192,15 +192,11 @@ CREATE TABLE IF NOT EXISTS `project` (
 INSERT INTO `project` (`project_id`, `name`, `description`, `starting_date`, `ending_date`, `status`, `prority_id`, `totalhours`, `spentours`, `progress`) VALUES
 ('01', 'g', 'ged', '2015-10-20', '2015-10-21', 'ged', 1, NULL, NULL, NULL),
 ('011', 'ii', 'i8', '2015-09-28', '2015-10-21', 'open', 1, NULL, NULL, NULL),
-('012', 'gf', 'gf', '2015-10-08', '2015-10-14', 'open', 2, NULL, NULL, NULL),
+('0123', 'test', 'test', '2015-10-14', '2015-12-25', 'open', 2, NULL, NULL, NULL),
 ('1', 'KT Innovation', 'Project for innovation of industry', '2015-07-01', '2015-07-31', 'open', 1, 1500, 1100, 30),
 ('2', 'QA dashboard', 'Quality assuarance handling based system', '2015-08-03', '2015-07-22', 'closed ', 1, 1060, 1280, 65),
 ('3', 'OS Innovation', 'Operating system inovation based system', '2015-09-01', '2015-09-24', 'open', 1, 1680, 1960, 90),
 ('4', 'Hot Bug Fix', 'Project for bug fixing', '2015-09-02', '2015-11-19', 'open', 2, 5800, 4600, 79),
-('da', 'dadav', 'dv', '2015-10-21', '2015-10-27', 'open', 1, NULL, NULL, NULL),
-('dbb', 'd', 'b', '2015-10-20', '2015-10-06', 'open', 1, NULL, NULL, NULL),
-('fv', 'fv', 'b', '2015-10-19', '2015-10-07', 'open', 1, NULL, NULL, NULL),
-('v', 'hg', 'hg', '2015-10-21', '2015-10-13', 'hg', 1, NULL, NULL, NULL),
 ('y', 'yn', 'nt', '2015-10-19', '2015-10-07', 'nt', 1, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
@@ -221,7 +217,7 @@ CREATE TABLE IF NOT EXISTS `project_member` (
 INSERT INTO `project_member` (`project_id`, `member_id`) VALUES
 ('3', 1),
 ('1', 2),
-('01', 5),
+('01', 6),
 ('01', 7),
 ('01', 8);
 
@@ -313,20 +309,17 @@ CREATE TABLE IF NOT EXISTS `testcase` (
   `pass` int(11) DEFAULT NULL,
   `member_id` varchar(10) DEFAULT NULL,
   `prority_id` int(11) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=29 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `testcase`
 --
 
 INSERT INTO `testcase` (`testcase_id`, `testcase_code`, `testsuites_id`, `title`, `description`, `status`, `psb_status`, `open`, `pass`, `member_id`, `prority_id`) VALUES
-(11, 'jh,', 15, 'h,j', 'hj', NULL, 'Review Passed', 1, 1, '7', 1),
-(12, 'nh ', 15, 'h', 'hng', NULL, 'Review Passed', 0, 0, '7', 1),
-(13, 'h', 16, 'v vc', 'hj', NULL, 'Assigned To Review', 1, 1, NULL, 1),
-(14, '012', 19, 'kuyl', 'ily', NULL, NULL, NULL, NULL, NULL, 1),
-(15, 'my', 20, 'kt', 'tk', NULL, NULL, NULL, NULL, NULL, 1),
-(16, 'fd', 20, 'fv', 'fv', NULL, NULL, NULL, NULL, NULL, 1),
-(17, 'ewf', 15, 'few', 'fw', NULL, 'Review Passed', NULL, NULL, NULL, 1);
+(25, '0111', 28, 'test case1', 'test case', NULL, 'Review Passed', 1, NULL, NULL, 2),
+(26, '0122', 28, 'test case2', 'test case', NULL, 'Review Passed', 1, NULL, NULL, 1),
+(27, '0113', 28, 'test case3', 'test case', NULL, 'Assigned To Review', 1, NULL, NULL, 3),
+(28, '01123', 28, 'test case123', 'test case123', NULL, 'Assigned To Review', 1, NULL, NULL, 3);
 
 -- --------------------------------------------------------
 
@@ -339,17 +332,15 @@ CREATE TABLE IF NOT EXISTS `testcase_step` (
   `description` varchar(1000) NOT NULL,
   `expectedResult` varchar(500) NOT NULL,
   `testcase_id` int(11) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `testcase_step`
 --
 
 INSERT INTO `testcase_step` (`testcaseStep_id`, `description`, `expectedResult`, `testcase_id`) VALUES
-(7, 'gf ', 'bv', 12),
-(8, 'df', 'ds', 13),
-(9, 'thty', 'yth', 14),
-(11, 'yhm', 'gh,', 11);
+(14, 'fhdg', 'jgnf', 27),
+(15, 'fxn', 'dgm', 28);
 
 -- --------------------------------------------------------
 
@@ -365,21 +356,17 @@ CREATE TABLE IF NOT EXISTS `testsuites` (
   `assignedToReview` int(11) DEFAULT NULL,
   `reviewed` int(11) DEFAULT NULL,
   `Priority` int(11) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=32 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `testsuites`
 --
 
 INSERT INTO `testsuites` (`testsuites_id`, `testsuites_code`, `project_id`, `name`, `assignedToReview`, `reviewed`, `Priority`) VALUES
-(15, '011', '01', 'hh', 7, 1, 1),
-(16, 'ff', 'v', 'g', NULL, NULL, 1),
-(17, 'fd', 'y', 'dg', NULL, NULL, 1),
-(18, 'vfs', 'dbb', 'fv', NULL, NULL, 2),
-(19, '01', '012', 'ikli', NULL, NULL, 1),
-(20, 'ui', '011', 'ui', NULL, NULL, 2),
-(21, 'f', '01', 'e', 2, NULL, 1),
-(22, 'fggg', '01', 'gf', 2, NULL, 1);
+(28, '011', '01', 'test1', 7, NULL, 1),
+(29, '012', '01', 'test2', 7, NULL, 1),
+(30, 'fsv', '01', 'df', 8, NULL, 1),
+(31, 'gb', '01', 'gn', 8, NULL, 2);
 
 -- --------------------------------------------------------
 
@@ -562,17 +549,17 @@ ALTER TABLE `project_sprint`
 -- AUTO_INCREMENT for table `testcase`
 --
 ALTER TABLE `testcase`
-  MODIFY `testcase_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=18;
+  MODIFY `testcase_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=29;
 --
 -- AUTO_INCREMENT for table `testcase_step`
 --
 ALTER TABLE `testcase_step`
-  MODIFY `testcaseStep_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=12;
+  MODIFY `testcaseStep_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=16;
 --
 -- AUTO_INCREMENT for table `testsuites`
 --
 ALTER TABLE `testsuites`
-  MODIFY `testsuites_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=23;
+  MODIFY `testsuites_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=32;
 --
 -- AUTO_INCREMENT for table `time_entries`
 --

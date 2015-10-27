@@ -15,52 +15,7 @@ class projectManagement_controller extends Engineer_Controller {
         $this->load->view("engineer/_layout_main", $this->data);
     }
 
-    public function createProject() {
-        $this->load->model('project_model');
-        $dashboard = ''; //controller path
-
-        $this->load->library('form_validation');
-        $this->form_validation->set_error_delimiters('<div class="error">', '</div>');
-
-        $this->form_validation->set_rules('projectid', 'Project ID ', 'required');
-        $this->form_validation->set_rules('projectname', 'Project Name ', 'required');
-        $this->form_validation->set_rules('description', 'Description ', 'required');
-        $this->form_validation->set_rules('startingdate', 'Starting Date ', 'required');
-        $this->form_validation->set_rules('endingDate', 'Ending Date', 'required');
-        $this->form_validation->set_rules('priority', 'Priority ', 'required');
-        $this->form_validation->set_rules('status', 'Status', 'required');
-
-        //run the validating
-        if ($this->form_validation->run() == TRUE) {
-
-            $orStartdate = $this->input->post('startingdate');
-            $newStaDate = date("Y-m-d", strtotime($orStartdate));
-            
-            $orEnddate = $this->input->post('endingDate');
-            $newEndDate = date("Y-m-d", strtotime($orEnddate));
-            
-            $data = array(
-                'project_id' => $this->input->post('projectid'),
-                'name' => $this->input->post('projectname'),
-                'description' => $this->input->post('description'),
-                'starting_date' => $newStaDate,
-                'ending_date' => $newEndDate,
-                'prority_id' => $this->input->post('priority'),
-                'status' => $this->input->post('status'),
-            );
-            $this->project_model->addProject($data);
-            $pid =$this->input->post('projectid');
-            redirect("engineer/projectManagement_controller/createTestSuit/$pid");
-        }
-
-        $this->load->model('project_model');
-        $this->data['priority'] = $this->project_model->getPriority();
-        $this->data['subview'] = 'engineer/user/projectManagement_view';
-        $this->load->view("engineer/_layout_main", $this->data);
-    }
-    
     public function createTestSuit($pid) {
-        //project id
         $this->data['ppid'] = $pid;
         $this->data['load_ts'] = null;
         $this->data['load_tc'] = null;
@@ -69,7 +24,6 @@ class projectManagement_controller extends Engineer_Controller {
         $this->load->view("engineer/_layout_main", $this->data);
     }
     public function LoadcreateTestSuit($pid) {
-        //project id
         $this->data['ppid'] = $pid;
         $this->data['priority'] = $this->project_model->getPriority();
         $this->data['users'] = $this->project_model->getUserList($pid);
@@ -84,12 +38,11 @@ class projectManagement_controller extends Engineer_Controller {
         $this->data['load_ts'] = 1;
         $this->data['load_tc'] = -1;
         
-         $this->data['ppid'] = $pid;
+        $this->data['ppid'] = $pid;
         $this->data['priority'] = $this->project_model->getPriority();
         $this->data['users'] = $this->project_model->getUserList($pid);
         $this->data['projects'] = $this->project_model->get_projectDetails($pid);
         
-        $dashboard = ''; //controller path
         $this->load->library('form_validation');
         $this->form_validation->set_error_delimiters('<div class="error">', '</div>');
 
@@ -98,7 +51,7 @@ class projectManagement_controller extends Engineer_Controller {
         $this->form_validation->set_rules('priority', 'Priority ', 'required');
         $this->form_validation->set_rules('users', 'Assigned To Review ', 'required');
         
-        if ($this->form_validation->run() == TRUE) {
+        if ($this->form_validation->run()) {
             $ts_id = $this->input->post('ts_code');
             $data = array(
                 'testsuites_code' => $this->input->post('ts_code'),
@@ -140,7 +93,6 @@ class projectManagement_controller extends Engineer_Controller {
     
     public function AddnewTestCase($pid,$ts_id,$testSuiteID) {
         $this->load->model('project_model');
-        $dashboard = ''; //controller path
         
          $this->data['loadTeSt']=null;
         $this->data['viewTeSt']=null;
@@ -157,7 +109,7 @@ class projectManagement_controller extends Engineer_Controller {
         $this->form_validation->set_rules('description', 'Description ', 'required');
         $this->form_validation->set_rules('priority', 'Priority ', 'required');
         
-        if ($this->form_validation->run() == TRUE) {
+        if ($this->form_validation->run()){
              $tc_code = $this->input->post('tc_code');
             $data = array(
                 'testcase_code' => $this->input->post('tc_code'),
@@ -204,8 +156,7 @@ class projectManagement_controller extends Engineer_Controller {
    
     public function AddnewTestStep($pid,$testSuiteID,$tc_id) {
         $this->load->model('project_model');
-        $dashboard = ''; //controller path
-
+        
         $this->data['loadTeSt']=1;
         $this->data['viewTeSt']=1;
         $this->data['ppid'] = $pid;
@@ -221,7 +172,7 @@ class projectManagement_controller extends Engineer_Controller {
         $this->form_validation->set_rules('description', 'Description ', 'required');
         $this->form_validation->set_rules('exresult', 'Expected Result ', 'required');
         
-        if ($this->form_validation->run() == TRUE) {
+        if ($this->form_validation->run()) {
              $tc_code = $this->input->post('tc_code');
             $data = array(
                 'testcase_id' =>$tc_id ,

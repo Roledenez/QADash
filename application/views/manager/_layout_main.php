@@ -34,7 +34,11 @@
             <li class="header">MAIN NAVIGATION</li>
             <li class="header"><a href="<?php echo site_url("manager/projectManagement_controller"); ?>">CREAT TEST PROJECT</a></li>
             <li>
-              <a href=<?php echo site_url("manager/projectProgress_controller")?>
+              <a href=<?php 
+              if(!empty($this->session->userdata('project_id')))
+                echo site_url("manager/projectProgress_controller");
+               else
+                 echo site_url("manager/base_controller");  ?>
                 <i class="fa fa-dashboard"></i> <span>Dashboard</span> <i class="fa fa-angle-left pull-right"></i>
               </a>
             </li>
@@ -61,7 +65,12 @@
                 <i class="fa fa-angle-left pull-right"></i>
               </a>
               <ul class="treeview-menu">
-                <li><a href=<?php echo site_url("manager/assignTestCases_controller")?>><i class="fa fa-circle-o"></i> Assign To Execute</a></li>
+                <li><a href=<?php
+                if(!empty($this->session->userdata('project_id')))
+                echo site_url("manager/assignTestCases_controller");
+               else
+                 echo site_url("manager/base_controller");
+                ?>><i class="fa fa-circle-o"></i> Assign To Execute</a></li>
                 <li><a href="pages/charts/morris.html"><i class="fa fa-circle-o"></i> Morris</a></li>
               </ul>
             </li>

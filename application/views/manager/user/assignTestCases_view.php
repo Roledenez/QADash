@@ -1,5 +1,6 @@
 <section class="content">
    <br>
+   <?php if (!empty($testSuite)) { ?>
     <div class="row">
         <div class="col-xs-12">
             <div class="box">
@@ -41,8 +42,20 @@
             </div><!-- /.box -->
         </div><!-- /.row -->   
     </div>
-   
-    <?php if (!empty($testCase)) { ?>
+   <?php } else { ?>
+        <br><br><br><br><br><br>
+        <div class="col-lg-2"></div>
+        <div class="col-lg-8">
+        <div style=" alignment-adjust: central;" class="callout callout-danger">
+            <br><br><br><br>
+             <h4 style=" alignment-adjust: central;">&nbsp;&nbsp;No Test Cases Available To Assign!</h4>
+            <br><br><br><br>
+        </div>
+        </div>
+        <div class="col-lg-2"></div>
+
+    <?php } 
+    if (!empty($testCase)) { ?>
             <br>
             <div class="row">
                 <div class="col-xs-12">
