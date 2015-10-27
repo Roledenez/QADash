@@ -36,17 +36,25 @@ class createIssue_c1 extends Admin_Controller {
 
             $orStartdate = $this->input->post('startingdate');
             $newStaDate = date("Y-m-d", strtotime($orStartdate));
+
+            $currentDate = date("Y/m/d");
+            //print_r($currentDate);
+            //exit();
+
+
             $pid = $this->session->userdata('project_id');
-            echo $pid;
+            //print_r($pid);
+            //exit();
               
             $data = array(
                 'issue_id' => $this->input->post('issueId'),
                 'issue_code' => $this->input->post('issueCode'),
-                'project_id' => 7,
+                'project_id' => $pid,
                 'priority_type' => $this->input->post('priority'),                                
                 'description' => $this->input->post('description'),                
                 'summary' => $this->input->post('summary'),
-                'issue_type' => $this->input->post('issueType')
+                'issue_type' => $this->input->post('issueType'),
+                'created_date' => $currentDate
                 //'starting_date' => $newStaDate,
                 
             );

@@ -102,11 +102,11 @@
                                     echo '</td>';
 
                                     echo '<td width="19%">';
-                                        echo $row->issueCreator;
+                                        echo $row->created_by;
                                     echo '</td>';
 
                                     echo '<td width="19%">';
-                                        echo $row->AssignedTo;
+                                        echo $row->assignee;
                                     echo '</td>';
 
                                     echo '<td width="19%">';

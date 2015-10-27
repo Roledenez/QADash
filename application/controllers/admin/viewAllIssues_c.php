@@ -29,10 +29,6 @@
                 
         public function index()
         {                    
-
-            $pid = $this->session->userdata('project_id');
-            echo $pid;
-
         	$this->load->library('form_validation');
             
         	$this->data['versions'] = $this->createIssue_m->loadVersions();
@@ -47,7 +43,6 @@
 
         public function filterIssues()
         {
-            echo "kkkkk";
             $this->data['issueDetails'] = $this->viewAllIssues_m->filterIssuesByPriority();
             $this->data['subview'] = 'admin/user/viewAllIssues_v';
             $this->load->view('admin/_layout_main',$this->data);

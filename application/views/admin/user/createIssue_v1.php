@@ -12,13 +12,7 @@
     <script type="text/javascript">
         $(document).ready(function () {
 
-            $("#startingdate").datepicker({dateFormat: 'yy-mm-dd'});
-            $("#endingDate").datepicker({dateFormat: 'yy-mm-dd'}).bind("change", function () {
-                var minValue = $(this).val();
-                minValue = $.datepicker.parseDate("yy-mm-dd", minValue);
-                minValue.setDate(minValue.getDate() + 1);
-                $("#startingdate").datepicker("option", "minDate", minValue);
-            })
+            
         });
 
     </script> 
@@ -135,27 +129,7 @@
                             ?>
                             <div style="color:red"> <?php echo form_error('description'); ?> </div>
                         </div>
-                    </div> 
-
-
-                    <div class="form-group">
-                        <label for="startingdate" class="col-sm-2 control-label">Starting Date</label>
-                        <div class="col-sm-10">
-                            <?php
-                            $attributes = array(
-                                'class' => 'form-control',
-                                'id' => 'startingdate',
-                                'type' => "text",
-                                'name' => "startingdate",
-                                'placeholder' => "Strating Date",
-                                'value' => $this->input->post('startingdate')
-                            );
-
-                            echo form_input($attributes);
-                            ?>
-                            <div style="color:red"> <?php echo form_error('startingdate'); ?> </div>
-                        </div>
-                    </div>                     
+                    </div>                  
 
                     <div class="form-group">
                         <label for="priority" class="col-sm-2 control-label">Priority</label>
