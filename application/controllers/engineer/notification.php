@@ -32,7 +32,7 @@ class Notification extends Engineer_Controller
     {
 
         $nSubject = new Notification_m();
-        $nSubject->insertNotification(1, "testNofiyTitle", "this is a test nofiticaion", "created", site_url() . "engineer/notification/getUnreadNotifications");
+        $nSubject->insertNotification($this->session->userdata('uid'), 1, "testNofiyTitle", "this is a test nofiticaion", "created", site_url() . "engineer/notification/getUnreadNotifications");
 
     }
 
