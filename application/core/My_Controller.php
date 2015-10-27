@@ -10,6 +10,7 @@
 			$this->load->model('user_m');
 			$this->load->model('chat_m');
 			$this->load->model('project_m');
+
 			$this->load->model('notification_m');
 			$this->load->helper('url');
 
