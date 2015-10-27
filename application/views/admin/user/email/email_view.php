@@ -25,9 +25,11 @@
             // Initialize options
             var emails = [
                 'admin@admin.com',
-                'chathurigamage17@gmailcom',
-                'nimal@gmail.com',
-                'x@yahoo.com'
+                'chathurigamage17@gmail.com',
+                'sasika@gmail.com',
+                'lakini@yahoo.com',
+                'role@yahoo.com',
+                'binz@gmail.com'
             ];
 
             $.each(emails, function (index, email) {
@@ -63,11 +65,6 @@
 
     <section class="">
         <?php echo form_open('admin/email/email_controller/sendmail'); ?>
-<!--        --><?php
-//        $attributes = array('class' => 'form-horizontal', 'id' => 'sendemail','role' => "form");
-//        echo form_open("admin/email/email_controller/sendmail",$attributes);
-//
-//        ?>
 
         <div class="col-md-9">
             <div class="box box-primary">
@@ -119,16 +116,14 @@
                                 'class' => 'form-control',
                                 'id' => 'compose-textarea',
                                 'type' => "textarea",
-                                'name' => "submit",
+                                'name' => "body",
                                 'style' => "height: 300px",
                                 'value' => ""
                             );
 
                             echo form_submit($attributes);
                             ?>
-<!--                    <textarea id="compose-textarea" class="form-control" style="height: 300px">-->
 
-<!--                    </textarea>-->
                         </div>
                         <div class="form-group">
                             <div class="btn btn-default btn-file">

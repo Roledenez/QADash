@@ -24,7 +24,7 @@ ob_start();
 <?php
 $content = ob_get_contents();
 $html = str_get_html('admin/user/report_view');
-foreach($html->find('img') as $element)
+foreach($html->findByClass('DropTarget')->find('img') as $element)
     $content = $content + $element;
 
 $html1 = file_get_contents('admin/user/r.html',null,null,null,null);
@@ -41,5 +41,5 @@ $full_path = $path . '/' . $filename;
 
 // Output PDF
 $obj_pdf->Output($full_path, 'F');
-$obj_pdf->Output('report.pdf', 'I');
+$obj_pdf->Output('report.pdf', 'D');
 ?>

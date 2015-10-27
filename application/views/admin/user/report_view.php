@@ -58,10 +58,15 @@
                             <h2>&nbsp;&nbsp;&nbsp;&nbsp;Test Report Customize</h2>
 <!---->
                            <?php echo form_open('admin/reportpage_controller'); ?>
-                                <button type="submit" class="btn btn-success btn-large"
-                                    style="float: inherit; width: 10em;padding-: 3px">Generate PDF
+                                <button  type="submit" class="btn btn-success btn-large"
+                                    style="float: inherit; width: 10em;padding-: 3px"> Generate PDF
                                 </button>
-                            <?php echo form_close();?>
+                            <?php echo form_close();?>  &nbsp;&nbsp;&nbsp;&nbsp;
+                           <?php echo form_open('admin/email/email_controller'); ?>
+                           <button  type="submit" class="btn btn-success btn-large"
+                                    style="float: inherit; width: 10em;padding-: 3px"> Attatch To Email
+                           </button>
+                           <?php echo form_close();?>
 
                             <br/><br/>
 

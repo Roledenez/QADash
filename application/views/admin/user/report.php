@@ -17,6 +17,7 @@ $obj_pdf->SetAutoPageBreak(TRUE, PDF_MARGIN_BOTTOM);
 $obj_pdf->SetFont('helvetica', '', 9);
 $obj_pdf->setFontSubsetting(false);
 $obj_pdf->AddPage();
+
 ob_start();
 
 ?>
@@ -52,6 +53,6 @@ $full_path = $path . '/' . $filename;
 
 // Output PDF
 $obj_pdf->Output($full_path, 'F');
-$obj_pdf->Output('report.pdf', 'I');
+$obj_pdf->Output('report.pdf', 'D');
 
 ?>

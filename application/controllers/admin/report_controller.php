@@ -16,9 +16,6 @@ class Report_controller extends Admin_Controller{
     }
 
     public function pdf($html){
-
-
-
     }
 
 }

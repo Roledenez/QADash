@@ -17,12 +17,13 @@ class Email_model extends My_Model {
     }
 
     /*
-		 * Auther : Roledene
+		 * Auther : Chathuri
 		 * Type : method
-		 * Name : getAllProjects
-		 * Description : this method return all the project tuples in project table
+		 * Name : getAllMemberEmails
+		 * Description : this method return all the email list of members in member table
 		 */
     public function getAllMemberEmails(){
+
         try{
             $emails = $this->get();
             if (count($emails)) {// if project found
@@ -31,23 +32,19 @@ class Email_model extends My_Model {
                 $i = 0;
                 while (count($emails)>$i) {
                     $data[$i]  = array(
-                        'member_id' => $emails[$i]->member_id,
-                        'firstName' => $emails[$i]->fname,
-                        'lastName' => $emails[$i]->lname,
-                        'email' => $emails[$i]->email,
-                        'role' => $emails[$i]->role
+                        'email' => $emails[$i]->email
 
                     );
                     $i++;
                 }
                 return $data;
-            }else{ // if there wasn't any projects
+            }else{
 
                 return null;
             }
 
-        }catch (EmailException $e){
-            echo "Error occurred while trying to retrieve email list\n", $e;
+        }catch (Exception $e){
+            echo new EmailException("Error occurred while trying to retrieve email list\n", $e);
             return null;
         }
 
