@@ -29,7 +29,6 @@
         public function index()
         {                    
         	$this->load->library('form_validation');
-        	echo "Binalie Ravinga Liyanage";
             
             $this->data['versions'] = $this->createIssue_m->loadVersions();
             $this->data['subview'] = 'admin/user/createIssue_v';
@@ -42,27 +41,51 @@
 			$this->load->view("admin/_layout_modal",$this->data);
 		}              
 
-		public function createIssue(){
-			$dashboard = '';//controller path
+		// public function createIssue(){
 
-		$this->createIssue_m->rules = array(
-				'txtSummary' => array('field'=>'summary',
-								'label'=>'Summary',
-								'rules'=>'trim|required'
-								),
-				);
+		// 	echo "Helloooooooooooooooo";
+		// 	$dashboard = '';//controller path
 
-			$rules = $this->createIssue_m->rules;
+		// 	$this->createIssue_m->rules = array(
+		// 		'txtSummary' => array('field'=>'summary',
+		// 							  'label'=>'Summary',
+		// 							  'rules'=>'trim|required'
+		// 								),				
+
+		// 		'txtIssueCode' => array('field'=>'issue_code',
+		// 								'label'=>'Issue Code',
+		// 								'rules'=>'trim|required'
+		// 								)
+		// 		);
+
+		// 	$rules = $this->createIssue_m->rules;
 			
-			$this->form_validation->set_rules($rules);
+		// 	$this->form_validation->set_rules($rules);
 			
-			if ($this->form_validation->run($rules) == TRUE) {
-				$id = $this->createIssue_m->createIssue("versions","version_id");
-					redirect("admin/users/thankyou_c");
-			}
+		// 	if ($this->form_validation->run($rules) == TRUE) {
+		// 		$id = $this->createIssue_m->createIssue("issue","issue_id");
+		// 			//redirect("admin/users/thankyou_c");
+		// 	}
 
-			// $this->data['subview'] = 'admin/user/addNewUsers';
-			// $this->load->view('admin/_layout_main',$this->data);
+		// 	// $this->data['subview'] = 'admin/user/addNewUsers';
+		// 	// $this->load->view('admin/_layout_main',$this->data);
+		// }
+
+		public function createIssue()
+		{
+			echo "BINALIE";
+			 $this->load->model('createIssue_m');
+
+			 $data = array(
+			 	'issue_id' => $this->input->post('issue_id'),
+                'issue_code' => $this->input->post('issue_code'),                
+                'priority_type' => $this->input->post('priority'),
+                'summary' => $this->input->post('summary'),
+                'issue_type' => $this->input->post('issue_type')
+            );
+
+			$this->createIssue_m->createIssue($data);            
+            redirect("admin/dashboard");
 		}
 	}
 

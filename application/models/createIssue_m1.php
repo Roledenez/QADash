@@ -1,6 +1,6 @@
 <?php
 		
-	class createIssue_m extends My_Model
+	class createIssue_m1 extends My_Model
     {        
 		public function __construct()
         {
