@@ -31,14 +31,11 @@
         {                    
         	$this->load->library('form_validation');
             
-        	$this->data['versions'] = $this->createIssue_m->loadVersions();
+        	//$this->data['versions'] = $this->createIssue1_m->loadVersions();
             $this->data['issues'] = $this->viewAllIssues_m->loadAllIssues();
             
             $this->data['subview'] = 'admin/user/viewAllIssues_v';
             $this->load->view('admin/_layout_main',$this->data);
-
-
-
 		}  
 
         public function filterIssues()

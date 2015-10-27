@@ -17,51 +17,49 @@ class createIssue_c1 extends Admin_Controller {
         $this->load->library('form_validation');
     }
 
-    public function createIssue() {
+    public function createIssue() 
+    {
         $this->load->model('createIssue_m1');
-        $dashboard = ''; //controller path
+        $dashboard = ''; //controller path            
 
         $this->load->library('form_validation');
         $this->form_validation->set_error_delimiters('<div class="error">', '</div>');
 
-        $this->form_validation->set_rules('issueId', 'Issue ID ', 'required');
         $this->form_validation->set_rules('issueCode', 'Issue Code', 'required');
         $this->form_validation->set_rules('issueType', 'Issue Type', 'required');
         $this->form_validation->set_rules('description', 'Description ', 'required');
-        //$this->form_validation->set_rules('startingdate', 'Starting Date ', 'required');              
-        
+         
 
         //run the validating
         if ($this->form_validation->run() == TRUE) {
 
-            $orStartdate = $this->input->post('startingdate');
-            $newStaDate = date("Y-m-d", strtotime($orStartdate));
+            $currentDate = date("Y/m/d");        
 
-            $currentDate = date("Y/m/d");
-            //print_r($currentDate);
-            //exit();
+            $pid = $this->session->userdata('project_id');            
+            $uid = $this->session->userdata('uid');
 
+            $name = $this->createIssue_m1->getSignedInUser($uid);
+            $name = $name[0]->name;
 
-            $pid = $this->session->userdata('project_id');
-            //print_r($pid);
-            //exit();
-              
+            $lastId = $this->createIssue_m1->getLastIssueId($pid);
+            $lastId = $lastId[0]->last + 1;
+                      
             $data = array(
-                'issue_id' => $this->input->post('issueId'),
+                'issue_id' => $lastId,
                 'issue_code' => $this->input->post('issueCode'),
                 'project_id' => $pid,
-                'priority_type' => $this->input->post('priority'),                                
+                'priority_type' => $this->input->post('priority'),
+                'member_id' => $uid,
+                'created_by' => $name,
                 'description' => $this->input->post('description'),                
                 'summary' => $this->input->post('summary'),
                 'issue_type' => $this->input->post('issueType'),
-                'created_date' => $currentDate
-                //'starting_date' => $newStaDate,
-                
+                'created_date' => $currentDate,
+                'availability_status' => 1             
             );
 
             $this->createIssue_m1->createIssue($data);
-            // $pid =$this->input->post('issueId');
-             redirect("admin/viewAllIssues_c");
+            redirect("admin/viewAllIssues_c");
         }
 
         // $this->load->model('createIssue_m1');

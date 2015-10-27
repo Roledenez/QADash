@@ -10,9 +10,7 @@
     <link rel="stylesheet" type="text/css" href="<?php echo site_url('js/themes/blitzer/theme.css') ?>">
 
     <script type="text/javascript">
-        $(document).ready(function () {
-
-            
+        $(document).ready(function () {            
         });
 
     </script> 
@@ -34,26 +32,6 @@
                         $attributes = array('class' => 'form-horizontal', 'id' => 'ceateIssue', 'role' => "form");
                         echo form_open("admin/createIssue_c1/createIssue", $attributes);
                     ?>
-
-                    <div class="form-group">
-                        <label for="issueId" class="col-sm-2 control-label">Issue ID</label> 
-                        <div class="col-sm-10">
-                            <?php
-                            $attributes = array(
-                                'class' => 'form-control',
-                                'id' => 'issueId',
-                                'type' => "text",
-                                'name' => "issueId",
-                                'placeholder' => "Issue ID",
-                                'value' => $this->input->post('issueId')
-                            );
-
-                            echo form_input($attributes);
-                            ?>
-                            <div style="color:red"> <?php echo form_error('issueId'); ?> </div>
-
-                        </div>
-                    </div> 
 
                     <div class="form-group">
                         <label for="issueCode" class="col-sm-2 control-label">Issue Code</label>

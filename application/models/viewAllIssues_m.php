@@ -28,5 +28,4 @@
 
             return $this->db->query($sql)->result();
         }
-
     }

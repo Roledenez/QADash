@@ -28,8 +28,9 @@
                 
         public function index()
         {                  
+        	$pid = $this->session->userdata('project_id');
         	$issue_id = $_GET['var'];
-        	$this->data['issueDetails'] = $this->viewIssueDetails_m->loadIssueDetails($issue_id);
+        	$this->data['issueDetails'] = $this->viewIssueDetails_m->loadIssueDetails($issue_id,$pid);
             $this->data['subview'] = 'admin/user/viewIssueDetails_v';
             $this->load->view('admin/_layout_main',$this->data);
 

@@ -91,13 +91,17 @@
                                 echo "</td>";
                                 
                                 echo "<td width='90%'>";
-                                    echo '<span class="test"><input type="text" id="txtCreatedBy" disabled=true>'.$res->issueCreator.'</input></span>';
+                                    echo '<span class="test"><input type="text" id="txtCreatedBy" disabled=true>'.$res->created_by.'</input></span>';
                                     echo "<select id='cmbCreatedBy' style='Display:none'>";     
-                                        echo "<option>".$res->issueCreator."</option>";
+                                        echo "<option>".$res->created_by."</option>";
                                     echo "</select>";                                
                                 echo "</td>";
 
                             echo "</tr>";
+
+                            echo "<td style='width:100%'>"
+                                echo "<label for>";
+                            echo "</td>";
 
                         echo "</table>";
                     

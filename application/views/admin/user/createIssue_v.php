@@ -15,28 +15,6 @@
             <div style="margin-bottom:25px" class="input-group">
               <tr style="width:100%">
                 <td style="width:10%">
-                  <label for="issueid" id="lblIssueId">Issue ID</label>
-                </td>
-                <td style="width:90%">
-                  <?php
-                    $attributes = array(
-                                          'class' => 'form-control',
-                                          'id' => 'issue_id',
-                                          'type' => "text",
-                                          'name' => "issue_id",
-                                          'placeholder' => "Issue ID",
-                                          'value' => $this->input->post('issue_id')
-                                          );
-
-                    echo form_input($attributes);
-                  ?>
-                </td>
-              </tr>
-            </div>
-
-            <div style="margin-bottom:25px" class="input-group">
-              <tr style="width:100%">
-                <td style="width:10%">
                   <label for="issueCode" id="lblIssueCode">Issue Code</label>
                 </td>
                 <td style="width:90%">
