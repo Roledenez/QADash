@@ -59,7 +59,7 @@ date_default_timezone_set("Europe/Amsterdam");
 // define('ENVIRONMENT', isset($_SERVER['CI_ENV']) ? $_SERVER['CI_ENV'] : 'development');
 	// var_dump(dirname(__FILE__));
 	switch (dirname(__FILE__)) {
-		case "E:\\xampp\\htdocs\\QADash\\public_html":
+		case "C:\\xampp\\htdocs\\QADash\\public_html":
 			define('ENVIRONMENT', isset($_SERVER['CI_ENV']) ? $_SERVER['CI_ENV'] : 'development');
 			// var_dump("switch one works");
 			break;
@@ -305,3 +305,7 @@ switch (ENVIRONMENT)
  * And away we go...
  */
 require_once BASEPATH.'core/CodeIgniter.php';
+
+
+
+//header('Location: ' . 'https://qadash.com/login/login');

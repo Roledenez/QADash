@@ -1,7 +1,7 @@
-<RequireAny>
-    Require ip 127.0.0.1
-    AuthType Basic
-    AuthName "QADash"
-    AuthUserFile C:/htpasswds/.htpasswd
-    Require valid-user
-</RequireAny>
+#<RequireAny>
+#    Require ip 127.0.0.1
+#    AuthType Basic
+#    AuthName "QADash"
+#    AuthUserFile C:/htpasswds/.htpasswd
+#    Require valid-user
+#</RequireAny>

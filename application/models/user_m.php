@@ -65,7 +65,25 @@ class User_m extends My_Model {
             );
             // create the login session with above details
             $this->session->set_userdata($data);
+
+            $nSubject = new Notification_m();
+            $nSubject->insertNotification($user->users_id, 0, "Logged in", "You have been logged in to the QADashboard", "loggin", site_url() . "engineer/users/showProfile");
+
         }
+    }
+
+    /*
+     * Author : Roledene JKS
+     * Type : method
+     * Name : getUser
+     * Param1 : Email of the user
+     * Param2 : Password of the user
+     * Description : This method return a user by username and password
+     */
+
+    public function hash($string)
+    {
+        return hash('sha512', $string . config_item('encryption_key'));
     }
 
     /*
@@ -75,9 +93,14 @@ class User_m extends My_Model {
      * Description : Destroy the login session
      */
 
-    public function hash($string)
+    public function getUser($email, $password)
     {
-        return hash('sha512', $string . config_item('encryption_key'));
+        // get the user with given email and password
+        $user = $this->get_by(array(
+            'email' => $email,
+            'password' => $password
+        ), TRUE);
+        return $user;
     }
 
     /*
