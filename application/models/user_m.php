@@ -81,8 +81,7 @@ class User_m extends My_Model {
      * Description : This method return a user by username and password
      */
 
-    public function hash($string)
-    {
+    public function hash($string) {
         return hash('sha512', $string . config_item('encryption_key'));
     }
 
@@ -110,8 +109,7 @@ class User_m extends My_Model {
      * Description : This function return TRUE, if loggin session already created, otherwise return false
      */
 
-    public function logout()
-    {
+    public function logout() {
         $this->session->sess_destroy();
     }
 
@@ -123,9 +121,8 @@ class User_m extends My_Model {
      * Description : This function concatinate given string with configuration key and hash using SHA512 algorithm
      */
 
-    public function loggedin()
-    {
-        return (bool)$this->session->userdata('loggedin');
+    public function loggedin() {
+        return (bool) $this->session->userdata('loggedin');
     }
 
     /*
@@ -225,51 +222,6 @@ class User_m extends My_Model {
     /*
      * Author : Ishara
      * Type : method
-     * Name : getAssignedIssues
-     * Description : this method return assigned issues for user
-     */
-
-//    function getAssignedIssues($pid, $uid) {
-//        try {
-//            $query = "SELECT i.issue_id,i.description,p.name,p.priority_id FROM issue i, priority p WHERE i.prioriry_id=p.priority_id AND project_id=$pid AND member_id=$uid";
-//            $result = $this->db->query($query);
-//            return $result->result();
-//        } catch (Exception $exc) {
-//            echo $exc->getTraceAsString();
-//        }
-//    }
-
-    function getAssignedToReviewed($pid, $uid) {
-        try {
-            $query = "SELECT * FROM testsuites WHERE assignedToReview = $uid AND project_id ='$pid' ";
-            $result = $this->db->query($query);
-            return $result->result();
-        } catch (Exception $exc) {
-            echo $exc->getTraceAsString();
-        }
-    }
-    
-    /*
-     * Author : Ishara
-     * Type : method
-     * Name : getAssignedTestCases
-     * Description : this method return assigned test cases for user
-     */
-
-    function getAssignedTestCases($pid, $uid) {
-        try {
-
-            $query = "SELECT tc.testcase_id,tc.description, tc.title, ts.name ,pr.name as priority , pr.priority_id FROM testsuites ts, testcase tc, priority pr WHERE ts.testsuites_id=tc.testsuites_id AND tc.prority_id=pr.priority_id AND ts.project_id='$pid' AND tc.member_id=$uid and tc.psb_status='Assign To Excecution' ORDER BY pr.priority_id";
-            $result = $this->db->query($query);
-            return $result->result();
-        } catch (Exception $exc) {
-            echo $exc->getTraceAsString();
-        }
-    }
-
-    /*
-     * Author : Ishara
-     * Type : method
      * Name : get_projectTime
      * Description : this method return allocation time
      */
@@ -295,11 +247,6 @@ class User_m extends My_Model {
      */
 
     function get_projectAllocTime($mid) {
-//                        $this->db->select('name,description,status,prority_id, progress,totalhours, spentours');
-//                        $this->db->from('project');
-//                        $query = $this->db->get();
-//
-//                        return $query->result();
         try {
 
             $query = "SELECT p.name, t.assigned_hours, t.spent_hours FROM project p, time_entries t WHERE p.project_id=t.project_id and t.member_id=$mid";
@@ -309,44 +256,172 @@ class User_m extends My_Model {
             echo $exc->getTraceAsString();
         }
     }
-    
-    
+
+    /**
+     * Name : getAssignedToReviewed
+     * Description : get assign to review Test suite details
+     *
+     * @param  $pid - project ID
+     * @param  $uid - user id
+     * @throws Exception If can not get the result
+     * @return test suite details
+     */
+    function getAssignedToReviewed($pid, $uid) {
+        try {
+            $query = "SELECT * FROM testsuites WHERE assignedToReview = $uid AND project_id ='$pid' ";
+            $result = $this->db->query($query);
+            return $result->result();
+        } catch (Exception $exc) {
+            echo $exc->getTraceAsString();
+        }
+    }
+
+    /**
+     * Name : getAssignedTestCases
+     * Description : get assign to execute Test case details
+     *
+     * @param  $pid - project ID
+     * @param  $uid - user id
+     * @throws Exception If can not get the result
+     * @return test case details
+     */
+    function getAssignedTestCases($pid, $uid) {
+        try {
+
+            $query = "SELECT tc.testcase_id,tc.description, tc.title, ts.name ,pr.name as priority , pr.priority_id FROM testsuites ts, testcase tc, priority pr WHERE ts.testsuites_id=tc.testsuites_id AND tc.prority_id=pr.priority_id AND ts.project_id='$pid' AND tc.member_id=$uid and tc.psb_status='Assign To Excecution' ORDER BY pr.priority_id";
+            $result = $this->db->query($query);
+            return $result->result();
+        } catch (Exception $exc) {
+            echo $exc->getTraceAsString();
+        }
+    }
+
+    /**
+     * Name : get_projectDetails
+     * Description : get project details
+     *
+     * @param  $pid - project ID
+     * @throws Exception If can not get the result
+     * @return project details
+     */
     function get_projectDetails($pid) {
-        $query = "SELECT p.project_id, p.name, p.status, p.prority_id, p.starting_date, p.ending_date, pr.name as pname FROM project p, priority pr WHERE p.prority_id = pr.priority_id and p.project_id ='$pid'";
-        $result = $this->db->query($query);
-        return $result->result();
+        try {
+            $query = "SELECT p.project_id, p.name, p.status, p.prority_id, p.starting_date, p.ending_date, pr.name as pname FROM project p, priority pr WHERE p.prority_id = pr.priority_id and p.project_id ='$pid'";
+            $result = $this->db->query($query);
+            return $result->result();
+        } catch (Exception $exc) {
+            echo $exc->getTraceAsString();
+        }
     }
-    function get_TestCaseDetails($pid, $tsid){
-        $query = "SELECT tc.testcase_id, tc.testcase_code, ts.testsuites_code, tc.title, tc.description, pr.name as pname, tc.prority_id FROM testcase tc , testsuites ts , priority pr WHERE ts.testsuites_id = tc.testsuites_id and tc.prority_id=pr.priority_id and ts.project_id ='$pid' and ts.testsuites_id=$tsid and tc.psb_status = 'Assigned To Review'";
-        $result = $this->db->query($query);
-        return $result->result();
+
+    /**
+     * Name : get_TestCaseDetails
+     * Description : get get_TestCase details
+     *
+     * @param  $pid - project ID
+     * @param  $tsid - test suite ID
+     * @throws Exception If can not get the result
+     * @return get_TestCase details
+     */
+    function get_TestCaseDetails($pid, $tsid) {
+        try {
+            $query = "SELECT tc.testcase_id, tc.testcase_code, ts.testsuites_code, tc.title, tc.description, pr.name as pname, tc.prority_id FROM testcase tc , testsuites ts , priority pr WHERE ts.testsuites_id = tc.testsuites_id and tc.prority_id=pr.priority_id and ts.project_id ='$pid' and ts.testsuites_id=$tsid and tc.psb_status = 'Assigned To Review'";
+            $result = $this->db->query($query);
+            return $result->result();
+        } catch (Exception $exc) {
+            echo $exc->getTraceAsString();
+        }
     }
-    function get_TestSuiteDetails($pid, $uid){
-        $query = "SELECT t.testsuites_id ,t.testsuites_code, t.name,t.Priority, pr.name as pname FROM `testsuites` t, priority pr WHERE t.Priority = pr.priority_id and t.project_id ='$pid' and t.assignedToReview = $uid and reviewed IS NULL ";
-        $result = $this->db->query($query);
-        return $result->result();
+
+    /**
+     * Name : get_TestSuiteDetails
+     * Description : get Test suite details
+     *
+     * @param  $pid - project ID
+     * @param  $uid - user id
+     * @throws Exception If can not get the result
+     * @return test suite details
+     */
+    function get_TestSuiteDetails($pid, $uid) {
+        try {
+            $query = "SELECT t.testsuites_id ,t.testsuites_code, t.name,t.Priority, pr.name as pname FROM `testsuites` t, priority pr WHERE t.Priority = pr.priority_id and t.project_id ='$pid' and t.assignedToReview = $uid and reviewed IS NULL ";
+            $result = $this->db->query($query);
+            return $result->result();
+        } catch (Exception $exc) {
+            echo $exc->getTraceAsString();
+        }
     }
-    
-    function updateTCStatus($data,$tcID){
-        $this->db->where('testcase_id', $tcID);
-        $this->db->update('testcase', $data); 
+
+    /**
+     * Name : get_TestStepDetails 
+     * Description : get test step details
+     *
+     * @param  $tcID - test case ID
+     * @throws Exception If can not get the result
+     * @return test step details
+     */
+    function get_TestStepDetails($tcID) {
+        try {
+            $query = "SELECT testcaseStep_id,testcase_id, description, expectedResult FROM testcase_step WHERE testcase_id = $tcID ";
+            $result = $this->db->query($query);
+            return $result->result();
+        } catch (Exception $exc) {
+            echo $exc->getTraceAsString();
+        }
     }
-    function get_TestStepDetails($tcID){
-        $query = "SELECT testcaseStep_id,testcase_id, description, expectedResult FROM testcase_step WHERE testcase_id = $tcID ";
-        $result = $this->db->query($query);
-        return $result->result();
+
+    /**
+     * Name : get_AssignToReviewCOunt
+     * Description : get reviewed test case details
+     *
+     * @param  $pid - project ID
+     * @param  $tsid - test case id
+     * @throws Exception If can not get the result
+     * @return reviewed test case details
+     */
+    function get_AssignToReviewCOunt($pid, $tsid) {
+        try {
+            $query = "SELECT COUNT(tc.testcase_id) as count FROM testcase tc ,testsuites ts WHERE ts.testsuites_id = tc.testsuites_id and ts.project_id ='$pid' and ts.testsuites_id=$tsid and tc.psb_status = 'Assigned To Review'";
+            $result = $this->db->query($query);
+            $x = $result->result();
+            return $x[0]->count;
+        } catch (Exception $exc) {
+            echo $exc->getTraceAsString();
+        }
     }
-    
-    function get_AssignToReviewCOunt($pid, $tsid){
-        $query = "SELECT COUNT(tc.testcase_id) as count FROM testcase tc ,testsuites ts WHERE ts.testsuites_id = tc.testsuites_id and ts.project_id ='$pid' and ts.testsuites_id=$tsid and tc.psb_status = 'Assigned To Review'";
-        $result = $this->db->query($query);
-        $x = $result->result();
-        return $x[0]->count;
+
+    /**
+     * Name : updateRevewStatus
+     * Description : update status of test case to review
+     *
+     * @param  $data - updated test case details
+     * @param  $tcID - test case ID
+     * @throws Exception If can not get the result
+     */
+    function updateRevewStatus($data, $tsID) {
+        try {
+            $this->db->where('testsuites_id', $tsID);
+            $this->db->update('testsuites', $data);
+        } catch (Exception $exc) {
+            echo $exc->getTraceAsString();
+        }
     }
-    
-    function updateRevewStatus($data,$tsID){
-        $this->db->where('testsuites_id', $tsID);
-        $this->db->update('testsuites', $data); 
+
+    /**
+     * Name : updateTCStatus
+     * Description : update status of test case
+     *
+     * @param  $data - updated test case details
+     * @param  $tcID - test case ID
+     * @throws Exception If can not get the result
+     */
+    function updateTCStatus($data, $tcID) {
+        try {
+            $this->db->where('testcase_id', $tcID);
+            $this->db->update('testcase', $data);
+        } catch (Exception $exc) {
+            echo $exc->getTraceAsString();
+        }
     }
 
 }

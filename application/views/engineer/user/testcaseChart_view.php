@@ -1,26 +1,6 @@
 <!DOCTYPE HTML>
 <section class="content">
-    <?php
-    echo form_open('engineer/testcaseChart_controller');
-//        if($projects) {
-//            $msg = 'please select a project';
-//        } 
-//        else{
-//            $msg = 'No projects available in the dashboard';
-//        }
-//    
-    ?> 
-    <!--    <div class="row" style=" margin-left: 10px; margin-top: 15px;">
-            <h5 class="box-title">Projects List &nbsp;&nbsp;&nbsp; : &nbsp; //<?php echo form_dropdown('projects', $projects, 'id'); ?> </h5>
-            <h5><b>//<?php echo $msg; ?></b></h5>
-            <div>
-                <input type="submit" style="width:200px;" class="btn btn-block btn-primary" value="Show Project TestCase Status" /></div>    
-        </div>-->
-    <?php
-    echo form_close();
 
-    // if($names!=null){
-    ?>
     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
     <script type="text/javascript">
         $(document).ready(function()
@@ -67,7 +47,6 @@
                 options.xAxis.categories = json[0]['data'];
                 options.series[0] = json[1];
                 options.series[1] = json[2];
-                //options.series[2] = json[3];
                 chart = new Highcharts.Chart(options);
             });
 
