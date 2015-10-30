@@ -54,7 +54,10 @@
 			//run the validating
 			if ($this->form_validation->run($rules) == TRUE) {
 				$id = $this->user_m->addUser("users","users_id");
-					redirect("admin/users/showUsers");
+				$nSubject = new Notification_m();
+				$nSubject->insertNotification($id, 0, "New Registration", "You have been registered to the QADashboard", "registered", site_url() . "engineer/users/showProfile");
+
+				redirect("admin/users/showUsers");
 			}
 
 			$this->data['subview'] = 'admin/user/addNewUsers';
@@ -153,6 +156,9 @@
 
 				$id = $this->user_m->update("users","users_id");
 				if(isset($id)){
+					$nSubject = new Notification_m();
+					$nSubject->insertNotification($id, 0, "User role changed", "Your user role has been updated as " . $this->input->post('role'), "RoleChanged", site_url() . "engineer/users/showProfile");
+
 					redirect("admin/users/showUsers");
 				}
 		}

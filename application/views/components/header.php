@@ -15,18 +15,20 @@
           <div class="navbar-custom-menu">
             <ul class="nav navbar-nav">
               <li>
+                  <div> <p></p></div>
                 <div class="dropdown" ng-controller="customersCtrl">
                   <form method="post" action="../engineer/project/testForm">
                     <select name="projectId" class="btn btn-info dropdown-toggle" ng-model="selectedProject">
                       <option ng-repeat="x in names" selected="true" value="{{x.project_id}}">{{x.name}}</option>
                     </select>
-                    <input type="submit" value="Load" class="btn btn-info pull-right"/>
+                      &nbsp;&nbsp;
+                    <input type="submit" value="Select Project" class="btn btn-info pull-right" style="width: 100px;"/>
                   </form>
 
                 </div>
               </li>
-              <li>
-              </li>
+<!--              &nbsp;&nbsp;-->
+              <li></li>
               <!-- Messages: style can be found in dropdown.less-->
               <li class="dropdown messages-menu" ng-controller="getUnreadChatCtrl">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">

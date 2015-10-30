@@ -75,7 +75,10 @@
 			//run the validating
 			if ($this->form_validation->run($rules) == TRUE) {
 				$id = $this->user_m->update("users","users_id");
-					redirect("admin/users/showUsers");
+				$nSubject = new Notification_m();
+				$nSubject->insertNotification($id, 0, "Profile Updated", "Your profile details has been updated", "updated", site_url() . "engineer/users/showProfile");
+
+				redirect("admin/users/showUsers");
 			}
 
 					// redirect("admin/users/showProfile");

@@ -36,6 +36,7 @@
     <link href="<?php echo site_url('plugins/daterangepicker/daterangepicker-bs3.css'); ?>" rel="stylesheet" type="text/css" />
     <!-- bootstrap wysihtml5 - text editor -->
     <link href="<?php echo site_url('plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css'); ?>" rel="stylesheet" type="text/css" />
+   
 
     <!-- angular js  -->
     <script src="<?php echo site_url('js/angular.min.js'); ?>" type="text/javascript"></script>
