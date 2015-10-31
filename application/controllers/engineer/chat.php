@@ -1,10 +1,28 @@
 <?php
 
+/***
+ * @author : Roledene
+ * Type : class
+ * Name : Chat
+ * Description : This class handle all the Chat related activities
+ */
 	class Chat extends Engineer_Controller{
+		/**
+		 * @author : Roledene
+		 * Type : Constructor
+		 * Name : __construct
+		 * Description : this is the default constructor of chat class
+		 */
 		public function __constructor(){
 			parent::__constructor();
 		}
 
+		/**
+		 * @author : Roledene
+		 * Type : method
+		 * Name : index
+		 * Description : This function redirect user to chat UI
+		 */
 		public function index(){
 			// $this->data['projects'] = $this->project_m->getAllProjects();
 			$this->data['subview'] = 'engineer/user/chat';
@@ -12,6 +30,12 @@
 			$this->load->view("engineer/_layout_main",$this->data);
 		}
 
+		/**
+		 * @author : Roledene
+		 * Type : method
+		 * Name : ajaxAddChatMessage
+		 * Description : This function add a chat message to chat box
+		 */
 		public function ajaxAddChatMessage(){
 			$chat_id = $this->input->post('chat_id');
 			$user_id = $this->session->userdata('uid');//$this->input->post('user_id');
@@ -22,6 +46,14 @@
 			echo $this->_ajaxGetChatMessage($chat_id);
 		}
 
+		/**
+		 * @author : Roledene
+		 * Type : method
+		 * Name : _ajaxGetChatMessage
+		 * @param int $chat_id the string to quote
+		 * @return string return the result as html elements
+		 * Description : This function get the chat messages relevant to particular use bind it to html elements and return it as a string
+		 */
 		public function _ajaxGetChatMessage($chat_id)
 		{
 			$lastChatMsgId = (int)$this->session->userdata('lastChatId_' . $chat_id);
@@ -65,6 +97,13 @@
 			}
 		}
 
+		/**
+		 * @author : Roledene
+		 * Type : method
+		 * Name : ajaxGetChatMessage
+		 * @deprecated Method deprecated in Release 2.0.0
+		 * Description : This function get the chat messages and print it in plan html doc
+		 */
 		public function ajaxGetChatMessage(){
 			$chat_id = $this->input->post('chat_id');
 			echo $this->_ajaxGetChatMessage($chat_id);
@@ -84,6 +123,12 @@
 		    return $data;
 		}
 
+		/**
+		 * @author : Roledene
+		 * Type : method
+		 * Name : getUnreadChats
+		 * Description : This function get the unread chat messages count in logged in user and print it in plan html in json format
+		 */
 		function getUnreadChats()
 		{
 			$chat = new chat_m();
