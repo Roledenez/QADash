@@ -7,57 +7,10 @@
     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.js"></script>
     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/jquery-ui.js"></script>
 
-    <script src="<?php echo site_url('emailstyles/js/jquery.bsmselect.js'); ?>" type="text/javascript"></script>
-    <script src="<?php echo site_url('emailstyles/js/jquery.bsmselect.sortable.js'); ?>"
-            type="text/javascript"></script>
     <script src="<?php echo site_url('emailstyles/js/jquery.bsmselect.compatibility.js'); ?>"
             type="text/javascript"></script>
 
-    <link href="<?php echo site_url('emailstyles/cs/jquery.bsmselect.css'); ?>" rel="stylesheet" type="text/css"/>
-    <!--    <link href="-->
-    <?php //echo site_url('emailstyles/cs/jquery.bsmselect.css'); ?><!--" rel="stylesheet" type="text/css"/>-->
-    <!--    <link rel="stylesheet" type="text/css" href="example.css" />-->
-
-    <script type="text/javascript">//<![CDATA[
-
-        jQuery(function ($) {
-
-            // Initialize options
-            var emails = [
-                'admin@admin.com',
-                'chathurigamage17@gmail.com',
-                'sasika@gmail.com',
-                'lakini@yahoo.com',
-                'role@yahoo.com',
-                'binz@gmail.com'
-            ];
-
-            $.each(emails, function (index, email) {
-                $(".sminit").each(function () {
-                    $(this).append($("<option>").html(email));
-                });
-            });
-
-            $("option:nth-child(7n)").attr('selected', 'selected');
-
-            // Example 1
-            $("#cities1").bsmSelect({
-                addItemTarget: 'bottom',
-                animate: true,
-                highlight: true,
-                plugins: [
-                    $.bsmSelect.plugins.sortable({
-                        axis: 'y',
-                        opacity: 0.5
-                    }, {listSortableClass: 'bsmListSortableCustom'}),
-                    $.bsmSelect.plugins.compatibility()
-                ]
-            });
-
-        });
-
-    </script>
-
+    <link href="<?php echo site_url('emailstyles/css/emailStyles.css'); ?>" rel="stylesheet" type="text/css"/>
 
 </head>
 <body>
@@ -74,55 +27,53 @@
                 <!-- /.box-header -->
                 <div class="box-body">
                     <div class="form-group">
-                        <div class="row" style=" margin-left: 10px; margin-top: 15px;">
-                            <?php
+                        <div class="form-group">
 
-                            //echo form_submit('submit','Log in','class=\"btn btn-primary\"');
+                           <?php
                             $attributes = array(
-                                'class' => 'sminit',
-                                'id' => 'cities1',
-                                'type' => "select",
-                                'title'=>'To:',
-                                'name' => "emails[]",
-                                'value' => ""
+                                'class' => 'form-control',
+                                'id' => 'to',
+                                'type' => "textarea",
+                                'placeholder'=>'To:',
+                                'name' => "to",
+                                'value' => set_value('to')
                             );
 
-                            echo form_dropdown($attributes);
+                            echo form_input($attributes);
                             ?>
+                            <?php echo form_error('to'); ?>
 
                         </div>
                         <div class="form-group">
                             <?php
-
-                            //echo form_submit('submit','Log in','class=\"btn btn-primary\"');
                             $attributes = array(
                                 'class' => 'form-control',
                                 'id' => 'subject',
                                 'type' => "textarea",
                                 'placeholder'=>'Subject:',
                                 'name' => "subject",
-                                'value' => ""
+                                'value' => set_value('subject')
                             );
 
                             echo form_input($attributes);
                             ?>
+                            <?php echo form_error('subject'); ?>
 
                         </div>
                         <div class="form-group">
                             <?php
-
-                            //echo form_submit('submit','Log in','class=\"btn btn-primary\"');
                             $attributes = array(
                                 'class' => 'form-control',
                                 'id' => 'compose-textarea',
                                 'type' => "textarea",
                                 'name' => "body",
-                                'style' => "height: 300px",
-                                'value' => ""
+                                'style' => "height: 200px",
+                                'value' => set_value('body')
                             );
 
                             echo form_submit($attributes);
                             ?>
+                            <?php echo form_error('body'); ?>
 
                         </div>
                         <div class="form-group">
@@ -158,7 +109,8 @@
                                 'id' => 'send',
                                 'type' => "submit",
                                 'name' => "send",
-                                'value' => "Send"
+                                'value' => "Send",
+                                'onsubmit' => 'confirmEmail();'
                             );
 
                             echo form_input($attributes);
@@ -173,6 +125,7 @@
             </div>
             <!-- /.col -->
             <?php echo form_close(); ?>
+
             <!-- /.row -->
     </section>
     <!-- /.content -->

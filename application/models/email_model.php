@@ -33,13 +33,11 @@ class Email_model extends My_Model {
                 while (count($emails)>$i) {
                     $data[$i]  = array(
                         'email' => $emails[$i]->email
-
                     );
                     $i++;
                 }
                 return $data;
             }else{
-
                 return null;
             }
 

@@ -82,7 +82,7 @@ class Project_m extends My_Model {
      * Description : this method return project time allocation
      */
 
-    function get_columnchartdata() {
+    public function get_columnchartdata() {
         try {
             $this->db->select('Pname, totalhours, spentours');
             $this->db->from('charts');
@@ -124,7 +124,7 @@ class Project_m extends My_Model {
      * @throws Exception If can not get the result
      * @return project name
      */
-	function getProjectName($pid) {
+	public function getProjectName($pid) {
         try {
             $this->db->select('name');
             $this->db->from('project');
@@ -145,7 +145,7 @@ class Project_m extends My_Model {
      * @throws Exception If can not get the result
      * @return failed test count
      */
-    function getFailedTestcases($pid) {
+    public function getFailedTestcases($pid) {
         try {
             $queryTC = "SELECT COUNT(tc.testcase_id) as FailedTC
                     from project p, testsuites ts, testcase tc
@@ -167,7 +167,7 @@ class Project_m extends My_Model {
      * @throws Exception If can not get the result
      * @return passed test count
      */
-    function getPassedTestcases($pid) {
+    public function getPassedTestcases($pid) {
         try {
             $queryTC = "SELECT COUNT(tc.testcase_id) as PassedTC
                     from project p, testsuites ts, testcase tc
@@ -189,7 +189,7 @@ class Project_m extends My_Model {
      * @throws Exception If can not get the result
      * @return in progress test count
      */
-    function getInProgressTestcases($pid) {
+    public function getInProgressTestcases($pid) {
         try {
             $queryTC = "SELECT COUNT(tc.testcase_id) as InProgressTC
                     from project p, testsuites ts, testcase tc
@@ -267,7 +267,7 @@ class Project_m extends My_Model {
      * @throws Exception If can not get the result
      * @return project details
      */
-    function get_projectDetails($pid) {
+    public function get_projectDetails($pid) {
         try {
             $query = "SELECT p.project_id, p.name, p.status,p.starting_date,p.ending_date, p.prority_id FROM project p, priority pr WHERE p.prority_id = pr.priority_id AND p.project_id = '$pid'";
             $result = $this->db->query($query);

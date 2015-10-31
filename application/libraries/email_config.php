@@ -17,8 +17,8 @@ class Email_Config{
             'protocol' => 'smtp',
             'smtp_host' => 'ssl://smtp.googlemail.com',
             'smtp_port' => 465,
-            'smtp_user' => 'sermountengineers@gmail.com',
-            'smtp_pass' => 'tzhpbaybzbecbswd',
+            'smtp_user' => 'qadash123@gmail.com',
+            'smtp_pass' => 'igvmevuigbupqqbe',
             'mailtype' => 'html',
             'charset' => 'iso-8859-1',
             'wordwrap' => TRUE
