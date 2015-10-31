@@ -1,13 +1,14 @@
 <?php
-		/*
-		 * Auther : Roledene
+
+/**
+ * @author : Roledene
 		 * Type : class
 		 * Name : login
 		 * Description : This class handle the login authentication
 		 */
 	class Login extends Admin_Controller{
-		/*
-		 * Auther : Roledene
+		/**
+		 * @author : Roledene
 		 * Type : Constructor
 		 * Name : __construct
 		 * Description : this is the default construtor of login class
@@ -16,8 +17,8 @@
 			parent::__construct();
 		}
 
-		/*
-		 * Auther : Roledene
+		/**
+		 * @author : Roledene
 		 * Type : method
 		 * Name : login
 		 * Description : This function validate the username, password and user role, then redirect to the redirect to the relavent UI
@@ -48,8 +49,8 @@
 			$this->load->view('_layout_modal',$this->data);
 		}
 
-		/*
-		 * Auther : Roledene
+		/**
+		 * @author : Roledene
 		 * Type : method
 		 * Name : getDashboardPath
 		 * Description : This method returns which dashboard to redirect the logged in user based on user role.
@@ -83,8 +84,8 @@
 			}
 		}
 
-		/*
-		 * Auther : Roledene
+		/**
+		 * @author : Roledene
 		 * Type : method
 		 * Name : logout
 		 * Description : This method unset the logged in session

@@ -1,7 +1,7 @@
 <?php
 
-/*
- * Auther : Roledene
+/**
+ * @author : Roledene
  * Type : class
  * Name : Project_m
  * Description : this class represent the project table in db and it's functionality
@@ -9,27 +9,44 @@
 
 class Project_m extends My_Model {
 
-    // table name of the database
+    /**
+     * @var string array
+     * @access public
+     */
     public $data = array();
-    // order by clouse
+    /**
+     * @var string
+     * @access protected
+     */
     protected $_table_name = "project";
+    /**
+     * @var string
+     * @access protected
+     */
     protected $_order_by = "";
-    // output data holder
+    /**
+     * @var bool
+     * @access protected
+     */
     protected $_timestamps = FALSE;
 
-    // constructor
-
+    /**
+     * @author : Roledene
+     * Type : constructor
+     * Name : __construct
+     * Description : Default constructor for project_m class
+     */
     public function __construct() {
         parent::__construct();
     }
 
-    /*
-     * Auther : Roledene
+    /**
+     * @author : Roledene
      * Type : method
      * Name : getAllProjects
+     * @return string array project names
      * Description : this method return all the project tuples in project table
      */
-
     public function getAllProjects() {
         $project = $this->get();
         if (count($project)) {
@@ -55,13 +72,14 @@ class Project_m extends My_Model {
         }
     }
 
-    /*
-     * Auther : Roledene
+    /**
+     * @author : Roledene
      * Type : method
      * Name : getProjectsByUser
+     * @param int $userId
+     * @return string sql query as json
      * Description : this method return all the project that assigning to one user
      */
-
     public function getProjectsByUser($userId) {
         try {
             $this->db->select('p.project_id,p.name');
