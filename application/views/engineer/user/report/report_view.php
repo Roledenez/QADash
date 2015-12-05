@@ -33,14 +33,16 @@
                 'role' => "form",
             );
 
-            echo form_open('admin/report/projectreport_controller/generateReport',$attributes); ?>
+            echo form_open('engineer/report/projectreport_controller/generateReport',$attributes); ?>
 
                 <div class="form-group">
                     <label for="filter">Report Type :</label>
                     <select name="reportType" class="form-control" value="<?php set_value('reportTitle')?>">
-                        <option value="0">Issue Level Report</option>
-                        <option value="1">Test Case Report</option>
-                        <option value="2">QA Release Report</option>
+                        <option value="0" selected>Project Details</option>
+                        <option value="1">Issue Level Report</option>
+                        <option value="2">Test Case Report</option>
+                        <option value="3">Project Progress Report</option>
+                        <option value="4">QA Report</option>
                     </select>
 
                     <div class="form-group">
@@ -64,7 +66,7 @@
 
             echo form_input($attributes);
             ?>
-<!--            --><?php //echo anchor('admin/report/customize_controller/navigate','<button style="" type="button" class="btn btn-success">Customize Report</button>') ?>
+
 
             <?php echo form_close(); ?>
 <!--            <form class="form-area" style="width: 90%" role="form">-->
@@ -94,9 +96,9 @@
                         <?php
                         foreach ($reportlist as $value): ?>
                             <li class="list-group-item">
-                                <?php echo anchor('admin/report/singleReport_controller/displayPDF?filename=' . $value->report_name, $value->report_name, array(
+                                <?php echo anchor('engineer/report/singleReport_controller/displayPDF?filename=' . $value->report_name, $value->report_name, array(
                                     'target' => "_blank")) ?>
-                                <?php echo anchor('admin/report/report_controller/deleteFile?filename=' . $value->report_name, '<span class="glyphicon glyphicon-trash" style="float: right;color: red"></span>', array(
+                                <?php echo anchor('engineer/report/report_controller/deleteFile?filename=' . $value->report_name, '<span class="glyphicon glyphicon-trash" style="float: right;color: red"></span>', array(
                                     'onclick' => "return confirmDialog();")) ?>
 
                             </li>
