@@ -93,7 +93,7 @@ class project_model extends My_Model {
      */
     function get_TestCaseDetails($pid) {
         try {
-            $query = "SELECT tc.testcase_id, tc.testcase_code, ts.testsuites_code, tc.title, tc.description, pr.name as pname, tc.prority_id FROM testcase tc , testsuites ts , priority pr WHERE ts.testsuites_id = tc.testsuites_id and tc.prority_id=pr.priority_id and ts.project_id ='$pid' ORDER BY ts.testsuites_code";
+            $query = "SELECT tc.testcase_id, tc.testcase_code, ts.testsuites_code, tc.title, tc.description, pr.name as pname, tc.prority_id FROM testcase tc , testsuites ts , priority pr WHERE ts.testsuites_id = tc.testsuites_id and tc.prority_id=pr.priority_id and ts.project_id ='$pid' and tc.psb_status = 'Assigned To Review' ORDER BY ts.testsuites_code";
             $result = $this->db->query($query);
             return $result->result();
         } catch (Exception $exc) {

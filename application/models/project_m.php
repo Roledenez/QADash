@@ -1,7 +1,7 @@
 <?php
 
-/*
- * Auther : Roledene
+/**
+ * @author : Roledene
  * Type : class
  * Name : Project_m
  * Description : this class represent the project table in db and it's functionality
@@ -9,27 +9,44 @@
 
 class Project_m extends My_Model {
 
-    // table name of the database
+    /**
+     * @var string array
+     * @access public
+     */
     public $data = array();
-    // order by clouse
+    /**
+     * @var string
+     * @access protected
+     */
     protected $_table_name = "project";
+    /**
+     * @var string
+     * @access protected
+     */
     protected $_order_by = "";
-    // output data holder
+    /**
+     * @var bool
+     * @access protected
+     */
     protected $_timestamps = FALSE;
 
-    // constructor
-
+    /**
+     * @author : Roledene
+     * Type : constructor
+     * Name : __construct
+     * Description : Default constructor for project_m class
+     */
     public function __construct() {
         parent::__construct();
     }
 
-    /*
-     * Auther : Roledene
+    /**
+     * @author : Roledene
      * Type : method
      * Name : getAllProjects
+     * @return string array project names
      * Description : this method return all the project tuples in project table
      */
-
     public function getAllProjects() {
         $project = $this->get();
         if (count($project)) {
@@ -55,13 +72,14 @@ class Project_m extends My_Model {
         }
     }
 
-    /*
-     * Auther : Roledene
+    /**
+     * @author : Roledene
      * Type : method
      * Name : getProjectsByUser
+     * @param int $userId
+     * @return string sql query as json
      * Description : this method return all the project that assigning to one user
      */
-
     public function getProjectsByUser($userId) {
         try {
             $this->db->select('p.project_id,p.name');
@@ -82,7 +100,7 @@ class Project_m extends My_Model {
      * Description : this method return project time allocation
      */
 
-    function get_columnchartdata() {
+    public function get_columnchartdata() {
         try {
             $this->db->select('Pname, totalhours, spentours');
             $this->db->from('charts');
@@ -124,7 +142,7 @@ class Project_m extends My_Model {
      * @throws Exception If can not get the result
      * @return project name
      */
-	function getProjectName($pid) {
+	public function getProjectName($pid) {
         try {
             $this->db->select('name');
             $this->db->from('project');
@@ -145,7 +163,7 @@ class Project_m extends My_Model {
      * @throws Exception If can not get the result
      * @return failed test count
      */
-    function getFailedTestcases($pid) {
+    public function getFailedTestcases($pid) {
         try {
             $queryTC = "SELECT COUNT(tc.testcase_id) as FailedTC
                     from project p, testsuites ts, testcase tc
@@ -167,7 +185,7 @@ class Project_m extends My_Model {
      * @throws Exception If can not get the result
      * @return passed test count
      */
-    function getPassedTestcases($pid) {
+    public function getPassedTestcases($pid) {
         try {
             $queryTC = "SELECT COUNT(tc.testcase_id) as PassedTC
                     from project p, testsuites ts, testcase tc
@@ -189,7 +207,7 @@ class Project_m extends My_Model {
      * @throws Exception If can not get the result
      * @return in progress test count
      */
-    function getInProgressTestcases($pid) {
+    public function getInProgressTestcases($pid) {
         try {
             $queryTC = "SELECT COUNT(tc.testcase_id) as InProgressTC
                     from project p, testsuites ts, testcase tc
@@ -267,7 +285,7 @@ class Project_m extends My_Model {
      * @throws Exception If can not get the result
      * @return project details
      */
-    function get_projectDetails($pid) {
+    public function get_projectDetails($pid) {
         try {
             $query = "SELECT p.project_id, p.name, p.status,p.starting_date,p.ending_date, p.prority_id FROM project p, priority pr WHERE p.prority_id = pr.priority_id AND p.project_id = '$pid'";
             $result = $this->db->query($query);

@@ -94,11 +94,17 @@
               </a>
             </li>
             <li>
-              <a href="pages/mailbox/mailbox.html">
+              <a href="email/email_controller">
                 <i class="fa fa-envelope"></i> <span>Mailbox</span>
                 <small class="label pull-right bg-yellow">12</small>
               </a>
             </li>
+              <li>
+                  <a href="<?php echo site_url("engineer/report/report_controller")?>">
+                      <i class="fa fa-envelope"></i> <span>Reports</span>
+                      <small class="label pull-right bg-yellow">12</small>
+                  </a>
+              </li>
 
             <li><a href="documentation/index.html"><i class="fa fa-book"></i> <span>Documentation</span></a></li>
           </ul>

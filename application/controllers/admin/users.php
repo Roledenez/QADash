@@ -1,13 +1,14 @@
 <?php
-		/*
-		 * Auther : Roledene
+
+/***
+ * @author : Roledene
 		 * Type : class
 		 * Name : users
 		 * Description : This class handle all the user related activities
 		 */
 	class Users extends Admin_Controller{
-		/*
-		 * Auther : Roledene
+		/**
+		 * @author : Roledene
 		 * Type : Constructor
 		 * Name : __construct
 		 * Description : this is the default construtor of User class
@@ -16,8 +17,8 @@
 			parent::__construct();
 		}
 
-		/*
-		 * Auther : Roledene
+		/**
+		 * @author : Roledene
 		 * Type : method
 		 * Name : add
 		 * Description : This function add a new user to the system
@@ -64,8 +65,8 @@
 			$this->load->view('admin/_layout_main',$this->data);
 		}
 
-		/*
-		 * Auther : Roledene
+		/**
+		 * @author : Roledene
 		 * Type : method
 		 * Name : showUsers
 		 * Description : This function route to the all users sub view
@@ -77,10 +78,11 @@
 			$this->load->view('admin/_layout_main',$this->data);
 		}
 
-		/*
-		 * Auther : Roledene
+		/**
+		 * @author : Roledene
 		 * Type : method
 		 * Name : showProfile
+		 * @deprecated Method deprecated in Release 2.0.0
 		 * Description : This function route to the user profile
 		 */
 		// public function showProfile(){
@@ -96,10 +98,11 @@
 		// 	}
 		// }
 
-		/*
-		 * Auther : Roledene
+		/**
+		 * @author : Roledene
 		 * Type : method
 		 * Name : update
+		 * @deprecated Method deprecated in Release 2.0.0
 		 * Description : This function update the user profile
 		 */
 		// public function update(){
@@ -146,8 +149,8 @@
 
 		// }
 
-		/*
-		 * Auther : Roledene
+		/**
+		 * @author : Roledene
 		 * Type : method
 		 * Name : changeRole
 		 * Description : This function update the user role

@@ -1,31 +1,46 @@
 <?php
-		/*
-		 * Auther : Roledene
+
+/**
+ * @author : Roledene
 		 * Type : class
 		 * Name : chat_m
 		 * Description : This class represent the chat model
 		 */
 	class chat_m extends My_Model{
+		/**
+		 * @var string
+		 * @access protected
+		 */
 		protected $_table_name = "chat_messages";
+		/**
+		 * @var string
+		 * @access protected
+		 */
 		protected $_order_by = "";
-		// rules for the login imput fields
-
+		/**
+		 * @var bool
+		 * @access protected
+		 */
 		protected $_timestamps = FALSE;
 
-		/*
-		 * Auther : Roledene
+		/**
+		 * @author : Roledene
 		 * Type : constructor
 		 * Name : __construct
-		 * Description : Default construtor for chat_m class
+		 * Description : Default constructor for chat_m class
 		 */
 		public function __construct(){
 			parent::__construct();
 		}
 
-		/*
-		 * Auther : Roledene
+		/**
+		 * @author : Roledene
 		 * Type : method
 		 * Name : addChatMessage
+		 * @param int $chatId
+		 * @param int $userId
+		 * @param string $chatMessageContent
+		 * @return int user id
 		 * Description : This method add a chat message to database
 		 */
 		public function addChatMessage($chatId,$userId,$chatMessageContent){
@@ -40,13 +55,17 @@
 			return $id;
 		}
 
-		/*
-		 * Auther : Roledene
+		/**
+		 * @author : Roledene
 		 * Type : method
 		 * Name : getChatMessage
+		 * @param int $chatId
+		 * @param int $lastChatMsgId default = 0
+		 * @return string sql query
 		 * Description : This method get the chat message from database
 		 */
 		public function getChatMessage($chatId,$lastChatMsgId = 0){
+
 			#$query = "SELECT cm.user_id,cm.chat_message_content, DATE_FORMAT(cm.create_date,'%D of %M %Y at %H:%i:%m') as msg_create_date, u.firstName FROM `chat_messages` cm JOIN users u ON cm.user_id = u.users_id WHERE cm.chat_id = ?";
 			$this->db->select('cm.user_id, cm.chat_id, cm.chat_message_content, DATE_FORMAT(cm.create_date, \'%D of %M %Y at %H:%i:%m\') as msg_create_date, u.firstName');
 			$this->db->from('chat_messages cm');
@@ -60,6 +79,16 @@
 			return $result;
 		}
 
+		/**
+		 * @author : Roledene
+		 * Type : method
+		 * Name : getChatMesage
+		 * @param int $chatId
+		 * @param int $lastChatMsgId default = 0
+		 * @return string sql query
+		 * @deprecated Method deprecated in Release 2.0.0
+		 * Description : This method get the chat message from database
+		 */
 		public function getChatMesage($chatId,$lastChatMsgId = 0){
 			try {
 			#$query = "SELECT cm.user_id,cm.chat_message_content, DATE_FORMAT(cm.create_date,'%D of %M %Y at %H:%i:%m') as msg_create_date, u.firstName FROM `chat_messages` cm JOIN users u ON cm.user_id = u.users_id WHERE cm.chat_id = ?";
@@ -79,6 +108,13 @@
 			}
 		}
 
+		/**
+		 * @author : Roledene
+		 * Type : method
+		 * Name : getUnreadChats
+		 * @return string sql query as a json
+		 * Description : This method get all the unread chat message from database
+		 */
 		function getUnreadChats()
 		{
 			try {
