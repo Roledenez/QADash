@@ -1,14 +1,16 @@
 <?php
 
-/*
- * Author : Roledene JKS
+/**
+ * @author : Roledene
  * Type : class
  * Name : User_m
  * Description : This class represent the user model
  */
-
 class User_m extends My_Model {
-
+    /**
+     * @var string 2d array
+     * @access public
+     */
     public $rules = array(
         'email' => array('field' => 'email',
             'label' => 'Email',
@@ -19,14 +21,24 @@ class User_m extends My_Model {
             'rules' => 'trim|required'
         )
     );
+    /**
+     * @var string
+     * @access protected
+     */
     protected $_table_name = "users";
-    // rules for the login imput fields
+    /**
+     * @var string
+     * @access protected
+     */
     protected $_order_by = "";
-//    protected $_primary_key = "users_id";
+    /**
+     * @var bool
+     * @access protected
+     */
     protected $_timestamps = FALSE;
 
-    /*
-     * Author : Roledene JKS
+    /**
+     * @author : Roledene
      * Type : constructor
      * Name : __construct
      * Description : Default construtor for User_m class
@@ -36,11 +48,11 @@ class User_m extends My_Model {
         parent::__construct();
     }
 
-    /*
-     * Author : Roledene JKS
+    /**
+     * @author : Roledene
      * Type : method
      * Name : login
-     * Description : This method validate the username and password with databse values and create the session
+     * Description : This method validate the username and password with database values and create the session
      */
 
     public function login() {
@@ -72,26 +84,28 @@ class User_m extends My_Model {
         }
     }
 
-    /*
-     * Author : Roledene JKS
+    /**
+     * @author : Roledene
      * Type : method
-     * Name : getUser
-     * Param1 : Email of the user
-     * Param2 : Password of the user
-     * Description : This method return a user by username and password
+     * Name : hash
+     * @param string $string
+     * @return string sha512 hash value of the parameter
+     * Description : This method hash the given string using sha512 algorithm
      */
 
     public function hash($string) {
         return hash('sha512', $string . config_item('encryption_key'));
     }
 
-    /*
-     * Author : Roledene JKS
+    /**
+     * @author : Roledene
      * Type : method
-     * Name : logout
-     * Description : Destroy the login session
+     * Name : getUser
+     * @param string $email
+     * @param string $password
+     * @return User user object
+     * Description : this method return the user object which match the username and password
      */
-
     public function getUser($email, $password)
     {
         // get the user with given email and password
@@ -102,35 +116,36 @@ class User_m extends My_Model {
         return $user;
     }
 
-    /*
-     * Author : Roledene JKS
+    /**
+     * @author : Roledene
      * Type : method
-     * Name : loggedin
-     * Description : This function return TRUE, if loggin session already created, otherwise return false
+     * Name : logout
+     * Description : this method dietary the login session
      */
 
     public function logout() {
         $this->session->sess_destroy();
     }
 
-    /*
-     * Author : Roledene JKS
+    /**
+     * @author : Roledene
      * Type : method
-     * Name : hash
-     * Param1 : a string value which needs to hash
-     * Description : This function concatinate given string with configuration key and hash using SHA512 algorithm
+     * Name : loggedin
+     * @return User login user
+     * Description : This function return the logged in user
      */
 
     public function loggedin() {
         return (bool) $this->session->userdata('loggedin');
     }
 
-    /*
-     * Author : Roledene JKS
+    /**
+     * @author : Roledene
      * Type : method
      * Name : addUser
-     * Param1 : db table name
-     * Param2 : primary key of the table
+     * @param string $tableName
+     * @param string $primaryKey
+     * @return int user id
      * Description : This method add a new user to the system
      */
 
@@ -150,10 +165,13 @@ class User_m extends My_Model {
         return $id;
     }
 
-    /*
-     * Author : Roledene JKS
+    /**
+     * @author : Roledene
      * Type : method
-     * Name : addUser
+     * Name : update
+     * @param string $tableName
+     * @param string $primaryKey
+     * @return int user id
      * Description : This method add a new user to the system
      */
 

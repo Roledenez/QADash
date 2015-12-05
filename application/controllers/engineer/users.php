@@ -1,13 +1,14 @@
 <?php
-		/*
-		 * Auther : Roledene
+
+/***
+ * @author : Roledene
 		 * Type : class
 		 * Name : users
 		 * Description : This class handle all the user related activities
 		 */
 	class Users extends Engineer_Controller{
-		/*
-		 * Auther : Roledene
+		/**
+		 * @author : Roledene
 		 * Type : Constructor
 		 * Name : __construct
 		 * Description : this is the default construtor of User class
@@ -17,11 +18,11 @@
 		}
 
 
-		/*
-		 * Auther : Roledene
+		/**
+		 * @author : Roledene
 		 * Type : method
 		 * Name : showProfile
-		 * Description : This function route to the user profile according to the privilages
+		 * Description : This function route to the user profile according to the privileges
 		 */
 		public function showProfile(){
 			$this->data['subview'] = 'engineer/user/profile';
@@ -34,14 +35,14 @@
 			}
 		}
 
-		/*
-		 * Auther : Roledene
+		/**
+		 * @author : Roledene
 		 * Type : method
 		 * Name : update
 		 * Description : This function update the user profile
 		 */
 		public function update(){
-
+			try {
 			$this->user_m->rules = array(
 				'first-name' => array('field'=>'fname',
 								'label'=>'First Name',
@@ -84,6 +85,10 @@
 					// redirect("admin/users/showProfile");
 			$this->data['subview'] = 'engineer/user/profile';
 			$this->load->view('admin/_layout_main',$this->data);
+
+			} catch (Exception $e) {
+				echo 'Caught exception: ', $e->getMessage(), "\n";
+			}
 
 		}
 

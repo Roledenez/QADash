@@ -66,7 +66,7 @@ date_default_timezone_set("Europe/Amsterdam");
 
 		default:
 			define('ENVIRONMENT', isset($_SERVER['CI_ENV']) ? $_SERVER['CI_ENV'] : 'production');
-			var_dump("switch two works");
+			// var_dump("switch two works");
 			break;
 	}
 

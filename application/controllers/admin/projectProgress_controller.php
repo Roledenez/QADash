@@ -10,7 +10,7 @@ class ProjectProgress_controller extends Manager_Controller {
     public function index() {
         $this->data['projects'] = $this->chart_model->get_projectDetails();
         $this->data['subview'] = 'admin/user/projectProgress_view';
-	$this->load->view("admin/_layout_main",$this->data);
+	    $this->load->view("admin/_layout_main",$this->data);
     }
 
     public function drawChart() {
