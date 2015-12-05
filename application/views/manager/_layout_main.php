@@ -53,6 +53,18 @@
                 <li><a href="columnchart_controller"><i class="fa fa-circle-o"></i> Overall View</a></li>
               </ul>
             </li>
+              <li>
+                  <a href="email/email_controller">
+                      <i class="fa fa-envelope"></i> <span>Mailbox</span>
+<!--                      <small class="label pull-right bg-yellow">12</small>-->
+                  </a>
+              </li>
+              <li>
+                  <a href="report/report_controller">
+                      <i class="fa fa-files-oReports"></i> <span>Reports </span>
+<!--                      <small class="label pull-right bg-yellow">12</small>-->
+                  </a>
+              </li>
             <li>
               <a href="pages/widgets.html">
                 <i class="fa fa-th"></i> <span>Issues</span> <small class="label pull-right bg-green">new</small>
