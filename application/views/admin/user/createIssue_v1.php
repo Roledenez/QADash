@@ -1,4 +1,4 @@
--<section class="content">
+<section class="content">
 
     <script src ="<?php echo site_url('js/cjs/jquery-1.11.1.min.js') ?>"></script>
     <script src ="<?php echo site_url('js/cjs/jquery.dataTables.min.js') ?>"></script>
