@@ -5,7 +5,7 @@
         <div class="col-xs-12">
             <div class="box">
                 <div class="box-header with-border">
-                    <h2 class="box-title">Assigned To Review Test Suite Details</h2>
+                    <h2 class="box-title">Assigned To Execute Test Suite Details</h2>
                 </div><!-- /.box-header -->
                 <div class="box-body">
                     <table class="table table-bordered">
