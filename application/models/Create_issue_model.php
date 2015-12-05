@@ -57,7 +57,7 @@
          */
         public function get_last_issue_id($pid)
         {            
-            $sql = "SELECT MAX(issue_id) as last FROM issue WHERE issue.project_id = $pid";
+            $sql = "SELECT MAX(issue_id) as last FROM issue";
             return $this->db->query($sql)->result();
         }
 
