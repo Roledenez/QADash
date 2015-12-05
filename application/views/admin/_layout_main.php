@@ -109,7 +109,7 @@
               </ul>
             </li>
             <li>
-              <a href="pages/calendar.html">
+              <a href="<?php site_url('admin/calendar_controller/showcal') ?>">
                 <i class="fa fa-calendar"></i> <span>Calendar</span>
                 <small class="label pull-right bg-red">3</small>
               </a>
@@ -160,7 +160,9 @@
 
       <!-- Content Wrapper. Contains page content -->
       <div class="content-wrapper">
-<!--        //todo create the site map as activeScteam_view in engineer/users file for every view-->
+
+        <!--TODO create the site map as activeScteam_view in engineer/users file for every view-->
+
 
         <!-- Main content -->
 
