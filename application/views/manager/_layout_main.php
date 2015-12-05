@@ -60,7 +60,7 @@
                   </a>
               </li>
               <li>
-                  <a href="report/report_controller">
+                  <a href="<?php echo site_url("manager/report/report_controller"); ?>">
                       <i class="fa fa-files-oReports"></i> <span>Reports </span>
 <!--                      <small class="label pull-right bg-yellow">12</small>-->
                   </a>
