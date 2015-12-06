@@ -7,7 +7,7 @@
      *@class name   View_all_issues_controller
      *@desciption   display all issues controller
      */
-	class View_all_issues_controller extends Admin_Controller
+	class View_all_issues_controller extends Engineer_Controller
     {
 		/**
          *

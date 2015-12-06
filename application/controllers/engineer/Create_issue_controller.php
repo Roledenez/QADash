@@ -9,7 +9,7 @@
  *@desciption   issue creation controller
  */
 
-class Create_issue_controller extends Admin_Controller {
+class Create_issue_controller extends Engineer_Controller {
 
     /**
      *

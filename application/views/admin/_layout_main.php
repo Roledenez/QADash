@@ -32,7 +32,7 @@
                 <!-- sidebar menu: : style can be found in sidebar.less -->
                 <ul class="sidebar-menu">
                     <li class="header">MAIN NAVIGATION</li>
-                    <li class="header"><a href="<?php echo site_url("manager/projectManagement_controller"); ?>">CREAT TEST PROJECT</a></li>
+                    <li class="header"><a href="<?php echo site_url("admin/projectManagement_controller"); ?>">CREAT TEST PROJECT</a></li>
                     <li>
                         <a href=<?php
                         if (!empty($this->session->userdata('project_id')))
@@ -54,18 +54,33 @@
                         </ul>
                     </li>
                     <li>
-                        <a href="<?php echo site_url("manager/report/report_controller"); ?>">
+                        <a href=<?php
+                        if (!empty($this->session->userdata('project_id')))
+                            echo site_url("admin/report/report_controller");
+                        else
+                            echo site_url("admin/base_controller");
+                        ?>>
                             <i class="fa fa-file-powerpoint-o"></i> <span>Reports </span>
                         </a>
                     </li>
                     <li>
-                        <a href="<?php site_url('admin/calendar_controller/showcal') ?>">
+                        <a href=<?php
+                        if (!empty($this->session->userdata('project_id')))
+                            echo site_url("admin/calendar_controller/showcal");
+                        else
+                            echo site_url("admin/base_controller");
+                        ?>>
                             <i class="fa fa-calendar"></i> <span>Calendar</span>
                             <small class="label pull-right bg-red">3</small>
                         </a>
                     </li>
                     <li>
-                        <a href="<?php site_url('admin/email/email_controller') ?>">
+                        <a href=<?php
+                        if (!empty($this->session->userdata('project_id')))
+                            echo site_url("admin/email/email_controller");
+                        else
+                            echo site_url("admin/base_controller");
+                        ?>>
                             <i class="fa fa-envelope"></i> <span>Mailbox</span>
                             <small class="label pull-right bg-yellow">12</small>
                         </a>
