@@ -49,16 +49,16 @@ class Project extends Engineer_Controller
 			if (isset($role)) {
 			switch ($role) {
 						case 'admin':
-							$path = 'admin/base_controller/loadView';
+							$path = site_url("admin/base_controller/loadView"); //'admin/base_controller/loadView';
 							break;
 						case 'manager':
-							$path = 'manager/base_controller/loadView';
+							$path = site_url("manager/base_controller/loadView");//'manager/base_controller/loadView';
 							break;
 						case 'engineer':
-							$path = 'engineer/base_controller/loadView';
+							$path = site_url("engineer/base_controller/loadView");//'engineer/base_controller/loadView';
 							break;
 						case 'intern':
-							$path = 'engineer/dashboard';
+							$path = site_url("engineer/dashboard");//'engineer/dashboard';
 							break;
 
 						default:
