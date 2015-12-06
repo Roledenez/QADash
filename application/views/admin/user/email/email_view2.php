@@ -17,7 +17,7 @@
 <div class="container">
 
     <section class="">
-        <?php echo form_open('engineer/email/email_controller/sendmail'); ?>
+        <?php echo form_open('admin/email/email_controller/sendmail'); ?>
 
         <div class="col-md-9">
             <div class="box box-primary">

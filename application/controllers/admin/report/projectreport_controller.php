@@ -251,7 +251,7 @@ class Projectreport_controller extends Admin_Controller
         $this->load->model('viewAllIssues_m');
         $this->load->model('report_m');
         $pid = $this->session->userdata('project_id');
-        $pid = 3;
+
 
         //headers
         $header = array('Issue Description', 'Priority', 'Severity', 'Status');
@@ -325,9 +325,9 @@ class Projectreport_controller extends Admin_Controller
         //loop through the data array and fill the columns
         foreach($data as $row) {
             $pdf->Cell($w[0], 6, $row->description, 'LR', 0, 'L', $fill);
-            if($row->prioriry_id == 1){
+            if($row->priority_id == 1){
                 $priority='High';
-            }else if($row->prioriry_id == 2) {
+            }else if($row->priority_id == 2) {
                 $priority='Medium';
             }else{
                 $priority='Low';
@@ -382,13 +382,13 @@ class Projectreport_controller extends Admin_Controller
         $this->load->model('viewAllIssues_m');
         $this->load->model('report_m');
         $pid = $this->session->userdata('project_id');
-        $pid = 3;
+
 
         //headers
         $header = array('Issue Description', 'Priority', 'Severity', 'Status');
         $data= $this->report_m->getIssues($pid);
 
-        $pid= 3;
+
         $uid = $this->session->userdata('uid');
         $uname = $this->session->userdata('username');
         $projectName = $this->project_m->getProjectName($pid);
@@ -441,9 +441,9 @@ class Projectreport_controller extends Admin_Controller
         //loop through the data array and fill the columns
         foreach($data as $row) {
             $pdf->Cell($w[0], 6, $row->description, 'LR', 0, 'L', $fill);
-            if($row->prioriry_id == 1){
+            if($row->priority_id == 1){
                 $priority='High';
-            }else if($row->prioriry_id == 2) {
+            }else if($row->priority_id == 2) {
                 $priority='Medium';
             }else{
                 $priority='Low';

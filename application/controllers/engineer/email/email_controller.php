@@ -1,7 +1,7 @@
 <?php
 
 
-class Email_controller extends Admin_Controller
+class Email_controller extends Engineer_Controller
 {
     /**
      * Constructor withe the required library classes loaded
@@ -32,8 +32,8 @@ class Email_controller extends Admin_Controller
         echo  $this->session->userdata('project_id');
         $this->load->model('email_model');
         $this->data['emails'] = $this->email_model->getAllMemberEmails();
-        $this->data['subview'] = 'admin/user/email/email_view';
-        $this->load->view("admin/_layout_main", $this->data);
+        $this->data['subview'] = 'engineer/user/email/email_view';
+        $this->load->view("engineer/_layout_main", $this->data);
 
     }
 
@@ -58,8 +58,8 @@ class Email_controller extends Admin_Controller
         $this->form_validation->set_error_delimiters('<div class="error">', '</div>');
 
         if ($this->form_validation->run() == FALSE) {
-            $this->data['subview'] = 'admin/user/email/email_view';
-            $this->load->view("admin/_layout_main", $this->data);
+            $this->data['subview'] = 'engineer/user/email/email_view';
+            $this->load->view("engineer/_layout_main", $this->data);
             return;
         } else {
             $this->load->library('email', $emailConfigurations);
@@ -77,14 +77,14 @@ class Email_controller extends Admin_Controller
             //call the email library send function to send the email
             if ($this->email->send()) {
                 echo '<script>alert("Email Sent Successfully!");</script>';
-                $this->data['subview'] = 'admin/user/email/email_success_view';
-                $this->data['subview'] = 'admin/user/email/email_view';
-                $this->load->view("admin/_layout_main", $this->data);
+                $this->data['subview'] = 'engineer/user/email/email_success_view';
+                $this->data['subview'] = 'engineer/user/email/email_view';
+                $this->load->view("engineer/_layout_main", $this->data);
             } else {
                 echo '<script>alert("Error occurred while sending the email.Please check your internet connection!");</script>';
-                $this->data['subview'] = 'admin/user/email/email_unsuccess_view';
-                $this->data['subview'] = 'admin/user/email/email_view';
-                $this->load->view("admin/_layout_main", $this->data);
+                $this->data['subview'] = 'engineer/user/email/email_unsuccess_view';
+                $this->data['subview'] = 'engineer/user/email/email_view';
+                $this->load->view("engineer/_layout_main", $this->data);
             }
             return;
         }
@@ -109,8 +109,8 @@ class Email_controller extends Admin_Controller
     }
 
     public function getAttatchment(){
-        $this->data['subview'] = 'admin/user/email/email_view';
-        $this->load->view("admin/_layout_main", $this->data);
+        $this->data['subview'] = 'engineer/user/email/email_view';
+        $this->load->view("engineer/_layout_main", $this->data);
         $fileName = $this->input->get('filename');
         $_SESSION['file'] = $fileName;
     }

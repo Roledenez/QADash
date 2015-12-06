@@ -100,7 +100,12 @@
               </a>
             </li>
               <li>
-                  <a href="<?php echo site_url("engineer/report/report_controller")?>">
+                  <a href=<?php
+                  if(!empty($this->session->userdata('project_id')))
+                      echo site_url("engineer/report/report_controller");
+                  else
+                      echo site_url("engineer/base_controller");
+                  ?>
                       <i class="fa fa-envelope"></i> <span>Reports</span>
                       <small class="label pull-right bg-yellow">12</small>
                   </a>

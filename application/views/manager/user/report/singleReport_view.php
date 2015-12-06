@@ -8,9 +8,9 @@
         <div class="section">
             <div class="col-md-12" style="margin-bottom: 10px">
 
-                <?php echo anchor('engineer/report/report_controller','<button style="" type="button" class="btn btn-success">Back</button>',array(
+                <?php echo anchor('manager/report/report_controller','<button style="" type="button" class="btn btn-success">Back</button>',array(
                 ))?>
-                <?php echo anchor('engineer/email/email_controller/getAttatchment?filename='.$report,'<button style="margin-left: 900px;" type="button" class="btn btn-success">Email Report</button>',array(
+                <?php echo anchor('manager/email/email_controller/getAttatchment?filename='.$report,'<button style="margin-left: 900px;" type="button" class="btn btn-success">Email Report</button>',array(
                     ))?>
 
 

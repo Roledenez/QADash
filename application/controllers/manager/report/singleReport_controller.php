@@ -1,7 +1,7 @@
 <?php
 
 
-class SingleReport_controller extends Admin_Controller
+class SingleReport_controller extends Manager_Controller
 {
 
     /**
@@ -37,8 +37,8 @@ class SingleReport_controller extends Admin_Controller
 
         $fileName = $this->input->get('filename');
         $this->data['report'] = $fileName;
-        $this->data['subview'] = 'admin/user/report/singleReport_view';
-        $this->load->view("admin/_layout_main", $this->data);
+        $this->data['subview'] = 'manager/user/report/singleReport_view';
+        $this->load->view("manager/_layout_main", $this->data);
     }
 
 
