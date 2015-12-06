@@ -33,8 +33,8 @@ class Report_controller extends Engineer_Controller
     public function index()
     {
         $this->data['reportlist'] = json_decode($this->report_m->getReportListByUser());
-        $this->data['subview'] = 'admin/user/report/report_view';
-        $this->load->view("admin/_layout_main", $this->data);
+        $this->data['subview'] = 'engineer/user/report/report_view';
+        $this->load->view("engineer/_layout_main", $this->data);
 
     }
 
@@ -47,8 +47,8 @@ class Report_controller extends Engineer_Controller
         chmod('./reports/'.$fileName, 0777);
         unlink('./reports/'.$fileName);
         $this->data['reportlist'] = json_decode($this->report_m->getReportListByUser());
-        $this->data['subview'] = 'admin/user/report/report_view';
-        $this->load->view("admin/_layout_main", $this->data);
+        $this->data['subview'] = 'engineer/user/report/report_view';
+        $this->load->view("engineer/_layout_main", $this->data);
     }
 
 

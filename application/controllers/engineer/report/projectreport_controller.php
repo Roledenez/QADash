@@ -1,6 +1,6 @@
 <?php
 
-class Projectreport_controller extends Manager_Controller
+class Projectreport_controller extends Engineer_Controller
 {
 
     /**
@@ -35,8 +35,8 @@ class Projectreport_controller extends Manager_Controller
     {
 
         $this->data['reportlist'] = directory_map('./reports/', 1);
-        $this->data['subview'] = 'manager/user/report/report_view';
-        $this->load->view("manager/_layout_main", $this->data);
+        $this->data['subview'] = 'engineer/user/report/report_view';
+        $this->load->view("engineer/_layout_main", $this->data);
 
     }
 
@@ -55,8 +55,8 @@ class Projectreport_controller extends Manager_Controller
 
         if($this->form_validation->run() == FALSE){
             $this->data['reportlist'] = json_decode($this->report_m->getReportListByUser());
-            $this->data['subview'] = 'manager/user/report/report_view';
-            $this->load->view("manager/_layout_main", $this->data);
+            $this->data['subview'] = 'engineer/user/report/report_view';
+            $this->load->view("engineer/_layout_main", $this->data);
             return;
         }else {
 
@@ -235,8 +235,8 @@ class Projectreport_controller extends Manager_Controller
 
         //redirect to view the generated pdf file
         $this->data['report'] = $filename;
-        $this->data['subview'] = 'manager/user/report/singleReport_view';
-        $this->load->view("manager/_layout_main", $this->data);
+        $this->data['subview'] = 'engineer/user/report/singleReport_view';
+        $this->load->view("engineer/_layout_main", $this->data);
 
     }
 
@@ -364,8 +364,8 @@ class Projectreport_controller extends Manager_Controller
 
         //redirect to view the generated pdf file
         $this->data['report'] = $filename;
-        $this->data['subview'] = 'manager/user/report/singleReport_view';
-        $this->load->view("manager/_layout_main", $this->data);
+        $this->data['subview'] = 'engineer/user/report/singleReport_view';
+        $this->load->view("engineer/_layout_main", $this->data);
 
 
 
@@ -480,8 +480,8 @@ class Projectreport_controller extends Manager_Controller
 
         //redirect to view the generated pdf file
         $this->data['report'] = $filename;
-        $this->data['subview'] = 'manager/user/report/singleReport_view';
-        $this->load->view("manager/_layout_main", $this->data);
+        $this->data['subview'] = 'engineer/user/report/singleReport_view';
+        $this->load->view("engineer/_layout_main", $this->data);
 
 
 

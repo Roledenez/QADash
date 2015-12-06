@@ -33,7 +33,7 @@
                 'role' => "form",
             );
 
-            echo form_open('engineer/report/projectreport_controller/generateReport',$attributes); ?>
+            echo form_open('manager/report/projectreport_controller/generateReport',$attributes); ?>
 
                 <div class="form-group">
                     <label for="filter">Report Type :</label>
@@ -94,9 +94,9 @@
                         <?php
                         foreach ($reportlist as $value): ?>
                             <li class="list-group-item">
-                                <?php echo anchor('engineer/report/singleReport_controller/displayPDF?filename=' . $value->report_name, $value->report_name, array(
+                                <?php echo anchor('manager/report/singleReport_controller/displayPDF?filename=' . $value->report_name, $value->report_name, array(
                                     'target' => "_blank")) ?>
-                                <?php echo anchor('engineer/report/report_controller/deleteFile?filename=' . $value->report_name, '<span class="glyphicon glyphicon-trash" style="float: right;color: red"></span>', array(
+                                <?php echo anchor('manager/report/report_controller/deleteFile?filename=' . $value->report_name, '<span class="glyphicon glyphicon-trash" style="float: right;color: red"></span>', array(
                                     'onclick' => "return confirmDialog();")) ?>
 
                             </li>
