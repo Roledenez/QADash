@@ -89,7 +89,7 @@
                                 ?>
                             </span>
 
-                            <?php echo form_open("admin/todo_controller/deleteToDo/$id");
+                            <?php echo form_open("manager/todo_controller/deleteToDo/$id");
                             ?> 
 
                             <input type="submit" class="done-button" value="Mark As Done" /></td>

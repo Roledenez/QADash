@@ -16,7 +16,7 @@ class todo_model  extends My_Model {
      */   
     function getlist($user_id) {
         try {
-            $query = "SELECT task,done from todolist t,users s where t.done=0 and t.user_id=s.users_id and s.firstName='$user_id'";
+            $query = "SELECT id,task,done from todolist WHERE done=0 AND user_id= $user_id";
             $result = $this->db->query($query);  
             $row = $result->result();          
             return $row;           
@@ -63,10 +63,10 @@ class todo_model  extends My_Model {
      * Parameters : $task
      * Description :deletes user prefered todos.
      */  
-    function deleteToDo($task){    
-        var_dump($task);
+    function deleteToDo($id){    
+        //var_dump($task);
         try {               
-            $query = "DELETE FROM todolist WHERE task='$task'";
+            $query = "DELETE FROM todolist WHERE id='$id'";
             $result = $this->db->query($query);                     
         } catch (Exception $exc) {
             echo $exc->getTraceAsString();

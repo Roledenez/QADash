@@ -1,6 +1,6 @@
 <?php
 
-class Todo_controller extends Admin_Controller {
+class Todo_controller extends Manager_Controller {
 
     public function __construct() {
         parent::__construct();
@@ -13,8 +13,8 @@ class Todo_controller extends Admin_Controller {
         $this->load->model('todo_model');
         $this->data['flag'] = 0;
         $this->data['task'] = $this->todo_model->getlist($user_id);
-        $this->data['subview'] = 'admin/user/todo_view';
-        $this->load->view("admin/_layout_main", $this->data);
+        $this->data['subview'] = 'manager/user/todo_view';
+        $this->load->view("manager/_layout_main", $this->data);
     }
 
     public function addToDo() {
@@ -32,8 +32,8 @@ class Todo_controller extends Admin_Controller {
             $this->todo_model->addToDO($data);
             $this->data['flag'] = 1;
             $this->data['task'] = $this->todo_model->getlist($user_id);
-            $this->data['subview'] = 'admin/user/todo_view';
-            $this->load->view("admin/_layout_main", $this->data);
+            $this->data['subview'] = 'manager/user/todo_view';
+            $this->load->view("manager/_layout_main", $this->data);
         } catch (Exception $exc) {
             echo $exc->getTraceAsString();
         }
@@ -42,7 +42,7 @@ class Todo_controller extends Admin_Controller {
     function deleteToDo($id) {
         $this->load->model('todo_model');
         $this->todo_model->deleteToDo($id);
-        redirect("admin/todo_controller");
+        redirect("manager/todo_controller");
     }
 
 }

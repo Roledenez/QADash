@@ -87,6 +87,17 @@
                     <li>
                         <a href=<?php
                         if (!empty($this->session->userdata('project_id')))
+                            echo site_url("manager/todo_controller");
+                        else
+                            echo site_url("manager/base_controller");
+                        ?>>
+                            <i class="fa fa-calendar"></i> <span>To Do List</span>
+                            <small class="label pull-right bg-red">*</small>
+                        </a>
+                    </li>
+                    <li>
+                        <a href=<?php
+                        if (!empty($this->session->userdata('project_id')))
                             echo site_url("manager/report/report_controller");
                         else
                             echo site_url("manager/base_controller");

@@ -88,8 +88,6 @@ function get_calendar_data($year,$month)
          {
              $cal_data[(int)substr($row->date,8,2)] = $row->event;
          }
-         
-         var_dump( $cal_data );
          return $cal_data;
     }
 
@@ -162,7 +160,6 @@ function add_more_calendar_data($date, $event)
 function generate($year, $month){
     $this->load->library('Calendar',$this->pref);
     $cal_data= $this->get_calendar_data($year, $month);
-    var_dump($cal_data);
     //get_datafromOtherTables($year, $month);
     return $this->calendar->generate($year, $month, $cal_data);
      }
