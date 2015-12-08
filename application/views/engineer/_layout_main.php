@@ -57,11 +57,11 @@
                         </a>
                         <ul class="treeview-menu">
                             <li><a href=<?php
-                        if (!empty($this->session->userdata('project_id')))
-                            echo site_url("engineer/projectManagement_controller/createTestSuit/$pid");
-                        else
-                            echo site_url("engineer/base_controller");
-                        ?>><i class="fa fa-circle-o"></i> Create Test Suites</a></li>
+                                if (!empty($this->session->userdata('project_id')))
+                                    echo site_url("engineer/projectManagement_controller/createTestSuit/$pid");
+                                else
+                                    echo site_url("engineer/base_controller");
+                                ?>><i class="fa fa-circle-o"></i> Create Test Suites</a></li>
                         </ul>
                     </li>
                     <li class="treeview">
@@ -76,10 +76,9 @@
                                     echo site_url("engineer/testcaseChart_controller");
                                 else
                                     echo site_url("engineer/base_controller");
-                                ?> ><i class="fa fa-circle-o"></i> Test Case Status</a></li> 
-                            <li><a href="linechart_controller"><i class="fa fa-circle-o"></i> Overall View</a></li> 
+                                ?> ><i class="fa fa-circle-o"></i> Test Case Status</a>
+                            </li> 
                         </ul>
-                        
                     </li>
                     <li class="treeview">
                         <a href="testcaseChart_controller">
@@ -105,17 +104,6 @@
                     <li>
                         <a href=<?php
                         if (!empty($this->session->userdata('project_id')))
-                            echo site_url("engineer/todo_controller");
-                        else
-                            echo site_url("engineer/base_controller");
-                        ?>>
-                            <i class="fa fa-calendar"></i> <span>To Do List</span>
-                            <small class="label pull-right bg-red">*</small>
-                        </a>
-                    </li>
-                    <li>
-                        <a href=<?php
-                        if (!empty($this->session->userdata('project_id')))
                             echo site_url("engineer/report/report_controller");
                         else
                             echo site_url("engineer/base_controller");
@@ -126,10 +114,15 @@
                     </li>
                     <li>
                         <a href=<?php
-                        if (!empty($this->session->userdata('project_id')))
-                            echo site_url("engineer/calendar_controller/showcal");
-                        else
-                            echo site_url("engineer/base_controller");
+                        echo site_url("engineer/todo_controller");
+                        ?>>
+                            <i class="fa fa-calendar"></i> <span>To Do List</span>
+                            <small class="label pull-right bg-red">*</small>
+                        </a>
+                    </li>
+                    <li>
+                        <a href=<?php
+                        echo site_url("engineer/calendar_controller/showcal");
                         ?>>
                             <i class="fa fa-calendar"></i> <span>Calendar</span>
                             <small class="label pull-right bg-red">*</small>
@@ -137,17 +130,14 @@
                     </li>
                     <li>
                         <a href=<?php
-                        if (!empty($this->session->userdata('project_id')))
-                            echo site_url("engineer/email/email_controller");
-                        else
-                            echo site_url("engineer/base_controller");
+                        echo site_url("engineer/email/email_controller");
                         ?>>
                             <i class="fa fa-envelope"></i> <span>Mailbox</span>
                             <small class="label pull-right bg-yellow">*</small>
                         </a>
                     </li>
 
-               </ul>
+                </ul>
             </section>
             <!-- /.sidebar -->
         </aside>

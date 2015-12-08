@@ -33,6 +33,12 @@ class SingleReport_controller extends Admin_Controller
 
     }
 
+    /**
+     * Name : displayPDF
+     * Description : display the PDF of generated report
+     *
+     * @return PDF view
+     */
     public function displayPDF(){
 
         $fileName = $this->input->get('filename');

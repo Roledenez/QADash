@@ -40,8 +40,7 @@ class Todo_controller extends Admin_Controller {
             $this->todo_model->addToDO($data);
             $this->data['flag'] = 1;
             $this->data['task'] = $this->todo_model->getlist($user_id);
-            $this->data['subview'] = 'admin/user/todo_view';
-            $this->load->view("admin/_layout_main", $this->data);
+            redirect("admin/todo_controller");
         } catch (Exception $exc) {
             echo $exc->getTraceAsString();
         }

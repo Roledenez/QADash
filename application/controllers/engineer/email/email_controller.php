@@ -92,8 +92,9 @@ class Email_controller extends Engineer_Controller
     }
 
     /**
+     * Name : validate_email_list
+     * Description : validate each email address
      * @param $emailList email list separated by ,
-     * validate each email address
      * @return bool if all the emails are valid
      */
     public function validate_email_list($str)

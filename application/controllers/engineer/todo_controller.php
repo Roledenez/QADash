@@ -1,6 +1,6 @@
 <?php
 
-class Todo_controller extends Engineer_Controller {
+class Todo_controller extends Engineer_Controller{
 
     public function __construct() {
         parent::__construct();
@@ -40,8 +40,7 @@ class Todo_controller extends Engineer_Controller {
             $this->todo_model->addToDO($data);
             $this->data['flag'] = 1;
             $this->data['task'] = $this->todo_model->getlist($user_id);
-            $this->data['subview'] = 'engineer/user/todo_view';
-            $this->load->view("engineer/_layout_main", $this->data);
+            redirect("engineer/todo_controller");
         } catch (Exception $exc) {
             echo $exc->getTraceAsString();
         }

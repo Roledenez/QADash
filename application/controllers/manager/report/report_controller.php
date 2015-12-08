@@ -38,6 +38,11 @@ class Report_controller extends Manager_Controller
 
     }
 
+    /**
+     * Name : deleteFile
+     * Description : Delete files
+     * 
+     */
     public function deleteFile(){
         $fileName = $this->input->get('filename');
         $result = $this->report_m->deleteReportByUser($fileName);

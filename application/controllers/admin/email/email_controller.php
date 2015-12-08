@@ -1,53 +1,43 @@
 <?php
 
+class Email_controller extends Admin_Controller {
 
-class Email_controller extends Admin_Controller
-{
     /**
      * Constructor withe the required library classes loaded
      */
-    public function __construct()
-    {
+    public function __construct() {
         parent::__construct();
 
-        //libraries for form validation
         $this->load->helper('form');
         $this->load->helper('security');
         $this->load->helper(array('form', 'url'));
         $this->load->library('form_validation');
         $this->load->library('encrypt');
 
-        //load the email configuration class
         $this->load->library('email_config');
-        //file handling library
         $this->load->helper("file");
-        //get base url
         $this->load->helper('url');
-        //retain session data
         $this->load->library('session');
     }
 
-    public function index()
-    {
-        echo  $this->session->userdata('project_id');
+    public function index() {
+        echo $this->session->userdata('project_id');
         $this->load->model('email_model');
         $this->data['emails'] = $this->email_model->getAllMemberEmails();
         $this->data['subview'] = 'admin/user/email/email_view';
         $this->load->view("admin/_layout_main", $this->data);
-
     }
 
     /**
-     * Send the email to the relevant recipients
+     * Name : sendmail
+     * Description : Send new email
+     *
      */
-    function sendmail()
-    {
+    function sendmail() {
         //create an object from the email config class to reuse the methods
         $emailConfig = new email_config();
         //call the function emailConfig() to load the email configurations
         $emailConfigurations = $emailConfig->emailConfig();
-
-        //load values for subject,body,and the email list from front end
         $subject = $this->input->post('subject');
         $body = $this->input->post('body');
         $emails = $this->input->post('to');
@@ -71,10 +61,9 @@ class Email_controller extends Admin_Controller
             $this->email->subject($subject);
             $myVar = $_SESSION['file'];
             $path = getcwd();
-            $this->email->attach(str_replace('\\',"/",$path).'/reports/'.$myVar);
+            $this->email->attach(str_replace('\\', "/", $path) . '/reports/' . $myVar);
             $this->email->message($body);
 
-            //call the email library send function to send the email
             if ($this->email->send()) {
                 echo '<script>alert("Email Sent Successfully!");</script>';
                 $this->data['subview'] = 'admin/user/email/email_success_view';
@@ -88,16 +77,16 @@ class Email_controller extends Admin_Controller
             }
             return;
         }
-
     }
 
     /**
+     * Name : validate_email_list
+     * Description : validate each email address
      * @param $emailList email list separated by ,
-     * validate each email address
+     * 
      * @return bool if all the emails are valid
      */
-    public function validate_email_list($str)
-    {
+    public function validate_email_list($str) {
         $ArrayList = explode(",", $str);
         foreach ($ArrayList as $address) {
             if (!filter_var($address, FILTER_VALIDATE_EMAIL)) {
@@ -108,12 +97,16 @@ class Email_controller extends Admin_Controller
         return true;
     }
 
-    public function getAttatchment(){
+    /**
+     * Name : getAttatchment
+     * Description : Get Attatchments for email
+     *
+     */
+    public function getAttatchment() {
         $this->data['subview'] = 'admin/user/email/email_view';
         $this->load->view("admin/_layout_main", $this->data);
         $fileName = $this->input->get('filename');
         $_SESSION['file'] = $fileName;
     }
-
 
 }

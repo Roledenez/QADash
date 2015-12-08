@@ -1,6 +1,4 @@
-<!DOCTYPE html>
-<html>
-<head>
+<section class="content">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js" type="text/javascript"></script>
     <script src="<?php echo site_url('bootstrap/js/jquery.gridly.js'); ?>" type="text/javascript"></script>
     <link href="<?php echo site_url('bootstrap/css/jquery.gridly.css'); ?>" rel="stylesheet" type="text/css"/>
@@ -18,8 +16,7 @@
         }
     </script>
 
-</head>
-<body>
+
 <div class="container">
     <div class="row"><h3 style="margin-left:20px">Report Generation</h3></div>
     <div class="row">
@@ -110,6 +107,4 @@
 
     </div>
 </div>
-
-</body>
-</html>
+</section>

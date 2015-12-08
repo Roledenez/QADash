@@ -1,6 +1,4 @@
 <?php
-
-
 class Report_controller extends Admin_Controller
 {
 
@@ -11,23 +9,16 @@ class Report_controller extends Admin_Controller
     {
         parent::__construct();
 
-        //libraries for form validation
         $this->load->helper('form');
         $this->load->helper('security');
         $this->load->helper(array('form', 'url'));
         $this->load->library('form_validation');
         $this->load->library('encrypt');
 
-        //read folder specified
         $this->load->helper('directory');
-        //get base url
         $this->load->helper('url');
-        //file handling library
         $this->load->helper("file");
-        //report model load
         $this->load->model('report_m');
-
-
     }
 
     public function index()
@@ -38,6 +29,12 @@ class Report_controller extends Admin_Controller
 
     }
 
+     /**
+     * Name : deleteFile
+     * Description : Delete files
+     * 
+     */
+    
     public function deleteFile(){
         $fileName = $this->input->get('filename');
         $result = $this->report_m->deleteReportByUser($fileName);

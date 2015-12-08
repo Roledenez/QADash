@@ -44,21 +44,29 @@
                         </a>
                     </li>
                     <li class="treeview">
-                        <a href="#">
+                        <a href="projectSprint_controller">
                             <i class="fa fa-files-o"></i>
                             <span>Projects</span>
-                            <span class="label label-primary pull-right">4</span>
+                            <span class="label label-primary pull-right">*</span>
                         </a>
                         <ul class="treeview-menu">
-                            <li><a href="#hi"><i class="fa fa-circle-o"></i> Tab 1</a></li>
+                            <li><a href=<?php
+                        if (!empty($this->session->userdata('project_id')))
+                            echo site_url("admin/projectManagement_controller");
+                        else
+                            echo site_url("admin/base_controller");
+                        ?>><i class="fa fa-circle-o"></i> Create Test Project</a></li>
+                            <li><a href=<?php
+                        if (!empty($this->session->userdata('project_id')))
+                            echo site_url("admin/allocateMember_controller");
+                        else
+                            echo site_url("admin/base_controller");
+                        ?>><i class="fa fa-circle-o"></i> Allocate Members</a></li>
                         </ul>
                     </li>
                     <li>
                         <a href=<?php
-                        if (!empty($this->session->userdata('project_id')))
                             echo site_url("admin/todo_controller");
-                        else
-                            echo site_url("admin/base_controller");
                         ?>>
                             <i class="fa fa-calendar"></i> <span>To Do List</span>
                             <small class="label pull-right bg-red">*</small>
@@ -76,10 +84,7 @@
                     </li>
                     <li>
                         <a href=<?php
-                        if (!empty($this->session->userdata('project_id')))
                             echo site_url("admin/calendar_controller/showcal");
-                        else
-                            echo site_url("admin/base_controller");
                         ?>>
                             <i class="fa fa-calendar"></i> <span>Calendar</span>
                             <small class="label pull-right bg-red">3</small>
@@ -87,10 +92,7 @@
                     </li>
                     <li>
                         <a href=<?php
-                        if (!empty($this->session->userdata('project_id')))
                             echo site_url("admin/email/email_controller");
-                        else
-                            echo site_url("admin/base_controller");
                         ?>>
                             <i class="fa fa-envelope"></i> <span>Mailbox</span>
                             <small class="label pull-right bg-yellow">12</small>

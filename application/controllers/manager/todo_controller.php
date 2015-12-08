@@ -40,8 +40,7 @@ class Todo_controller extends Manager_Controller {
             $this->todo_model->addToDO($data);
             $this->data['flag'] = 1;
             $this->data['task'] = $this->todo_model->getlist($user_id);
-            $this->data['subview'] = 'manager/user/todo_view';
-            $this->load->view("manager/_layout_main", $this->data);
+            redirect("manager/todo_controller");
         } catch (Exception $exc) {
             echo $exc->getTraceAsString();
         }
