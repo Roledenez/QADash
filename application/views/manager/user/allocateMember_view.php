@@ -29,7 +29,7 @@
                 </div><!-- /.row -->
 
             <?php } ?> 
-             <br>   <br>
+            <br>   <br>
 
             <!-- Horizontal Form -->
             <div class="box box-info">

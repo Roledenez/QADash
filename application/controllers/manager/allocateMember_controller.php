@@ -1,10 +1,5 @@
 <?php
-/*
- * Author : Lakini
- * Type : class
- * Name : AllocateMember_controller
- * Description : maintain the allocation of members for a particular project. 
- */  
+ 
 class AllocateMember_controller extends Manager_Controller {
 
     public function __construct() {
@@ -12,6 +7,10 @@ class AllocateMember_controller extends Manager_Controller {
         $this->load->model('project_model');
     }
 
+   /**
+    * Name : index
+    * Description : load modela dn set data of the allocate member function
+    */
     public function index() {
         $pid = $this->session->userdata('project_id');
         $this->data['flag'] = null;
@@ -22,13 +21,11 @@ class AllocateMember_controller extends Manager_Controller {
         $this->load->view("manager/_layout_main", $this->data);
     }
 
-    /*
-     * Author : Lakini
-     * Type : method
+    /**
      * Name : addMembers
-     * Description : maintain the allocation of members for a particular
-     *  project and this passes the parameters to model method. 
-    */ 
+     * Description : add members to the project
+     * @throws Exception if the memebers can't  add to the project
+     */
     public function addMembers() {
         try {       
             $pid = $this->session->userdata('project_id');
@@ -52,13 +49,12 @@ class AllocateMember_controller extends Manager_Controller {
             echo $exc->getTraceAsString();
         }
     }
-    /*
-     * Author : Lakini
-     * Type : method
+    
+    /**
      * Name : deleteMembers
-     * Parameters:$memID
-     * Description : helps the user to delete members from the project. 
-    */ 
+     * Description : helps the user to delete members from the project.
+     * @throws Exception if the memebers can't  delete from the project
+     */
     public function deleteMembers($memID) {
         try {           
             $pid = $this->session->userdata('project_id');

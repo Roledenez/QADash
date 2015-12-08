@@ -7,6 +7,10 @@ class Todo_controller extends Manager_Controller {
         $this->load->helper('url');
     }
 
+    /**
+     * Name : index
+     * Description : This loads the to-do list
+     */
     public function index() {
         $this->data['flag'] = null;
         $user_id = $this->session->userdata('uid');
@@ -17,6 +21,10 @@ class Todo_controller extends Manager_Controller {
         $this->load->view("manager/_layout_main", $this->data);
     }
 
+    /**
+     * Name : addToDo
+     * Description : Add events to todo list
+     */
     public function addToDo() {
         try {
             $this->load->model('todo_model');
@@ -39,6 +47,11 @@ class Todo_controller extends Manager_Controller {
         }
     }
 
+    /**
+     * Name : deleteToDo
+     * Description : Deletes events from the todo list
+     * @param $id - id allocated for an item in the to-do list
+     */
     function deleteToDo($id) {
         $this->load->model('todo_model');
         $this->todo_model->deleteToDo($id);
@@ -46,4 +59,3 @@ class Todo_controller extends Manager_Controller {
     }
 
 }
-

@@ -1,28 +1,25 @@
 <?php
 
-/*
- * Author : Lakini
- * Type : class
- * Name : Calendar_model
- * Description : This class handles the insert,update of the task which will 
- * going to dispaly in the Calander.
- */
-class Calendar_model extends My_Model{
+class Calendar_model extends My_Model {
 
-var $pref;
+    var $pref;
 
-function __construct() {
-    // Call the Model constructor
-    parent::__construct();
-    $this->pref = array(
-        'show_next_prev'=> TRUE,
-        'next_prev_url' => base_url().'admin/calendar_controller/showcal'
-         );
+    /**
+     * Name : __construct
+     * Description : constructor of the class
+     */
+    function __construct() {
+        // Call the Model constructor
+        parent::__construct();
+        $this->pref = array(
+            'show_next_prev' => TRUE,
+            'next_prev_url' => base_url() . 'admin/calendar_controller/showcal'
+        );
 
-/*
- * Using codeIgniter calander function 
- */
-    $this->pref['template']='
+        /*
+         * Using codeIgniter calander function 
+         */
+        $this->pref['template'] = '
         {table_open}<table border="0" cellpadding="0" cellspacing="0" class="calendar">{/table_open}
         {heading_row_start}<tr>{/heading_row_start}
 
@@ -67,101 +64,90 @@ function __construct() {
         ';
     }
 
-/*
- * Author : Lakini
- * Type : method
- * Name : get_calendar_data
- * Parameters:$year,$month
- * Description : This method gets value for the calander from the database 
- * according to the parameters passed. 
- */    
-function get_calendar_data($year,$month)
-    {
+    /**
+     * Name : get_calendar_data
+     * Description : This method gets value for the calander from the database  
+     * @param $year - requested year
+     * @param $month - requested month
+     */
+    function get_calendar_data($year, $month) {
         $this->db->select('date,event');
         $this->db->from('calendar');
         $this->db->like('date', "$year-$month", 'after');
-        $query=$this->db->get();
+        $query = $this->db->get();
 
         $cal_data = array();
 
-         foreach ($query->result() as $row)
-         {
-             $cal_data[(int)substr($row->date,8,2)] = $row->event;
-         }
-         return $cal_data;
+        foreach ($query->result() as $row) {
+            $cal_data[(int) substr($row->date, 8, 2)] = $row->event;
+        }
+        return $cal_data;
     }
 
-/*
- * Author : Lakini
- * Type : method
- * Name : get_datafromOtherTables
- * Parameters:$year,$month
- * Description : This method gets value for the calander from other tables of the database 
- * according to the parameters passed. 
- */        
-function get_datafromOtherTables($year,$month)
-    {
+    /**
+     * Name : get_datafromOtherTables
+     * Description : This method gets value for the calander from other tables of the database 
+     * according to the parameters passed. 
+     * @param $year - requested year
+     * @param $month - requested month
+     */
+    function get_datafromOtherTables($year, $month) {
         $this->db->select('date,event');
         $this->db->from('project');
         $this->db->like('starting_date', "$year-$month", 'after');
         $this->db->like('ending_date', "$year-$month", 'after');
-        $query=$this->db->get();
+        $query = $this->db->get();
 
         $cal_data = array();
 
-        foreach ($query->result() as $row)
-        {
-           $cal_data[(int)substr($row->date,8,2)] = $row->event;
+        foreach ($query->result() as $row) {
+            $cal_data[(int) substr($row->date, 8, 2)] = $row->event;
         }
 
         return $cal_data;
     }
-    
-/*
- * Author : Lakini
- * Type : method
- * Name : add_more_calendar_data
- * Parameters:$date,$event
- * Description : This method add new  value for the calander table when 
- * the user inputs them at the runtime.
- */       
-function add_more_calendar_data($date, $event)
-    {
+
+    /**
+     * Name : add_more_calendar_data
+     * Description : This method add new  value for the calander table when 
+     * the user inputs them at the runtime.
+     * @param $date - requested date
+     * @param $event - the events to add
+     */
+    function add_more_calendar_data($date, $event) {
         $this->db->select('date');
         $this->db->from('calendar');
-        $this->db->where('date',$date);
-        $set=$this->db->count_all_results();
+        $this->db->where('date', $date);
+        $set = $this->db->count_all_results();
 
-       if($set>0)
-       {
-           $this->db->where('date', $date);
-           $this->db->update('calendar',array(
-               'date' => $date,
-               'event' => $event
-         ));
-       }
-  
-       else
-       {
-           $this->db->insert('calendar', array(
-           'date' => $date,
-           'event' => $event
-         ));
-       }
+        if ($set > 0) {
+            $this->db->where('date', $date);
+            $this->db->update('calendar', array(
+                'date' => $date,
+                'event' => $event
+            ));
+        } else {
+            $this->db->insert('calendar', array(
+                'date' => $date,
+                'event' => $event
+            ));
+        }
     }
 
-/*
- * Author : Lakini
- * Type : method
- * Name : generate
- * Parameters:$year,$month
- * Description : This method generates the calendar by using above methods.
- */       
-function generate($year, $month){
-    $this->load->library('Calendar',$this->pref);
-    $cal_data= $this->get_calendar_data($year, $month);
-    //get_datafromOtherTables($year, $month);
-    return $this->calendar->generate($year, $month, $cal_data);
-     }
-  }
+    /**
+     * Name : generate
+     * Description : This method generates the calendar by using above methods.
+     * @param $year - requested year
+     * @param $month - requested months
+     * @return calendar
+     */
+    function generate($year, $month) {
+        $this->load->library('Calendar', $this->pref);
+        $cal_data = $this->get_calendar_data($year, $month);
+        //get_datafromOtherTables($year, $month);
+        return $this->calendar->generate($year, $month, $cal_data);
+    }
+
+}
+
 ?>
