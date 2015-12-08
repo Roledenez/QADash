@@ -8,13 +8,13 @@
                        
 		}               
        
-        public function loadAllIssues()
+        public function loadAllIssues($pid)
         {
-            $pid = $this->session->userdata('project_id');
+            //$pid = $this->session->userdata('project_id');
 
-            $sql = "SELECT *
+            $sql = 'SELECT *
                     FROM issue
-                    WHERE issue.project_id = $pid";
+                    WHERE issue.project_id = '.$pid;
                         
 
             return $this->db->query($sql)->result();

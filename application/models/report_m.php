@@ -30,9 +30,10 @@ class Report_m extends My_Model
 
     public function getIssues($pid){
         try {
+
             $this->db->select('i.description,i.priority_id,i.severity_id,i.status');
             $this->db->from('issue AS i');
-            $this->db->where('i.project_id = ' . $pid);
+            $this->db->where('i.project_id = ' . $pid.' AND i.status = "open"');
             return $this->db->get()->result();
         } catch (Exception $exc) {
             echo $exc->getTraceAsString();
