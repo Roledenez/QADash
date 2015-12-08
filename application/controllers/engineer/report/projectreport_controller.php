@@ -257,7 +257,6 @@ class Projectreport_controller extends Engineer_Controller
         $header = array('Issue Description', 'Priority', 'Severity', 'Status');
         $data= $this->report_m->getIssues($pid);
 
-        $pid= 3;
         $uid = $this->session->userdata('uid');
         $uname = $this->session->userdata('username');
         $projectName = $this->project_m->getProjectName($pid);

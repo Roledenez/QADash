@@ -61,3 +61,24 @@
         <div id="container" style="min-width: 310px; height: 500px; margin: 0 auto"></div>
 
 </section>
+<?php
+$content = ob_get_contents();
+//$html = str_get_html('<html><body>Hello!</body></html>');
+$html1 = file_get_contents('admin/user/r.html',null,null,null,null);
+//$html = str_get_html($html1);
+//$raw = http_get('r.html');
+ob_clean();
+$obj_pdf->writeHTML($content, true, false, true, false, '');
+
+$path = 'C:/Users/Piya/Desktop/reports';
+// Supply a filename including the .pdf extension
+$filename = 'report.pdf';
+
+// Create the full path
+$full_path = $path . '/' . $filename;
+
+// Output PDF
+$obj_pdf->Output($full_path, 'F');
+$obj_pdf->Output('report.pdf', 'D');
+
+?>
